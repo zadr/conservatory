@@ -53,7 +53,6 @@ class ColorRelationTests: XCTestCase {
 	}
 }
 
-// todo: it would be neat to comprehensively generate View tests for every color in Colors
 class ColorViewTests: XCTestCase {
 	func testRGB() {
 		let redRGB = Color.red.RGBView

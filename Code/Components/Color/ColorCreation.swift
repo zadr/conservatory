@@ -20,7 +20,7 @@ public extension Color {
 
 	/**
 	A convenience initializer, to create a *Color* given HSB View.
-	init(hue: 0.0 to 1.0, saturation: 0.0 to 1.0, brightness: 0.0 to 1.0, alpha: 0.0 to 1.0)
+	init(hue: 0.0 to 360.0, saturation: 0.0 to 1.0, brightness: 0.0 to 1.0, alpha: 0.0 to 1.0)
 
 	The parameters specifying *hue*, *saturation*, and *brightness* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.

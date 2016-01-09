@@ -55,6 +55,7 @@ internal extension String {
 	}
 
 	// todo: extend `Range` instead
+	@warn_unused_result
 	private func toNSRange(range: Range<String.Index>) -> NSRange {
 		let start = startIndex.distanceTo(range.startIndex)
 		let length = range.startIndex.distanceTo(range.endIndex)

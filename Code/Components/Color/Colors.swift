@@ -1,6 +1,6 @@
 // MARK: Common colors
 
-// todo: when swift docs can reference images in playgrounds/bundles, provide images of all of the colors
+// todo: when writing docs, reference images in the playground, provide examples of all of the blend modes being applied
 
 public extension Color {
 	public static var black: Color {

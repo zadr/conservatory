@@ -6,7 +6,6 @@ public typealias Colour = Color
 // todo: this should be a struct. make it a struct when arrays can be extended by struct types (swift 2.2? 3.0?) (related code lives in Internal/ArrayExtensions.swift)
 
 // todo: Color's native type should be L*a*b, not RGB
-// todo: can Color be an `enum`?
 /**
 The native Color type in Cotton Duck. Can be created with, and in turn, output RGB, HSL, HSV, XYZ, Yuv, and Lab values.
 */
