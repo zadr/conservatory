@@ -108,15 +108,6 @@ public enum Palette<T, U> {
 }
 
 /**
-A protocol that render outputs can conform to in order to proclaim their output can be saved into image formats.
-*/
-public protocol ImageConvertible {
-	var bitmapView: UnsafePointer<UInt8> { get }
-	var JPEGView: UnsafePointer<UInt8> { get }
-	var PNGView: UnsafePointer<UInt8> { get }
-}
-
-/**
 A protocol that provides the interface for an input to be drawn onto a *Renderer*.
 */
 public protocol Viewable {

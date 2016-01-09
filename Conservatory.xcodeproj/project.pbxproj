@@ -47,6 +47,44 @@
 		B61381E81C3D9B5000C90817 /* AuraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381E61C3D9B5000C90817 /* AuraTests.swift */; };
 		B61381E91C3D9B5000C90817 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B61381E71C3D9B5000C90817 /* Info.plist */; };
 		B61381EC1C3DA0C100C90817 /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381EB1C3DA0C100C90817 /* ColorTests.swift */; };
+		B62268BA1C406B3A005A679D /* CGImageBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62268B91C406B3A005A679D /* CGImageBridging.swift */; };
+		B62268C01C40864D005A679D /* UIImageBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62268BE1C40864D005A679D /* UIImageBridging.swift */; };
+		B62268F31C40885E005A679D /* ColorCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B613819C1C3D9B2F00C90817 /* ColorCreation.swift */; };
+		B62268F41C40885E005A679D /* Palattes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A01C3D9B2F00C90817 /* Palattes.swift */; };
+		B62268F51C40885E005A679D /* Interpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A31C3D9B2F00C90817 /* Interpolation.swift */; };
+		B62268F71C40885E005A679D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B613819E1C3D9B2F00C90817 /* Colors.swift */; };
+		B62268F81C40885E005A679D /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381BD1C3D9B2F00C90817 /* Renderer.swift */; };
+		B62268F91C40885E005A679D /* Shapes2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B01C3D9B2F00C90817 /* Shapes2D.swift */; };
+		B62268FA1C40885E005A679D /* NSImageBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62268BD1C40864D005A679D /* NSImageBridging.swift */; };
+		B62268FB1C40885E005A679D /* Aura.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381971C3D9B2F00C90817 /* Aura.swift */; };
+		B62268FC1C40885E005A679D /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B31C3D9B2F00C90817 /* ArrayExtensions.swift */; };
+		B62268FD1C40885E005A679D /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A71C3D9B2F00C90817 /* Geometry.swift */; };
+		B62268FE1C40885E005A679D /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A81C3D9B2F00C90817 /* Transform.swift */; };
+		B62268FF1C40885E005A679D /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381AC1C3D9B2F00C90817 /* Canvas.swift */; };
+		B62269001C40885E005A679D /* ColorViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B613819F1C3D9B2F00C90817 /* ColorViews.swift */; };
+		B62269011C40885E005A679D /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B11C3D9B2F00C90817 /* Text.swift */; };
+		B62269021C40885E005A679D /* CGRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381BC1C3D9B2F00C90817 /* CGRenderer.swift */; };
+		B62269031C40885E005A679D /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381AD1C3D9B2F00C90817 /* Image.swift */; };
+		B62269041C40885E005A679D /* StringRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381BE1C3D9B2F00C90817 /* StringRenderer.swift */; };
+		B62269051C40885E005A679D /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A51C3D9B2F00C90817 /* Random.swift */; };
+		B62269061C40885E005A679D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B613819A1C3D9B2F00C90817 /* Color.swift */; };
+		B62269071C40885E005A679D /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A41C3D9B2F00C90817 /* IntExtensions.swift */; };
+		B62269081C40885E005A679D /* ColorRelations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B613819D1C3D9B2F00C90817 /* ColorRelations.swift */; };
+		B62269091C40885E005A679D /* Bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381AB1C3D9B2F00C90817 /* Bezier.swift */; };
+		B622690A1C40885E005A679D /* ColorCompanions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B613819B1C3D9B2F00C90817 /* ColorCompanions.swift */; };
+		B622690C1C40885E005A679D /* MT19937-64.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B91C3D9B2F00C90817 /* MT19937-64.swift */; };
+		B622690D1C40885E005A679D /* BlendMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381981C3D9B2F00C90817 /* BlendMode.swift */; };
+		B622690E1C40885E005A679D /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381AF1C3D9B2F00C90817 /* Shape.swift */; };
+		B622690F1C40885E005A679D /* Seeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381BA1C3D9B2F00C90817 /* Seeding.swift */; };
+		B62269101C40885E005A679D /* CocoaTextBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B51C3D9B2F00C90817 /* CocoaTextBridging.swift */; };
+		B62269111C40885E005A679D /* CGBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B41C3D9B2F00C90817 /* CGBridging.swift */; };
+		B62269121C40885E005A679D /* FloatingPointDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B61C3D9B2F00C90817 /* FloatingPointDefinitions.swift */; };
+		B62269131C40885E005A679D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A61C3D9B2F00C90817 /* StringExtensions.swift */; };
+		B62269141C40885E005A679D /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381961C3D9B2F00C90817 /* Appearance.swift */; };
+		B62269151C40885E005A679D /* CGImageBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62268B91C406B3A005A679D /* CGImageBridging.swift */; };
+		B62269161C40885E005A679D /* ImageAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381AE1C3D9B2F00C90817 /* ImageAnalysis.swift */; };
+		B62269171C40885E005A679D /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A21C3D9B2F00C90817 /* DoubleExtensions.swift */; };
+		B622691A1C40885E005A679D /* Conservatory.h in Headers */ = {isa = PBXBuildFile; fileRef = B61381A91C3D9B2F00C90817 /* Conservatory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +140,11 @@
 		B61381E61C3D9B5000C90817 /* AuraTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuraTests.swift; sourceTree = "<group>"; };
 		B61381E71C3D9B5000C90817 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B61381EB1C3DA0C100C90817 /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
+		B62268B91C406B3A005A679D /* CGImageBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGImageBridging.swift; path = Cocoa/CGImageBridging.swift; sourceTree = "<group>"; };
+		B62268BD1C40864D005A679D /* NSImageBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSImageBridging.swift; path = Cocoa/NSImageBridging.swift; sourceTree = "<group>"; };
+		B62268BE1C40864D005A679D /* UIImageBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageBridging.swift; path = Cocoa/UIImageBridging.swift; sourceTree = "<group>"; };
+		B622691F1C40885E005A679D /* Conservatory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Conservatory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B62269241C40C02C005A679D /* Info-Mac.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Mac.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +160,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B61381851C3D9AC800C90817 /* Conservatory.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B62269181C40885E005A679D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +188,7 @@
 			children = (
 				B613817A1C3D9AC700C90817 /* Conservatory.framework */,
 				B61381841C3D9AC800C90817 /* Tests.xctest */,
+				B622691F1C40885E005A679D /* Conservatory.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +248,7 @@
 		B61381AA1C3D9B2F00C90817 /* Inputs */ = {
 			isa = PBXGroup;
 			children = (
+				B62268B81C406B21005A679D /* Cocoa */,
 				B61381AB1C3D9B2F00C90817 /* Bezier.swift */,
 				B61381AC1C3D9B2F00C90817 /* Canvas.swift */,
 				B61381AD1C3D9B2F00C90817 /* Image.swift */,
@@ -243,6 +295,7 @@
 		B61381BF1C3D9B2F00C90817 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B62269241C40C02C005A679D /* Info-Mac.plist */,
 				B61381C01C3D9B2F00C90817 /* Info-iOS.plist */,
 			);
 			path = Resources;
@@ -267,6 +320,16 @@
 			name = Components;
 			sourceTree = "<group>";
 		};
+		B62268B81C406B21005A679D /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				B62268B91C406B3A005A679D /* CGImageBridging.swift */,
+				B62268BD1C40864D005A679D /* NSImageBridging.swift */,
+				B62268BE1C40864D005A679D /* UIImageBridging.swift */,
+			);
+			name = Cocoa;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -278,12 +341,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B62269191C40885E005A679D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B622691A1C40885E005A679D /* Conservatory.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B61381791C3D9AC700C90817 /* Conservatory */ = {
+		B61381791C3D9AC700C90817 /* Conservatory-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B613818E1C3D9AC800C90817 /* Build configuration list for PBXNativeTarget "Conservatory" */;
+			buildConfigurationList = B613818E1C3D9AC800C90817 /* Build configuration list for PBXNativeTarget "Conservatory-iOS" */;
 			buildPhases = (
 				B61381751C3D9AC700C90817 /* Sources */,
 				B61381761C3D9AC700C90817 /* Frameworks */,
@@ -294,7 +365,7 @@
 			);
 			dependencies = (
 			);
-			name = Conservatory;
+			name = "Conservatory-iOS";
 			productName = Conservatory;
 			productReference = B613817A1C3D9AC700C90817 /* Conservatory.framework */;
 			productType = "com.apple.product-type.framework";
@@ -316,6 +387,24 @@
 			productName = ConservatoryTests;
 			productReference = B61381841C3D9AC800C90817 /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B62268F11C40885E005A679D /* Conservatory-Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B622691C1C40885E005A679D /* Build configuration list for PBXNativeTarget "Conservatory-Mac" */;
+			buildPhases = (
+				B62268F21C40885E005A679D /* Sources */,
+				B62269181C40885E005A679D /* Frameworks */,
+				B62269191C40885E005A679D /* Headers */,
+				B622691B1C40885E005A679D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Conservatory-Mac";
+			productName = Conservatory;
+			productReference = B622691F1C40885E005A679D /* Conservatory.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -347,8 +436,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B61381791C3D9AC700C90817 /* Conservatory */,
+				B61381791C3D9AC700C90817 /* Conservatory-iOS */,
 				B61381831C3D9AC800C90817 /* Tests */,
+				B62268F11C40885E005A679D /* Conservatory-Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -369,6 +459,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B622691B1C40885E005A679D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -379,6 +476,7 @@
 				B61381C61C3D9B2F00C90817 /* ColorCreation.swift in Sources */,
 				B61381CA1C3D9B2F00C90817 /* Palattes.swift in Sources */,
 				B61381CC1C3D9B2F00C90817 /* Interpolation.swift in Sources */,
+				B62268C01C40864D005A679D /* UIImageBridging.swift in Sources */,
 				B61381C81C3D9B2F00C90817 /* Colors.swift in Sources */,
 				B61381E21C3D9B2F00C90817 /* Renderer.swift in Sources */,
 				B61381D81C3D9B2F00C90817 /* Shapes2D.swift in Sources */,
@@ -408,6 +506,7 @@
 				B61381DD1C3D9B2F00C90817 /* FloatingPointDefinitions.swift in Sources */,
 				B61381CF1C3D9B2F00C90817 /* StringExtensions.swift in Sources */,
 				B61381C11C3D9B2F00C90817 /* Appearance.swift in Sources */,
+				B62268BA1C406B3A005A679D /* CGImageBridging.swift in Sources */,
 				B61381D61C3D9B2F00C90817 /* ImageAnalysis.swift in Sources */,
 				B61381CB1C3D9B2F00C90817 /* DoubleExtensions.swift in Sources */,
 			);
@@ -423,12 +522,54 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B62268F21C40885E005A679D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B62268F31C40885E005A679D /* ColorCreation.swift in Sources */,
+				B62268F41C40885E005A679D /* Palattes.swift in Sources */,
+				B62268F51C40885E005A679D /* Interpolation.swift in Sources */,
+				B62268F71C40885E005A679D /* Colors.swift in Sources */,
+				B62268F81C40885E005A679D /* Renderer.swift in Sources */,
+				B62268F91C40885E005A679D /* Shapes2D.swift in Sources */,
+				B62268FA1C40885E005A679D /* NSImageBridging.swift in Sources */,
+				B62268FB1C40885E005A679D /* Aura.swift in Sources */,
+				B62268FC1C40885E005A679D /* ArrayExtensions.swift in Sources */,
+				B62268FD1C40885E005A679D /* Geometry.swift in Sources */,
+				B62268FE1C40885E005A679D /* Transform.swift in Sources */,
+				B62268FF1C40885E005A679D /* Canvas.swift in Sources */,
+				B62269001C40885E005A679D /* ColorViews.swift in Sources */,
+				B62269011C40885E005A679D /* Text.swift in Sources */,
+				B62269021C40885E005A679D /* CGRenderer.swift in Sources */,
+				B62269031C40885E005A679D /* Image.swift in Sources */,
+				B62269041C40885E005A679D /* StringRenderer.swift in Sources */,
+				B62269051C40885E005A679D /* Random.swift in Sources */,
+				B62269061C40885E005A679D /* Color.swift in Sources */,
+				B62269071C40885E005A679D /* IntExtensions.swift in Sources */,
+				B62269081C40885E005A679D /* ColorRelations.swift in Sources */,
+				B62269091C40885E005A679D /* Bezier.swift in Sources */,
+				B622690A1C40885E005A679D /* ColorCompanions.swift in Sources */,
+				B622690C1C40885E005A679D /* MT19937-64.swift in Sources */,
+				B622690D1C40885E005A679D /* BlendMode.swift in Sources */,
+				B622690E1C40885E005A679D /* Shape.swift in Sources */,
+				B622690F1C40885E005A679D /* Seeding.swift in Sources */,
+				B62269101C40885E005A679D /* CocoaTextBridging.swift in Sources */,
+				B62269111C40885E005A679D /* CGBridging.swift in Sources */,
+				B62269121C40885E005A679D /* FloatingPointDefinitions.swift in Sources */,
+				B62269131C40885E005A679D /* StringExtensions.swift in Sources */,
+				B62269141C40885E005A679D /* Appearance.swift in Sources */,
+				B62269151C40885E005A679D /* CGImageBridging.swift in Sources */,
+				B62269161C40885E005A679D /* ImageAnalysis.swift in Sources */,
+				B62269171C40885E005A679D /* DoubleExtensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		B61381871C3D9AC800C90817 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B61381791C3D9AC700C90817 /* Conservatory */;
+			target = B61381791C3D9AC700C90817 /* Conservatory-iOS */;
 			targetProxy = B61381861C3D9AC800C90817 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -534,7 +675,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = be.radiantdot.Conservatory;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Conservatory;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -550,7 +691,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = be.radiantdot.Conservatory;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Conservatory;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -575,6 +716,40 @@
 			};
 			name = Release;
 		};
+		B622691D1C40885E005A679D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Resources/Info-Mac.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = be.radiantdot.Conservatory;
+				PRODUCT_NAME = Conservatory;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B622691E1C40885E005A679D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Resources/Info-Mac.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = be.radiantdot.Conservatory;
+				PRODUCT_NAME = Conservatory;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -587,7 +762,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B613818E1C3D9AC800C90817 /* Build configuration list for PBXNativeTarget "Conservatory" */ = {
+		B613818E1C3D9AC800C90817 /* Build configuration list for PBXNativeTarget "Conservatory-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B613818F1C3D9AC800C90817 /* Debug */,
@@ -601,6 +776,15 @@
 			buildConfigurations = (
 				B61381921C3D9AC800C90817 /* Debug */,
 				B61381931C3D9AC800C90817 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B622691C1C40885E005A679D /* Build configuration list for PBXNativeTarget "Conservatory-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B622691D1C40885E005A679D /* Debug */,
+				B622691E1C40885E005A679D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,6 +1,18 @@
 /**
 The native Image type in Cotton Duck.
 */
+
+/**
+A protocol that images can conform to in order to proclaim their output can be saved into image formats.
+*/
+public protocol ImageViewable {
+	var bitmapView: UnsafePointer<UInt8> { get }
+	var JPEGView: UnsafePointer<UInt8> { get }
+	var PNGView: UnsafePointer<UInt8> { get }
+}
+
+// todo: it would be nice for `Image` to be a protocol implemented by things (eg: `BitmapImage`, `VectorImage`, etc)
+// todo: it would be nice to support more than `RGBA` pixel ordering
 public struct Image {
 	internal let storage: UnsafePointer<UInt8>
 	public let size: Size
@@ -11,6 +23,10 @@ public struct Image {
 	public init(data: UnsafePointer<UInt8>, size _size: Size) {
 		storage = data
 		size = _size
+	}
+
+	public init(image: ImageViewable, size _size: Size) {
+		self.init(data: image.bitmapView, size: _size)
 	}
 }
 
