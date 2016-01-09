@@ -1,31 +1,36 @@
-// todo: core text-ify attributed string building, so we don't have to rely on UIKit or AppKit
-#if os(iOS)
-import UIKit
-#elseif os(OSX)
-import AppKit
-#endif
+import CoreText
+import Foundation
 
 internal extension String {
 	@warn_unused_result
 	internal func cocoaValue(effects: [TextEffect]) -> NSAttributedString {
 		let result = NSMutableAttributedString(string: self)
 		effects.forEach({
-			var fontDescriptor = UIFontDescriptor(name: $0.font.name, size: CGFloat($0.font.size))
+			var fontDescriptor = CTFontDescriptorCreateWithNameAndSize($0.font.name, CGFloat($0.font.size))
 			if $0.bold {
-				fontDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(.TraitBold)
-			}
-			if $0.italic {
-				fontDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(.TraitItalic)
+				let attribute = (CTFontDescriptorCopyAttribute(fontDescriptor, kCTFontSymbolicTrait) ?? 0) as! Int
+
+				fontDescriptor = CTFontDescriptorCreateCopyWithAttributes(fontDescriptor, [
+					String(kCTFontSymbolicTrait): attribute | Int(CTFontSymbolicTraits.BoldTrait.rawValue)
+				] as [String: AnyObject]) ?? fontDescriptor
 			}
 
-			var attributes = [
-				NSFontAttributeName: UIFont(descriptor: fontDescriptor, size: fontDescriptor.pointSize),
-				NSLigatureAttributeName: $0.ligature,
-				NSKernAttributeName: $0.kerning
+			if $0.italic {
+				let attribute = (CTFontDescriptorCopyAttribute(fontDescriptor, kCTFontSymbolicTrait) ?? 0) as! Int
+
+				fontDescriptor = CTFontDescriptorCreateCopyWithAttributes(fontDescriptor, [
+					String(kCTFontSymbolicTrait): attribute | Int(CTFontSymbolicTraits.ItalicTrait.rawValue)
+				] as [String: AnyObject]) ?? fontDescriptor
+			}
+
+			var attributes: [String: AnyObject] = [
+				String(kCTFontAttributeName): CTFontCreateWithFontDescriptor(fontDescriptor, CGFloat($0.font.size), nil),
+				String(kCTLigatureAttributeName): $0.ligature,
+				String(kCTKernAttributeName): $0.kerning
 			]
 
 			if $0.underline != .None {
-				attributes[NSUnderlineStyleAttributeName] = $0.underline.cocoaValue
+				attributes[String(kCTUnderlineStyleAttributeName)] = Int($0.underline.coreTextView)
 			}
 /*
 			if $0.strikethrough != .None {
@@ -92,24 +97,24 @@ private extension Color {
 */
 
 private extension LinePattern {
-	private var cocoaValue: Int {
+	private var coreTextView: Int32 {
 		switch self {
 		case None:
-			return NSUnderlineStyle.StyleNone.rawValue
+			return CTUnderlineStyle.None.rawValue
 		case Single:
-			return NSUnderlineStyle.StyleSingle.rawValue
+			return CTUnderlineStyle.Single.rawValue
 		case Thick:
-			return NSUnderlineStyle.StyleThick.rawValue
+			return CTUnderlineStyle.Thick.rawValue
 		case Double:
-			return NSUnderlineStyle.StyleDouble.rawValue
+			return CTUnderlineStyle.Double.rawValue
 		case Dotted:
-			return NSUnderlineStyle.PatternDot.rawValue
+			return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDot.rawValue
 		case Dashed:
-			return NSUnderlineStyle.PatternDash.rawValue
+			return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDash.rawValue
 		case DashedAndDotted:
-			return NSUnderlineStyle.PatternDashDot.rawValue
+			return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDashDot.rawValue
 		case DashedAndDottedTwice:
-			return NSUnderlineStyle.PatternDashDotDot.rawValue
+			return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDashDotDot.rawValue
 		}
 	}
 }
