@@ -12,13 +12,13 @@ extension Shape {
 		precondition(sideCount > 2, "n-sided polygons are required to have at least three sides.")
 
 		let radius = (length / 2.0)
-		let interiorAngle = CD_2_PI / Double(sideCount)
+		let interiorAngle = CV_2_PI / Double(sideCount)
 		let startAngle: Double = {
 			if sideCount % 2 == 1 {
-				return CD_PI_2
+				return CV_PI_2
 			}
 
-			return CD_PI_2 - interiorAngle / 2.0
+			return CV_PI_2 - interiorAngle / 2.0
 		}()
 
 		let points = sideCount.map({ (x) -> Point in
@@ -111,9 +111,9 @@ extension Shape {
 		precondition(radius.width > 0, "Unable to draw an oval with a negative width radius (width = \(radius.width)).")
 
 		// http://scienceprimer.com/draw-oval-html5-canvas
-		let angleSine = CD_PI.sine
-		let angleCosine = CD_PI.cosine
-		let points = 0.stride(to: CD_2_PI, by: 0.01).map({ (x) -> Point in
+		let angleSine = CV_PI.sine
+		let angleCosine = CV_PI.cosine
+		let points = 0.stride(to: CV_2_PI, by: 0.01).map({ (x) -> Point in
 			let xSine = x.sine
 			let xCosine = x.cosine
 

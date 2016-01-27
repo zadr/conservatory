@@ -1,4 +1,4 @@
-// this all goes away in Swift 2.2
+// this all goes away in Swift 2.2 (?)
 
 public extension Double {
 	public static var positiveInfinity: Double {

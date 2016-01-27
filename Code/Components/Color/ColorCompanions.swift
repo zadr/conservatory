@@ -446,7 +446,7 @@ public extension Color {
 	*/
 	public var inverse: Color {
 		get {
-			return withHue(float: 360.0 - HSBView.hue)
+			return withHue(float: (360.0 - HSBView.hue).absoluteValue)
 		}
 	}
 }

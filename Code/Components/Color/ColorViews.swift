@@ -5,10 +5,12 @@ internal enum CIE {
 		case Z
 
 		internal var rawValue: Double {
-			switch self {
-			case .X: return 95.047
-			case .Y: return 100.00
-			case .Z: return 108.883
+			get {
+				switch self {
+				case .X: return 95.047
+				case .Y: return 100.00
+				case .Z: return 108.883
+				}
 			}
 		}
 	}

@@ -2,39 +2,41 @@ import CoreGraphics
 
 internal extension BlendMode {
 	internal var CGBlendView: CGBlendMode {
-		switch self {
-		case Normal:
-			return CGBlendMode.Normal
-		case Multiply:
-			return CGBlendMode.Multiply
-		case Screen:
-			return CGBlendMode.Screen
-		case Overlay:
-			return CGBlendMode.Overlay
-		case Darken:
-			return CGBlendMode.Darken
-		case Lighten:
-			return CGBlendMode.Lighten
-		case ColorDodge:
-			return CGBlendMode.ColorDodge
-		case ColorBurn:
-			return CGBlendMode.ColorBurn
-		case SoftLight:
-			return CGBlendMode.SoftLight
-		case HardLight:
-			return CGBlendMode.HardLight
-		case Difference:
-			return CGBlendMode.Difference
-		case Exclusion:
-			return CGBlendMode.Exclusion
-		case Hue:
-			return CGBlendMode.Hue
-		case Saturation:
-			return CGBlendMode.Saturation
-		case Color:
-			return CGBlendMode.Color
-		case Luminosity:
-			return CGBlendMode.Luminosity
+		get {
+			switch self {
+			case Normal:
+				return CGBlendMode.Normal
+			case Multiply:
+				return CGBlendMode.Multiply
+			case Screen:
+				return CGBlendMode.Screen
+			case Overlay:
+				return CGBlendMode.Overlay
+			case Darken:
+				return CGBlendMode.Darken
+			case Lighten:
+				return CGBlendMode.Lighten
+			case ColorDodge:
+				return CGBlendMode.ColorDodge
+			case ColorBurn:
+				return CGBlendMode.ColorBurn
+			case SoftLight:
+				return CGBlendMode.SoftLight
+			case HardLight:
+				return CGBlendMode.HardLight
+			case Difference:
+				return CGBlendMode.Difference
+			case Exclusion:
+				return CGBlendMode.Exclusion
+			case Hue:
+				return CGBlendMode.Hue
+			case Saturation:
+				return CGBlendMode.Saturation
+			case Color:
+				return CGBlendMode.Color
+			case Luminosity:
+				return CGBlendMode.Luminosity
+			}
 		}
 	}
 }
@@ -78,7 +80,9 @@ internal extension Point {
 	}
 
 	internal var CGPointView: CGPoint {
-		return CGPointMake(CGFloat(x), CGFloat(y))
+		get {
+			return CGPointMake(CGFloat(x), CGFloat(y))
+		}
 	}
 }
 
@@ -92,7 +96,20 @@ internal extension Size {
 	}
 
 	internal var CGSizeView: CGSize {
-		return CGSizeMake(CGFloat(width), CGFloat(height))
+		get {
+			return CGSizeMake(CGFloat(width), CGFloat(height))
+		}
+	}
+}
+
+internal extension Box {
+	internal var CGRectView: CGRect {
+		get {
+			let point = location.CGPointView
+			let dimension = size.CGSizeView
+
+			return CGRectMake(point.x, point.y, dimension.width, dimension.height)
+		}
 	}
 }
 

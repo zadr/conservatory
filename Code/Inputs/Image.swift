@@ -32,30 +32,18 @@ public struct Image {
 
 // MARK: -
 
-// todo: figure out how to make `ImageEffect` more generic so it can apply to Canvas' and Movie's (ideally, without recreating the same logic)
-public struct ImageEffect {
-	internal let overlaysBackgroundColor: Bool
-
-	public init(overlaysBackgroundColor _overlaysBackgroundColor: Bool = false) {
-		overlaysBackgroundColor = _overlaysBackgroundColor
-	}
-}
-
 /**
 A renderer that knows how to draw an image, and how to store it's appearance attributes until render-time.
 */
 public struct ImageDrawer: AppearanceContainer, Viewable {
 	public let image: Image
-	private var options: ImageEffect
 
 	/**
 	Create an image renderer that can draw a bitmapped image in a renderer.
 	Parameter image: A bitmap representation of an image.
-	Parameter options: An optional set of options that help determine how an image is rendered. May not be nil, but, may be omitted.
 	*/
-	public init(image _image: Image, options _options: ImageEffect = ImageEffect()) {
+	public init(image _image: Image) {
 		image = _image
-		options = _options
 	}
 
 	// MARK: - Appearance
@@ -66,32 +54,22 @@ public struct ImageDrawer: AppearanceContainer, Viewable {
 
 	/**
 	Render an image into the current canvas, in the following order:
-	1. Apply the aura
-	2. Apply the blend mode
-	3. Apply the current transform
-	4. Check to see if our image options call for drawing the background first. If so, apply our background color(s).
-	5. Render our image.
-	6. Check to see if our image options call for drawing the background on top of our image. If so, apply our background color(s).
+	1. Render our image.
+	2. Apply the aura
+	3. Apply the blend mode
+	4. Apply the current transform
+	5. Apply our background color(s).
+	6. Apply our border color(s).
 	*/
 	public func render<T: Renderer>(renderer: T) {
+		renderer.draw(image)
+
 		renderer.apply(appearance.aura)
 		renderer.apply(appearance.blendMode)
 		renderer.apply(appearance.transform)
 
-		let fill = {
-			renderer.apply(self.appearance.background)
-			renderer.fill()
-		}
-
-		if !options.overlaysBackgroundColor {
-			fill()
-		}
-
-		renderer.draw(image)
-
-		if options.overlaysBackgroundColor {
-			fill()
-		}
+		renderer.apply(appearance.background)
+		renderer.fill()
 
 		renderer.apply(appearance.border, width: appearance.borderWidth)
 		renderer.stroke()

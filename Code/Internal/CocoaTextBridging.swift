@@ -99,23 +99,25 @@ private extension Color {
 
 private extension LinePattern {
 	private var coreTextView: Int32 {
-		switch self {
-		case None:
-			return CTUnderlineStyle.None.rawValue
-		case Single:
-			return CTUnderlineStyle.Single.rawValue
-		case Thick:
-			return CTUnderlineStyle.Thick.rawValue
-		case Double:
-			return CTUnderlineStyle.Double.rawValue
-		case Dotted:
-			return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDot.rawValue
-		case Dashed:
-			return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDash.rawValue
-		case DashedAndDotted:
-			return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDashDot.rawValue
-		case DashedAndDottedTwice:
-			return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDashDotDot.rawValue
+		get {
+			switch self {
+			case None:
+				return CTUnderlineStyle.None.rawValue
+			case Single:
+				return CTUnderlineStyle.Single.rawValue
+			case Thick:
+				return CTUnderlineStyle.Thick.rawValue
+			case Double:
+				return CTUnderlineStyle.Double.rawValue
+			case Dotted:
+				return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDot.rawValue
+			case Dashed:
+				return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDash.rawValue
+			case DashedAndDotted:
+				return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDashDot.rawValue
+			case DashedAndDottedTwice:
+				return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDashDotDot.rawValue
+			}
 		}
 	}
 }

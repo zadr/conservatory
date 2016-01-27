@@ -4,9 +4,9 @@ import Darwin
 import Glibc
 #endif
 
-internal let CD_PI = 3.14159265358979323846264338327950288
-internal let CD_2_PI = CD_PI * 2.0
-internal let CD_PI_2 = CD_PI / 2.0
+internal let CV_PI = 3.14159265358979323846264338327950288
+internal let CV_2_PI = CV_PI * 2.0
+internal let CV_PI_2 = CV_PI / 2.0
 
 public typealias Radian = Double
 public extension Radian {
@@ -14,7 +14,7 @@ public extension Radian {
 	Convert a given value in degrees to radians.
 	*/
 	public init(degrees: Degree) {
-		self.init(degrees * (CD_PI / 180.0))
+		self.init(degrees * (CV_PI / 180.0))
 	}
 
 	/**
@@ -68,7 +68,7 @@ public extension Degree {
 	Convert a given value in radians to degrees.
 	*/
 	public init(radians: Radian) {
-		self.init(radians * (180.0 / CD_PI))
+		self.init(radians * (180.0 / CV_PI))
 	}
 }
 
@@ -86,7 +86,9 @@ public extension Double {
 	- Returns: The square root of the current number.
 	*/
 	public var squareRoot: Double {
-		return sqrt(self)
+		get {
+			return sqrt(self)
+		}
 	}
 
 	/**

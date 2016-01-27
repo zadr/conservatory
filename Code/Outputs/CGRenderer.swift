@@ -53,7 +53,7 @@ public final class CGRenderer: Renderer {
 
 	private var encompassingRect: CGRect {
 		get {
-			return CGRectMake(0.0, 0.0, CGFloat(size.width), CGFloat(size.height))
+			return Box(size: size).CGRectView
 		}
 	}
 
