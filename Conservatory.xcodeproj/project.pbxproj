@@ -23,7 +23,6 @@
 		B61381CC1C3D9B2F00C90817 /* Interpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A31C3D9B2F00C90817 /* Interpolation.swift */; };
 		B61381CD1C3D9B2F00C90817 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A41C3D9B2F00C90817 /* IntExtensions.swift */; };
 		B61381CE1C3D9B2F00C90817 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A51C3D9B2F00C90817 /* Random.swift */; };
-		B61381CF1C3D9B2F00C90817 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A61C3D9B2F00C90817 /* StringExtensions.swift */; };
 		B61381D01C3D9B2F00C90817 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A71C3D9B2F00C90817 /* Geometry.swift */; };
 		B61381D11C3D9B2F00C90817 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A81C3D9B2F00C90817 /* Transform.swift */; };
 		B61381D21C3D9B2F00C90817 /* Conservatory.h in Headers */ = {isa = PBXBuildFile; fileRef = B61381A91C3D9B2F00C90817 /* Conservatory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -79,7 +78,6 @@
 		B62269101C40885E005A679D /* CocoaTextBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B51C3D9B2F00C90817 /* CocoaTextBridging.swift */; };
 		B62269111C40885E005A679D /* CGBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B41C3D9B2F00C90817 /* CGBridging.swift */; };
 		B62269121C40885E005A679D /* FloatingPointDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B61C3D9B2F00C90817 /* FloatingPointDefinitions.swift */; };
-		B62269131C40885E005A679D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A61C3D9B2F00C90817 /* StringExtensions.swift */; };
 		B62269141C40885E005A679D /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381961C3D9B2F00C90817 /* Appearance.swift */; };
 		B62269151C40885E005A679D /* CGImageBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62268B91C406B3A005A679D /* CGImageBridging.swift */; };
 		B62269161C40885E005A679D /* ImageAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381AE1C3D9B2F00C90817 /* ImageAnalysis.swift */; };
@@ -115,7 +113,6 @@
 		B61381A31C3D9B2F00C90817 /* Interpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interpolation.swift; sourceTree = "<group>"; };
 		B61381A41C3D9B2F00C90817 /* IntExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		B61381A51C3D9B2F00C90817 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
-		B61381A61C3D9B2F00C90817 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		B61381A71C3D9B2F00C90817 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		B61381A81C3D9B2F00C90817 /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		B61381A91C3D9B2F00C90817 /* Conservatory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conservatory.h; sourceTree = "<group>"; };
@@ -240,7 +237,6 @@
 				B61381A31C3D9B2F00C90817 /* Interpolation.swift */,
 				B61381A41C3D9B2F00C90817 /* IntExtensions.swift */,
 				B61381A51C3D9B2F00C90817 /* Random.swift */,
-				B61381A61C3D9B2F00C90817 /* StringExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -504,7 +500,6 @@
 				B61381DC1C3D9B2F00C90817 /* CocoaTextBridging.swift in Sources */,
 				B61381DB1C3D9B2F00C90817 /* CGBridging.swift in Sources */,
 				B61381DD1C3D9B2F00C90817 /* FloatingPointDefinitions.swift in Sources */,
-				B61381CF1C3D9B2F00C90817 /* StringExtensions.swift in Sources */,
 				B61381C11C3D9B2F00C90817 /* Appearance.swift in Sources */,
 				B62268BA1C406B3A005A679D /* CGImageBridging.swift in Sources */,
 				B61381D61C3D9B2F00C90817 /* ImageAnalysis.swift in Sources */,
@@ -556,7 +551,6 @@
 				B62269101C40885E005A679D /* CocoaTextBridging.swift in Sources */,
 				B62269111C40885E005A679D /* CGBridging.swift in Sources */,
 				B62269121C40885E005A679D /* FloatingPointDefinitions.swift in Sources */,
-				B62269131C40885E005A679D /* StringExtensions.swift in Sources */,
 				B62269141C40885E005A679D /* Appearance.swift in Sources */,
 				B62269151C40885E005A679D /* CGImageBridging.swift in Sources */,
 				B62269161C40885E005A679D /* ImageAnalysis.swift in Sources */,
