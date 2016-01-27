@@ -83,6 +83,8 @@
 		B62269161C40885E005A679D /* ImageAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381AE1C3D9B2F00C90817 /* ImageAnalysis.swift */; };
 		B62269171C40885E005A679D /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A21C3D9B2F00C90817 /* DoubleExtensions.swift */; };
 		B622691A1C40885E005A679D /* Conservatory.h in Headers */ = {isa = PBXBuildFile; fileRef = B61381A91C3D9B2F00C90817 /* Conservatory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B63851B31C589F4500F0531A /* CARenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63851B21C589F4500F0531A /* CARenderer.swift */; };
+		B63851B41C589FA600F0531A /* CARenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63851B21C589F4500F0531A /* CARenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,7 @@
 		B62268BE1C40864D005A679D /* UIImageBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageBridging.swift; path = Cocoa/UIImageBridging.swift; sourceTree = "<group>"; };
 		B622691F1C40885E005A679D /* Conservatory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Conservatory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62269241C40C02C005A679D /* Info-Mac.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Mac.plist"; sourceTree = "<group>"; };
+		B63851B21C589F4500F0531A /* CARenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CARenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +284,7 @@
 		B61381BB1C3D9B2F00C90817 /* Outputs */ = {
 			isa = PBXGroup;
 			children = (
+				B63851B21C589F4500F0531A /* CARenderer.swift */,
 				B61381BC1C3D9B2F00C90817 /* CGRenderer.swift */,
 				B61381BD1C3D9B2F00C90817 /* Renderer.swift */,
 				B61381BE1C3D9B2F00C90817 /* StringRenderer.swift */,
@@ -499,6 +503,7 @@
 				B61381E01C3D9B2F00C90817 /* Seeding.swift in Sources */,
 				B61381DC1C3D9B2F00C90817 /* CocoaTextBridging.swift in Sources */,
 				B61381DB1C3D9B2F00C90817 /* CGBridging.swift in Sources */,
+				B63851B31C589F4500F0531A /* CARenderer.swift in Sources */,
 				B61381DD1C3D9B2F00C90817 /* FloatingPointDefinitions.swift in Sources */,
 				B61381C11C3D9B2F00C90817 /* Appearance.swift in Sources */,
 				B62268BA1C406B3A005A679D /* CGImageBridging.swift in Sources */,
@@ -535,6 +540,7 @@
 				B62268FF1C40885E005A679D /* Canvas.swift in Sources */,
 				B62269001C40885E005A679D /* ColorViews.swift in Sources */,
 				B62269011C40885E005A679D /* Text.swift in Sources */,
+				B63851B41C589FA600F0531A /* CARenderer.swift in Sources */,
 				B62269021C40885E005A679D /* CGRenderer.swift in Sources */,
 				B62269031C40885E005A679D /* Image.swift in Sources */,
 				B62269041C40885E005A679D /* StringRenderer.swift in Sources */,
