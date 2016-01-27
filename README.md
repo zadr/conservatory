@@ -11,7 +11,7 @@
 
 **Q.** Thats great, but, not really what I had in mind.
 
-**A.** Hm. Well. Feedback is super important. Like, really, really important. If you've madesomething (or given up because we messed up badly and things are crashing, or worse, wrote a confusing framework), send us your thoughts!
+**A.** Hm. Well. Feedback is important. Like, really, really important. If you've made something (or worse, given up because we messed up badly and things are crashing, or even worse, wrote a confusing API), send us your thoughts!
 
 
 **Q.** Cool beans. How can I do that?
@@ -24,7 +24,7 @@
 **A.** If you want to send in a pull request to add new things (or to fix bugs, correct typos, add sample code, or whatever else), that would be pretty great.
 
 
-Please know that pull requests aren't't required, and telling us about a problem is always, always appreciated.
+Please know that pull requests aren't required, and telling us about a problem is always, always appreciated.
 
 
 **Q.** What if I'm not sure where to start with that?
@@ -37,9 +37,9 @@ Please know that pull requests aren't't required, and telling us about a problem
 **A.** Same thing! We can always point you in the right direction of the codebase, or at least let you know if someone else is working (or has worked) on something similar (and where to find their work).
 
 
-**Q.** How did you come up with this API?
+**Q.** How did you come up with all this?
 
-**A.** I sat at my desk, and, thought about it. I like most of whats shipped, but I could be talked into changing any of it. Pretty boring story, eh?
+**A.** I sat at my desk, and, thought about it. I like most of it, but I could be talked into changing any of it. Pretty boring story, eh?
 
 Basically, you have things. Things have attributes that help describe their appearance. Some other thing has the ability to draw a thing. And, there's some glue to hold it all together.
 
@@ -60,20 +60,19 @@ That's a good question. I'm glad you asked. Most of the classes and functions ar
 
 \*Pauses again*
 
-There isn't much in the way of sample code. We're working on that! In the meantime, please feel free to file issues or tweet at us if any problems or confusion come up.
+There isn't much in the way of sample code. We're working on that! In the meantime, please file issues or tweet at us if any problems or confusion come up. We'll try to help you out, and then document everything that comes up afterwards.
 
-We consider this documentation particularly important, and hard problem. Conservatory is a tool to help you creating things, and we feel that most documentation fails to encourage people to explore and experiment -- and we don't want to discourage anyone right off the bat.
+We consider this documentation particularly important, and hard problem. Conservatory is a tool to help you creating things, and if you aren't sure of what to do, it's hard to know how to move forward.
 
 
 **Q.** Is there a Code of Conduct?
 
-**A.** Yes. This project follows the Contributor Covenant v1.3.0. You can find the full text in the file named "[CONDUCT](CONDUCT)", or online at http://contributor-covenant.org/version/1/3/0/.
+**A.** Yes. This project follows the Contributor Covenant v1.3.0. You can find the full text in the file named "[CONDUCT](CONDUCT)", or online at http://contributor-covenant.org/version/1/3/0/. We consider our code of conduct to be essential to the project, and will do everything we can to ensure it is respected.
 
 
 **Q.** What is this code licensed as?
 
-**A.** Everything in Cotton Duck is released under a 2-clause BSD license. You can read it in the file named "[LICENSE](LICENSE)", and find out more about its requiements online at https://tldrlegal.com/license/bsd-2-clause-license-(freebsd)
-
+**A.** Everything in Cotton Duck is released under a 2-clause BSD license. You can read it in the file named "[LICENSE](LICENSE)", and find out more about its requiements online at https://tldrlegal.com/license/bsd-2-clause-license-(freebsd). If you have any further question about licensing, please email us.
 
 
 **Q.** This is cool! What made you write this?

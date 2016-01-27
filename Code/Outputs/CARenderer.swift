@@ -93,6 +93,9 @@ public final class CARenderer: Renderer {
 			layer.addSublayer(activeLayer)
 		})
 
+		layer.setNeedsDisplay()
+		layer.displayIfNeeded()
+
 		return layer
 	}
 
