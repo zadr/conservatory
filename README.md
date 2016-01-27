@@ -67,12 +67,12 @@ We consider this documentation particularly important, and hard problem. Conserv
 
 **Q.** Is there a Code of Conduct?
 
-**A.** Yes. This project follows the Contributor Covenant v1.3.0. You can find the full text in CONDUCT, or online at http://contributor-covenant.org/version/1/3/0/.
+**A.** Yes. This project follows the Contributor Covenant v1.3.0. You can find the full text in the file named "[CONDUCT](CONDUCT)", or online at http://contributor-covenant.org/version/1/3/0/.
 
 
 **Q.** What is this code licensed as?
 
-**A.** Everything in Cotton Duck is released under a 2-clause BSD license. You can read it in the LICENSE file, and find out more about its requiements online at https://tldrlegal.com/license/bsd-2-clause-license-(freebsd)
+**A.** Everything in Cotton Duck is released under a 2-clause BSD license. You can read it in the file named "[LICENSE](LICENSE)", and find out more about its requiements online at https://tldrlegal.com/license/bsd-2-clause-license-(freebsd)
 
 
 
