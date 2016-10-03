@@ -16,21 +16,15 @@ extension CGImage: ImageViewable {
 	}
 
 	public var bitmapView: UnsafePointer<UInt8> {
-		get {
-			return data(kUTTypeBMP)
-		}
+		return data(kUTTypeBMP)
 	}
 
 	public var JPEGView: UnsafePointer<UInt8> {
-		get {
-			return data(kUTTypeJPEG)
-		}
+		return data(kUTTypeJPEG)
 	}
 
 	public var PNGView: UnsafePointer<UInt8> {
-		get {
-			return data(kUTTypePNG)
-		}
+		return data(kUTTypePNG)
 	}
 }
 
@@ -50,10 +44,8 @@ extension Image {
 
 public extension Image {
 	internal var CGImageView: CGImage {
-		get {
-			let bytes = UnsafeMutableRawPointer(mutating: storage)
-			let context = CGContext(data: bytes, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: 4 * Int(size.width), space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
-			return context!.makeImage()!
-		}
+		let bytes = UnsafeMutableRawPointer(mutating: storage)
+		let context = CGContext(data: bytes, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: 4 * Int(size.width), space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+		return context!.makeImage()!
 	}
 }

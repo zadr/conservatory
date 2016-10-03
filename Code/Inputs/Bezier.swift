@@ -116,53 +116,45 @@ public struct Bezier {
 	Returns: The most recent *Point* that we have moved or drawn a segment at.
 	*/
 	public var currentPoint: Point? {
-		get {
-			for segment in segments.reversed() {
-				switch segment {
-				case let .move(to):
-					return to
-				case let .line(to):
-					return to
-				case let .arc(center, _, _, _):
-					return center // return point at the end of the arc?
-				case let .curve(point, _, _):
-					return point
-				case let .quadCurve(point, _):
-					return point
-				case .close:
-					continue
-				}
+		for segment in segments.reversed() {
+			switch segment {
+			case let .move(to):
+				return to
+			case let .line(to):
+				return to
+			case let .arc(center, _, _, _):
+				return center // return point at the end of the arc?
+			case let .curve(point, _, _):
+				return point
+			case let .quadCurve(point, _):
+				return point
+			case .close:
+				continue
 			}
-
-			return nil
 		}
+
+		return nil
 	}
 
 	/**
 	Returns: *true* if a bezier has no segments, otherwise, *false*.
 	*/
 	public var isEmpty: Bool {
-		get {
-			return segments.isEmpty
-		}
+		return segments.isEmpty
 	}
 }
 
 extension Bezier: CustomStringConvertible {
 	public var description: String {
-		get {
-			return segments.reduce("[", { (x, segment) -> String in
-				return x + "\n\t\(segment)"
-			}) + "\n]"
-		}
+		return segments.reduce("[", { (x, segment) -> String in
+			return x + "\n\t\(segment)"
+		}) + "\n]"
 	}
 }
 
 extension Bezier: Hashable {
 	public var hashValue: Int {
-		get {
-			return segments.hashValue
-		}
+		return segments.hashValue
 	}
 }
 
@@ -183,30 +175,26 @@ public enum Segment {
 
 extension Segment: CustomStringConvertible {
 	public var description: String {
-		get {
-			switch self {
-			case let .move(to):
-				return "Segment(segment: .Move(\(to)))"
-			case let .line(to):
-				return "Segment(segment: .Line(\(to)))"
-			case let .arc(center, radius, start, end):
-				return "Segment(segment: .Arc(\(center), \(radius), \(start), \(end)))"
-			case let .curve(point, controlPoint1, controlPoint2):
-				return "Segment(segment: .Curve(\(point), \(controlPoint1), \(controlPoint2)))"
-			case let .quadCurve(point, controlPoint):
-				return "Segment(segment: .QuadCurve(\(point), \(controlPoint)))"
-			case .close:
-				return "Segment(segment: .Close)"
-			}
+		switch self {
+		case let .move(to):
+			return "Segment(segment: .Move(\(to)))"
+		case let .line(to):
+			return "Segment(segment: .Line(\(to)))"
+		case let .arc(center, radius, start, end):
+			return "Segment(segment: .Arc(\(center), \(radius), \(start), \(end)))"
+		case let .curve(point, controlPoint1, controlPoint2):
+			return "Segment(segment: .Curve(\(point), \(controlPoint1), \(controlPoint2)))"
+		case let .quadCurve(point, controlPoint):
+			return "Segment(segment: .QuadCurve(\(point), \(controlPoint)))"
+		case .close:
+			return "Segment(segment: .Close)"
 		}
 	}
 }
 
 extension Segment: Hashable {
 	public var hashValue: Int {
-		get {
-			return description.hashValue
-		}
+		return description.hashValue
 	}
 }
 

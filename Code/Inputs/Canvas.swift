@@ -22,9 +22,7 @@ public final class Canvas<T: Renderer>: AppearanceContainer, Viewable {
 	How big is the canvas, in pixels.
 	*/
 	public var size: Size {
-		get {
-			return renderer.size
-		}
+		return renderer.size
 	}
 
 	/**
@@ -49,9 +47,7 @@ public final class Canvas<T: Renderer>: AppearanceContainer, Viewable {
 	Render the current list of viewable objects, and return the results of said operation.
 	*/
 	public var currentRepresentation: T.RenderResultType? {
-		get {
-			return renderer.render([ self ])
-		}
+		return renderer.render([ self ])
 	}
 
 	// MARK: - Appearance

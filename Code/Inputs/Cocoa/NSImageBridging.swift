@@ -10,21 +10,15 @@ extension NSImage: ImageViewable {
 	}
 
 	public var bitmapView: UnsafePointer<UInt8> {
-		get {
-			return representation(.NSBMPFileType)
-		}
+		return representation(.NSBMPFileType)
 	}
 
 	public var JPEGView: UnsafePointer<UInt8> {
-		get {
-			return representation(.NSJPEGFileType)
-		}
+		return representation(.NSJPEGFileType)
 	}
 
 	public var PNGView: UnsafePointer<UInt8> {
-		get {
-			return representation(.NSPNGFileType)
-		}
+		return representation(.NSPNGFileType)
 	}
 }
 

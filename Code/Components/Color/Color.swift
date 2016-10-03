@@ -36,34 +36,26 @@ public final class Color {
 	See *AView* if you need the alpha channel.
 	*/
 	public var RGBView: (red: Double, green: Double, blue: Double) {
-		get {
-			return (red: red, green: green, blue: blue)
-		}
+		return (red: red, green: green, blue: blue)
 	}
 
 	/**
 	Returns the *alpha* channel of a given *Color*, as a decimal value between 0.0 and 1.0.
 	*/
 	public var AView: Double {
-		get {
-			return alpha
-		}
+		return alpha
 	}
 }
 
 extension Color: CustomStringConvertible {
 	public var description: String {
-		get {
-			return "Color(red: \(red), green: \(green), blue: \(blue), alpha: \(alpha))"
-		}
+		return "Color(red: \(red), green: \(green), blue: \(blue), alpha: \(alpha))"
 	}
 }
 
 extension Color: Hashable {
 	public var hashValue: Int {
-		get {
-			return [ red, green, blue, alpha ].hashValue
-		}
+		return [ red, green, blue, alpha ].hashValue
 	}
 }
 

@@ -13,9 +13,7 @@ public final class CARenderer: Renderer {
 	}
 
 	public var size: Size {
-		get {
-			return Size(size: layer.bounds.size)
-		}
+		return Size(size: layer.bounds.size)
 	}
 
 	public func render(_ viewable: Viewable) -> RenderResultType? {

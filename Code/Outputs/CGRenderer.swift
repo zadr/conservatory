@@ -52,9 +52,7 @@ public final class CGRenderer: Renderer {
 	}
 
 	private var encompassingRect: CGRect {
-		get {
-			return Box(size: size).CGRectView
-		}
+		return Box(size: size).CGRectView
 	}
 
 	// todo: investigate swift and figure out when this signature can be draw(bezier _bezier: BezierType) without conflicting with draw(image: ImageType)

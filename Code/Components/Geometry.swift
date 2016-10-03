@@ -30,9 +30,7 @@ public struct Point {
 	- Returns: An empty Point, with the *x* and *y* values of **0.0**.
 	*/
 	public static var zero: Point {
-		get {
-			return Point()
-		}
+		return Point()
 	}
 
 	/**
@@ -82,17 +80,13 @@ public struct Point {
 
 extension Point: CustomStringConvertible {
 	public var description: String {
-		get {
-			return "Point(x: \(x), y: \(y))"
-		}
+		return "Point(x: \(x), y: \(y))"
 	}
 }
 
 extension Point: Hashable {
 	public var hashValue: Int {
-		get {
-			return [ x, y ].hashValue
-		}
+		return [ x, y ].hashValue
 	}
 }
 
@@ -150,25 +144,19 @@ public struct Size {
 	- Returns: An empty Size, with the *width* and *height* values of **0.0**.
 	*/
 	public static var zero: Size {
-		get {
-			return Size()
-		}
+		return Size()
 	}
 }
 
 extension Size: CustomStringConvertible {
 	public var description: String {
-		get {
-			return "Size(width: \(width), height: \(height))"
-		}
+		return "Size(width: \(width), height: \(height))"
 	}
 }
 
 extension Size: Hashable {
 	public var hashValue: Int {
-		get {
-			return [ width, height ].hashValue
-		}
+		return [ width, height ].hashValue
 	}
 }
 
@@ -256,9 +244,7 @@ public struct Box {
 	- Returns: an empty *Box*, equivalent to `Box(Point.zero, size: Size.zero)`.
 	*/
 	public static var zero: Box {
-		get {
-			return Box()
-		}
+		return Box()
 	}
 
 	/**
@@ -277,31 +263,29 @@ public struct Box {
 	```
 	*/
 	subscript(horizontal: Grid.Row, vertical: Grid.Column) -> Point {
-		get {
-			let x: Double = {
-				switch horizontal {
-				case .left:
-					return location.x
-				case .center:
-					return location.x + (size.width / 2.0)
-				case .right:
-					return location.x + size.width
-				}
-			}()
+		let x: Double = {
+			switch horizontal {
+			case .left:
+				return location.x
+			case .center:
+				return location.x + (size.width / 2.0)
+			case .right:
+				return location.x + size.width
+			}
+		}()
 
-			let y: Double = {
-				switch vertical {
-				case .top:
-					return location.y
-				case .middle:
-					return location.y + (size.height / 2.0)
-				case .bottom:
-					return location.y + size.height
-				}
-			}()
+		let y: Double = {
+			switch vertical {
+			case .top:
+				return location.y
+			case .middle:
+				return location.y + (size.height / 2.0)
+			case .bottom:
+				return location.y + size.height
+			}
+		}()
 
-			return Point(x: x, y: y)
-		}
+		return Point(x: x, y: y)
 	}
 
 	/**
@@ -331,17 +315,13 @@ public struct Box {
 
 extension Box: CustomStringConvertible {
 	public var description: String {
-		get {
-			return "Box(location: \(location), size: \(size))"
-		}
+		return "Box(location: \(location), size: \(size))"
 	}
 }
 
 extension Box: Hashable {
 	public var hashValue: Int {
-		get {
-			return [ location.hashValue, size.hashValue ].hashValue
-		}
+		return [ location.hashValue, size.hashValue ].hashValue
 	}
 }
 

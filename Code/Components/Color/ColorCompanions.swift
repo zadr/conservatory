@@ -76,9 +76,7 @@ public extension Color {
 	- Returns: a new *Color* that is 180° away on a **Red-Yellow-Blue** color wheel.
 	*/
 	public var complement: Color {
-		get {
-			return rotateRYB()
-		}
+		return rotateRYB()
 	}
 
 	/**
@@ -92,39 +90,37 @@ public extension Color {
 	6. A softer supporting color of our complement. This color will be brighter and more saturated than our complement.
 	*/
 	public var complementary: [Color] {
-		get {
-			var complementary = [ self ]
+		var complementary = [ self ]
 
-			// A contrasting color: much darker or lighter than the original.
-			if HSBView.brightness > 0.4 {
-				complementary.append(withBrightness(float: 0.1 + HSBView.brightness * 0.25))
-			} else {
-				complementary.append(withBrightness(float: 1.0 - HSBView.brightness * 0.25))
-			}
-
-			// A soft supporting color: lighter and less saturated.
-			var softSupporting = withBrightness(float: 0.3 + HSBView.brightness)
-			complementary.append(softSupporting.withSaturation(float: 0.1 + HSBView.saturation * 0.3))
-
-			// A contrasting complement: very dark or very light.
-			let complementColor = complement
-			if complementColor.HSBView.brightness > 0.3 {
-				let color = complementColor.withBrightness(float: 0.1 + complementColor.HSBView.brightness * 0.25)
-				complementary.append(color)
-			} else {
-				let color = complementColor.withBrightness(float: 0.1 + complementColor.HSBView.brightness * 0.25)
-				complementary.append(color)
-			}
-
-			// The complement
-			complementary.append(complementColor)
-
-			// A soft supporting complement color: lighter and less saturated.
-			softSupporting = complementColor.withBrightness(float: 0.3 + HSBView.brightness)
-			complementary.append(softSupporting.withSaturation(float: 0.1 + HSBView.saturation * 0.3))
-
-			return complementary
+		// A contrasting color: much darker or lighter than the original.
+		if HSBView.brightness > 0.4 {
+			complementary.append(withBrightness(float: 0.1 + HSBView.brightness * 0.25))
+		} else {
+			complementary.append(withBrightness(float: 1.0 - HSBView.brightness * 0.25))
 		}
+
+		// A soft supporting color: lighter and less saturated.
+		var softSupporting = withBrightness(float: 0.3 + HSBView.brightness)
+		complementary.append(softSupporting.withSaturation(float: 0.1 + HSBView.saturation * 0.3))
+
+		// A contrasting complement: very dark or very light.
+		let complementColor = complement
+		if complementColor.HSBView.brightness > 0.3 {
+			let color = complementColor.withBrightness(float: 0.1 + complementColor.HSBView.brightness * 0.25)
+			complementary.append(color)
+		} else {
+			let color = complementColor.withBrightness(float: 0.1 + complementColor.HSBView.brightness * 0.25)
+			complementary.append(color)
+		}
+
+		// The complement
+		complementary.append(complementColor)
+
+		// A soft supporting complement color: lighter and less saturated.
+		softSupporting = complementColor.withBrightness(float: 0.3 + HSBView.brightness)
+		complementary.append(softSupporting.withSaturation(float: 0.1 + HSBView.saturation * 0.3))
+
+		return complementary
 	}
 
 	/**
@@ -239,29 +235,27 @@ public extension Color {
 	- Returns: Five values, the first of which is the current color, followed by four analogous colors.
 	*/
 	public var monochrome: [Color] {
-		get {
-			var monochrome = [ self ]
+		var monochrome = [ self ]
 
-			var color = self
-			color = color.withBrightness(float: HSBView.brightness.wrap(0.5, max: 0.2, add: 0.3))
-			color = color.withSaturation(float: HSBView.saturation.wrap(0.3, max: 0.1, add: 0.3))
-			monochrome.append(color)
+		var color = self
+		color = color.withBrightness(float: HSBView.brightness.wrap(0.5, max: 0.2, add: 0.3))
+		color = color.withSaturation(float: HSBView.saturation.wrap(0.3, max: 0.1, add: 0.3))
+		monochrome.append(color)
 
-			color = self
-			color = color.withBrightness(float: HSBView.brightness.wrap(0.2, max: 0.2, add: 0.6))
-			monochrome.append(color)
+		color = self
+		color = color.withBrightness(float: HSBView.brightness.wrap(0.2, max: 0.2, add: 0.6))
+		monochrome.append(color)
 
-			color = self
-			color = color.withBrightness(float: max(0.2, HSBView.brightness + (1.0 - HSBView.brightness) * 0.2))
-			color = color.withSaturation(float: HSBView.saturation.wrap(0.3, max: 0.1, add: 0.3))
-			monochrome.append(color)
+		color = self
+		color = color.withBrightness(float: max(0.2, HSBView.brightness + (1.0 - HSBView.brightness) * 0.2))
+		color = color.withSaturation(float: HSBView.saturation.wrap(0.3, max: 0.1, add: 0.3))
+		monochrome.append(color)
 
-			color = self
-			color = color.withBrightness(float: HSBView.brightness.wrap(0.5, max: 0.2, add: 0.3))
-			monochrome.append(color)
+		color = self
+		color = color.withBrightness(float: HSBView.brightness.wrap(0.5, max: 0.2, add: 0.3))
+		monochrome.append(color)
 
-			return monochrome
-		}
+		return monochrome
 	}
 
 	/**
@@ -431,8 +425,6 @@ public extension Color {
 	- Returns: A new *Color* with the *hue* set to *360.0 - self.hue*.
 	*/
 	public var inverse: Color {
-		get {
-			return withHue(float: (360.0 - HSBView.hue).absoluteValue)
-		}
+		return withHue(float: (360.0 - HSBView.hue).absoluteValue)
 	}
 }

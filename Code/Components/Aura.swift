@@ -25,9 +25,7 @@ public struct Aura {
 	- Returns: **true** or **false**.
 	*/
 	internal var shouldApplyAura: Bool {
-		get {
-			return color.AView > 0.0
-		}
+		return color.AView > 0.0
 	}
 
 	/**
@@ -36,9 +34,7 @@ public struct Aura {
 	- Returns: An *Aura* that can be applied to an input.
 	*/
 	public static var lightGlow: Aura {
-		get {
-			return Aura(color: Color.white.withAlpha(float: 1.0 / 3.0), offset: Size(width: 0.0, height: 2.0), blur: 3.0)
-		}
+		return Aura(color: Color.white.withAlpha(float: 1.0 / 3.0), offset: Size(width: 0.0, height: 2.0), blur: 3.0)
 	}
 
 	/**
@@ -47,27 +43,21 @@ public struct Aura {
 	- Returns: An *Aura* that can be applied to an input.
 	*/
 	public static var darkShadow: Aura {
-		get {
-			return Aura(color: Color.black.withAlpha(float: 1.0 / 3.0), offset: Size.zero, blur: 3.0)
-		}
+		return Aura(color: Color.black.withAlpha(float: 1.0 / 3.0), offset: Size.zero, blur: 3.0)
 	}
 }
 
 extension Aura: CustomStringConvertible {
 	public var description: String {
-		get {
-			return "Aura(color: \(color), offset: \(offset), blur: \(blur))"
-		}
+		return "Aura(color: \(color), offset: \(offset), blur: \(blur))"
 	}
 }
 
 extension Aura: Hashable {
 	public var hashValue: Int {
-		get {
-			// todo: figure out how to use offset's hash without passing in `.hashValue` directly
-			// (it works if `Point` is a class, but not a struct)
-			return [ color.hashValue, offset.hashValue, blur.hashValue ].hashValue
-		}
+		// todo: figure out how to use offset's hash without passing in `.hashValue` directly
+		// (it works if `Point` is a class, but not a struct)
+		return [ color.hashValue, offset.hashValue, blur.hashValue ].hashValue
 	}
 }
 

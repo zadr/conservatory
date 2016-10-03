@@ -59,13 +59,11 @@ extension Int {
 	- Returns: The absolute value of *Self*.
 	*/
 	public var absoluteValue: Int {
-		get {
-			if self > 0 {
-				return self
-			}
-
-			return -self
+		if self > 0 {
+			return self
 		}
+
+		return -self
 	}
 
 	/**

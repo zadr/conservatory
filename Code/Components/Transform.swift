@@ -20,13 +20,11 @@ public struct Transform {
 	internal let tx: Double, ty: Double
 
 	fileprivate var matrix: [Double] {
-		get {
-			return [
-				a, b, 0.0,
-				c, d, 0.0,
-				tx, ty, 1.0
-			]
-		}
+		return [
+			a, b, 0.0,
+			c, d, 0.0,
+			tx, ty, 1.0
+		]
 	}
 
 	public init(a _a: Double = 1.0, b _b: Double = 0.0, c _c: Double = 0.0, d _d: Double = 1.0, tx _tx: Double = 0.0, ty _ty: Double = 0.0) {
@@ -49,9 +47,7 @@ public struct Transform {
 	}
 
 	public static var identity: Transform {
-		get {
-			return Transform()
-		}
+		return Transform()
 	}
 
 	/**
@@ -183,17 +179,13 @@ public struct Transform {
 
 extension Transform: CustomStringConvertible {
 	public var description: String {
-		get {
-			return "Transform(a: \(a), b: \(b), c: \(c), d: \(d), tx: \(tx), ty: \(ty))"
-		}
+		return "Transform(a: \(a), b: \(b), c: \(c), d: \(d), tx: \(tx), ty: \(ty))"
 	}
 }
 
 extension Transform: Hashable {
 	public var hashValue: Int {
-		get {
-			return matrix.hashValue
-		}
+		return matrix.hashValue
 	}
 }
 

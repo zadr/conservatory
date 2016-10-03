@@ -7,19 +7,15 @@ import Glibc
 internal struct Seed {
 #if os(iOS) || os(OSX)
 	fileprivate static var bootTime: UInt {
-		get {
-			var bootTime = timeval()
-			var mib = [ CTL_KERN, KERN_BOOTTIME ]
-			var size = MemoryLayout<timeval>.stride
-			sysctl(&mib, u_int(mib.count), &bootTime, &size, nil, 0)
-			return UInt(bootTime.tv_sec + bootTime.tv_usec)
-		}
+		var bootTime = timeval()
+		var mib = [ CTL_KERN, KERN_BOOTTIME ]
+		var size = MemoryLayout<timeval>.stride
+		sysctl(&mib, u_int(mib.count), &bootTime, &size, nil, 0)
+		return UInt(bootTime.tv_sec + bootTime.tv_usec)
 	}
 
 	fileprivate static var CPUTime: UInt {
-		get {
-			return 0
-		}
+		return 0
 	}
 
 	

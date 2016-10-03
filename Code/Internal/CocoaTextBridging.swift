@@ -72,30 +72,24 @@ internal extension String {
 /*
 private extension Aura {
 	private var cocoaValue: NSShadow {
-		get {
-			let shadow = NSShadow()
-			shadow.shadowOffset = CGSize(width: offset.width, height: offset.height)
-			shadow.shadowColor = color.cocoaValue
-			shadow.shadowBlurRadius = CGFloat(blur)
-			return shadow
-		}
+		let shadow = NSShadow()
+		shadow.shadowOffset = CGSize(width: offset.width, height: offset.height)
+		shadow.shadowColor = color.cocoaValue
+		shadow.shadowBlurRadius = CGFloat(blur)
+		return shadow
 	}
 }
 
 private extension Color {
 	#if os(iOS)
 	private var cocoaValue: UIColor {
-		get {
-			let rgb = RGBView
-			return UIColor(red: CGFloat(rgb.red), green: CGFloat(rgb.green), blue: CGFloat(rgb.blue), alpha: CGFloat(AView))
-		}
+		let rgb = RGBView
+		return UIColor(red: CGFloat(rgb.red), green: CGFloat(rgb.green), blue: CGFloat(rgb.blue), alpha: CGFloat(AView))
 	}
 	#elseif os(OSX)
 	private var cocoaValue: NSColor {
-		get {
-			let rgb = RGBView
-			return NSColor(red: CGFloat(rgb.red), green: CGFloat(rgb.green), blue: CGFloat(rgb.blue), alpha: CGFloat(AView))
-		}
+		let rgb = RGBView
+		return NSColor(red: CGFloat(rgb.red), green: CGFloat(rgb.green), blue: CGFloat(rgb.blue), alpha: CGFloat(AView))
 	}
 	#endif
 }
@@ -103,25 +97,23 @@ private extension Color {
 
 private extension LinePattern {
 	var coreTextView: Int32 {
-		get {
-			switch self {
-			case .none:
-				return CTUnderlineStyle().rawValue
-			case .single:
-				return CTUnderlineStyle.single.rawValue
-			case .thick:
-				return CTUnderlineStyle.thick.rawValue
-			case .double:
-				return CTUnderlineStyle.double.rawValue
-			case .dotted:
-				return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDot.rawValue
-			case .dashed:
-				return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDash.rawValue
-			case .dashedAndDotted:
-				return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDashDot.rawValue
-			case .dashedAndDottedTwice:
-				return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDashDotDot.rawValue
-			}
+		switch self {
+		case .none:
+			return CTUnderlineStyle().rawValue
+		case .single:
+			return CTUnderlineStyle.single.rawValue
+		case .thick:
+			return CTUnderlineStyle.thick.rawValue
+		case .double:
+			return CTUnderlineStyle.double.rawValue
+		case .dotted:
+			return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDot.rawValue
+		case .dashed:
+			return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDash.rawValue
+		case .dashedAndDotted:
+			return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDashDot.rawValue
+		case .dashedAndDottedTwice:
+			return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDashDotDot.rawValue
 		}
 	}
 }

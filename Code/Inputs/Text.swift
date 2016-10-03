@@ -74,9 +74,7 @@ public struct Font {
 
 extension Font: Hashable {
 	public var hashValue: Int {
-		get {
-			return [ name.hashValue, size.hashValue ].hashValue
-		}
+		return [ name.hashValue, size.hashValue ].hashValue
 	}
 }
 
@@ -128,9 +126,7 @@ public struct TextEffect: Hashable {
 	}
 
 	public var hashValue: Int {
-		get {
-			return [ bold.hashValue, italic.hashValue, underline.hashValue, /* strikethrough.hashValue, */ font.hashValue, /* aura.hashValue, */ kerning.hashValue, ligature.hashValue, range.hashValue ].hashValue
-		}
+		return [ bold.hashValue, italic.hashValue, underline.hashValue, /* strikethrough.hashValue, */ font.hashValue, /* aura.hashValue, */ kerning.hashValue, ligature.hashValue, range.hashValue ].hashValue
 	}
 }
 
@@ -144,8 +140,6 @@ public func ==(x: TextEffect, y: TextEffect) -> Bool {
 
 extension Range: Hashable {
 	public var hashValue: Int {
-		get {
-			return description.hashValue
-		}
+		return description.hashValue
 	}
 }

@@ -21,36 +21,28 @@ public extension Radian {
 	- Returns: The sine of the current number.
 	*/
 	public var sine: Double {
-		get {
-			return sin(self)
-		}
+		return sin(self)
 	}
 
 	/**
 	- Returns: The cosine of the current number.
 	*/
 	public var cosine: Double {
-		get {
-			return cos(self)
-		}
+		return cos(self)
 	}
 
 	/**
 	- Returns: The tangent of the current number.
 	*/
 	public var tangent: Double {
-		get {
-			return tan(self)
-		}
+		return tan(self)
 	}
 
 	/**
 	- Returns: The inverse cosine of the current number.
 	*/
 	public var arcCosine: Double {
-		get {
-			return acos(self)
-		}
+		return acos(self)
 	}
 
 	/**
@@ -77,27 +69,21 @@ public extension Double {
 	- Returns: The current number, rounded down to the preceeding integral value.
 	*/
 	public var roundedDown: Int {
-		get {
-			return Int(floor(self))
-		}
+		return Int(floor(self))
 	}
 
 	/**
 	- Returns: The square root of the current number.
 	*/
 	public var squareRoot: Double {
-		get {
-			return sqrt(self)
-		}
+		return sqrt(self)
 	}
 
 	/**
 	- Returns: The absolute value of an integer.
 	*/
 	public var absoluteValue: Double {
-		get {
-			return fabs(self)
-		}
+		return fabs(self)
 	}
 
 	/**

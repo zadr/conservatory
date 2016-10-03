@@ -24,9 +24,7 @@ Swift syntax note: &* is unsafe multiplication with overflow.
 */
 private struct MersenneTwister64 {
 	private static var seeded: Bool {
-		get {
-			return usedEntropyIndex == entropyCount + 1 // usedEntropyIndex == entropyCount + 1 means generated.memory[entropyCount] needs to be (re)initialized
-		}
+		return usedEntropyIndex == entropyCount + 1 // usedEntropyIndex == entropyCount + 1 means generated.memory[entropyCount] needs to be (re)initialized
 	}
 
 	fileprivate static func seed(_ seed: UInt) {

@@ -26,28 +26,26 @@ extension Image {
 	The average color of every pixel in an image.
 	*/
 	public var averageColor: Color {
-		get {
-			var red: Double = 0.0, green: Double = 0.0, blue: Double = 0.0, alpha: Double = 0.0
+		var red: Double = 0.0, green: Double = 0.0, blue: Double = 0.0, alpha: Double = 0.0
 
-			Int(size.width).times(body: { (x, _) in
-				Int(size.height).times(body: { (y, _) in
-					let color = self.color(Point(x: x, y: y))
-					let rgbView = color.RGBView
+		Int(size.width).times(body: { (x, _) in
+			Int(size.height).times(body: { (y, _) in
+				let color = self.color(Point(x: x, y: y))
+				let rgbView = color.RGBView
 
-					red += rgbView.red
-					green += rgbView.green
-					blue += rgbView.blue
-					alpha += color.AView
-				})
+				red += rgbView.red
+				green += rgbView.green
+				blue += rgbView.blue
+				alpha += color.AView
 			})
+		})
 
-			let pixelCount = (size.width * size.height)
-			red /= pixelCount
-			green /= pixelCount
-			blue /= pixelCount
-			alpha /= pixelCount
+		let pixelCount = (size.width * size.height)
+		red /= pixelCount
+		green /= pixelCount
+		blue /= pixelCount
+		alpha /= pixelCount
 
-			return Color(red: red, green: green, blue: blue, alpha: alpha)
-		}
+		return Color(red: red, green: green, blue: blue, alpha: alpha)
 	}
 }
