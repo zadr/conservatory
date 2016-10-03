@@ -1,6 +1,6 @@
 public enum Model {
-	case Subtractive
-	case Additive
+	case subtractive
+	case additive
 }
 
 public extension Color {
@@ -11,12 +11,12 @@ public extension Color {
 
 	- Returns: A list of primary colors for a given theory.
 	*/
-	@warn_unused_result
-	public func primary(model: Model = .Subtractive) -> [Color] {
+	
+	public func primary(_ model: Model = .subtractive) -> [Color] {
 		switch model {
-		case .Subtractive:
+		case .subtractive:
 			return [ Color.red, Color.yellow, Color.blue ]
-		case .Additive:
+		case .additive:
 			return [ Color.red, Color.green, Color.blue ]
 		}
 	}
@@ -28,12 +28,11 @@ public extension Color {
 
 	- Returns: A list of secondary colors for a given theory.
 	*/
-	@warn_unused_result
-	public func secondary(model: Model = .Subtractive) -> [Color] {
+	public func secondary(_ model: Model = .subtractive) -> [Color] {
 		switch model {
-		case .Subtractive:
+		case .subtractive:
 			return [ Color.orange, Color.purple, Color.green ]
-		case .Additive:
+		case .additive:
 			return [ Color.yellow, Color.magenta, Color.cyan ]
 		}
 	}
@@ -45,12 +44,11 @@ public extension Color {
 
 	- Returns: A list of tertiary colors for a given theory.
 	*/
-	@warn_unused_result
-	public func tertiary(model: Model = .Subtractive) -> [Color] {
+	public func tertiary(_ model: Model = .subtractive) -> [Color] {
 		switch model {
-		case .Subtractive:
+		case .subtractive:
 			return [ Color.vermilion, Color.amber, Color.chartreuse, Color.teal, Color.violet, Color.magenta ]
-		case .Additive:
+		case .additive:
 			return [ Color.azure, Color.violet, Color.rose, Color.orange, Color.chartreuse, Color.springGreen ]
 		}
 	}

@@ -18,11 +18,11 @@ public final class CARenderer: Renderer {
 		}
 	}
 
-	public func render(viewable: Viewable) -> RenderResultType? {
+	public func render(_ viewable: Viewable) -> RenderResultType? {
 		return render([ viewable ])
 	}
 
-	public func render(viewables: [Viewable]) -> RenderResultType? {
+	public func render(_ viewables: [Viewable]) -> RenderResultType? {
 		viewables.forEach({
 			// reset state before each run
 			activeLayerAppearance = Appearance()
@@ -30,7 +30,7 @@ public final class CARenderer: Renderer {
 
 			$0.render(self)
 
-			guard let activeLayer = activeLayer, activeLayerAppearance = activeLayerAppearance else {
+			guard let activeLayer = activeLayer, let activeLayerAppearance = activeLayerAppearance else {
 				fatalError("activeLayer must be non-nil after render")
 			}
 
@@ -44,41 +44,41 @@ public final class CARenderer: Renderer {
 
 			// background
 			switch activeLayerAppearance.background {
-			case .None:
+			case .none:
 				activeLayer.backgroundColor = Color.transparent.CGColorView
-			case .Solid(let backgroundColor):
+			case .solid(let backgroundColor):
 				activeLayer.backgroundColor = backgroundColor.CGColorView
-			case .Gradient(let backgroundColors, let options):
+			case .gradient(let backgroundColors, let options):
 				switch options.type {
-				case .Linear:
-					var start = CGPoint(x: CGRectGetMidX(layer.bounds), y: CGRectGetMinY(layer.bounds))
-					start = CGPointApplyAffineTransform(start, CGAffineTransformMakeRotation(CGFloat(options.rotation)))
+				case .linear:
+					var start = CGPoint(x: layer.bounds.midX, y: layer.bounds.minY)
+					start = start.applying(CGAffineTransform(rotationAngle: CGFloat(options.rotation)))
 
-					var end = CGPoint(x: CGRectGetMidX(layer.bounds), y: CGRectGetMaxY(layer.bounds))
-					end = CGPointApplyAffineTransform(end, CGAffineTransformMakeRotation(CGFloat(options.rotation)))
+					var end = CGPoint(x: layer.bounds.midX, y: layer.bounds.maxY)
+					end = end.applying(CGAffineTransform(rotationAngle: CGFloat(options.rotation)))
 
 					let gradientLayer = CAGradientLayer()
 					gradientLayer.bounds = activeLayer.bounds
 					gradientLayer.colors = backgroundColors.map({ return $0.CGColorView })
-					gradientLayer.locations = backgroundColors.positions
+					gradientLayer.locations = backgroundColors.positions.map({ return NSNumber(value: $0) })
 					gradientLayer.startPoint = start
 					gradientLayer.endPoint = end
 
 					activeLayer.addSublayer(gradientLayer)
-				case .Radial:
+				case .radial:
 					precondition(false, "radial gradients not yet supported with CARenderer")
 				}
 			}
 
 			// border
 			switch activeLayerAppearance.border {
-			case .None:
+			case .none:
 				activeLayer.borderColor = nil
 				activeLayer.borderWidth = 0.0
-			case .Solid(let borderColor):
+			case .solid(let borderColor):
 				activeLayer.borderColor = borderColor.CGColorView
 				activeLayer.borderWidth = CGFloat(activeLayerAppearance.borderWidth)
-			case .Gradient(_, _):
+			case .gradient(_, _):
 				precondition(false, "border gradients not yet supported with CARenderer")
 			}
 
@@ -99,22 +99,22 @@ public final class CARenderer: Renderer {
 		return layer
 	}
 
-	public func draw(bezier: Bezier) {
+	public func draw(_ bezier: Bezier) {
 		let shapeLayer = CVShapeLayer()
 		shapeLayer.path = bezier.CGPathView
 
 		activeLayer = shapeLayer
 	}
 
-	public func draw(image: Image) {
+	public func draw(_ image: Image) {
 		let imageLayer = CVLayer()
 		imageLayer.bounds = Box(size: image.size).CGRectView
-		imageLayer.contents = image.CGImage
+		imageLayer.contents = image.CGImageView
 
 		activeLayer = imageLayer
 	}
 
-	public func draw(text: String, withTextEffects effects: [TextEffect]) {
+	public func draw(_ text: String, withTextEffects effects: [TextEffect]) {
 		let textLayer = CVTextLayer()
 		textLayer.allowsFontSubpixelQuantization = true
 		textLayer.string = text.cocoaValue(effects)
@@ -122,24 +122,24 @@ public final class CARenderer: Renderer {
 		activeLayer = textLayer
 	}
 
-	public func apply(aura: Aura?) {
+	public func apply(_ aura: Aura?) {
 		activeLayerAppearance!.aura = aura
 	}
 
-	public func apply(background: Palette<Color, GradientOptions>) {
+	public func apply(_ background: Palette<Color, GradientOptions>) {
 		activeLayerAppearance!.background = background
 	}
 
-	public func apply(border: Palette<Color, GradientOptions>, width: Double) {
+	public func apply(_ border: Palette<Color, GradientOptions>, width: Double) {
 		activeLayerAppearance!.border = border
 		activeLayerAppearance!.borderWidth = width
 	}
 
-	public func apply(blendMode: BlendMode) {
+	public func apply(_ blendMode: BlendMode) {
 		activeLayerAppearance!.blendMode = blendMode
 	}
 
-	public func apply(transform: Transform) {
+	public func apply(_ transform: Transform) {
 		activeLayerAppearance!.transform = transform
 	}
 
@@ -155,31 +155,31 @@ private protocol CVBlendableLayer {
 }
 
 private final class CVLayer: CALayer {
-	var blendMode: BlendMode = .Normal
+	var blendMode: BlendMode = .normal
 
-	override func drawInContext(ctx: CGContext) {
-		CGContextSetBlendMode(ctx, blendMode.CGBlendView)
+	override func draw(in ctx: CGContext) {
+		ctx.setBlendMode(blendMode.CGBlendView)
 
-		super.drawInContext(ctx)
+		super.draw(in: ctx)
 	}
 }
 
 private final class CVTextLayer: CATextLayer {
-	var blendMode: BlendMode = .Normal
+	var blendMode: BlendMode = .normal
 
-	override func drawInContext(ctx: CGContext) {
-		CGContextSetBlendMode(ctx, blendMode.CGBlendView)
+	override func draw(in ctx: CGContext) {
+		ctx.setBlendMode(blendMode.CGBlendView)
 
-		super.drawInContext(ctx)
+		super.draw(in: ctx)
 	}
 }
 
 private final class CVShapeLayer: CAShapeLayer {
-	var blendMode: BlendMode = .Normal
+	var blendMode: BlendMode = .normal
 
-	override func drawInContext(ctx: CGContext) {
-		CGContextSetBlendMode(ctx, blendMode.CGBlendView)
+	override func draw(in ctx: CGContext) {
+		ctx.setBlendMode(blendMode.CGBlendView)
 
-		super.drawInContext(ctx)
+		super.draw(in: ctx)
 	}
 }

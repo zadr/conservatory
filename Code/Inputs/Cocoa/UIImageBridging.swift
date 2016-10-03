@@ -5,19 +5,19 @@ import UIKit
 extension UIImage: ImageViewable {
 	public var bitmapView: UnsafePointer<UInt8> {
 		get {
-			return CGImage!.bitmapView
+			return cgImage!.bitmapView
 		}
 	}
 
 	public var JPEGView: UnsafePointer<UInt8> {
 		get {
-			return UnsafePointer<UInt8>(UIImageJPEGRepresentation(self, 1.0)!.bytes)
+			return (UIImageJPEGRepresentation(self, 1.0)! as NSData).bytes.bindMemory(to: UInt8.self, capacity: UIImageJPEGRepresentation(self, 1.0)!.count)
 		}
 	}
 
 	public var PNGView: UnsafePointer<UInt8> {
 		get {
-			return UnsafePointer<UInt8>(UIImagePNGRepresentation(self)!.bytes)
+			return (UIImagePNGRepresentation(self)! as NSData).bytes.bindMemory(to: UInt8.self, capacity: UIImagePNGRepresentation(self)!.count)
 		}
 	}
 }

@@ -1,8 +1,7 @@
 // http://paulbourke.net/miscellaneous/interpolation/
 
 public protocol Interpolatable {
-	@warn_unused_result
-	func linearInterpolate(towards: Self, step: Self, of steps: Self?) -> Self
+	func linearInterpolate(_ towards: Self, step: Self, of steps: Self?) -> Self
 
 //	todo: func cubicInterpolate(…) -> Self
 //	todo: func cosineInterpolate(…) -> Self
@@ -10,16 +9,14 @@ public protocol Interpolatable {
 //	todo: func gaussianInerpolate(…) -> Self
 }
 
-public extension Interpolatable where Self: IntegerArithmeticType {
-	@warn_unused_result
-	public func linearInterpolate(towards: Self, step: Self, of steps: Self?) -> Self {
+public extension Interpolatable where Self: IntegerArithmetic {
+	public func linearInterpolate(_ towards: Self, step: Self, of steps: Self?) -> Self {
 		return ((self - towards) * step) / steps!
 	}
 }
 
 extension Double: Interpolatable {
-	@warn_unused_result
-	public func linearInterpolate(towards: Double, step: Double, of steps: Double? = Double.NaN) -> Double {
+	public func linearInterpolate(_ towards: Double, step: Double, of steps: Double? = Double.nan) -> Double {
 		if self == towards {
 			return self
 		}

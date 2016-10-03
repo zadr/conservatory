@@ -4,8 +4,7 @@ public extension Color {
 
 	- Parameter step: How much to saturate a color, as double between -1.0 and 1.0. The resulting saturation will be not be under 0.0 or above 1.0. The larger the value, the more saturated the result will be. Passing in a negative number is equivalent to calling *desaturate(positive_amount)*. The default value is **0.1**.
 	*/
-	@warn_unused_result
-	public func saturate(step: Double = 0.1) -> Color {
+	public func saturate(_ step: Double = 0.1) -> Color {
 		return withSaturation(float: HSBView.saturation + step)
 	}
 
@@ -14,8 +13,7 @@ public extension Color {
 
 	- Parameter step: How much to desaturate a color, as double between -1.0 and 1.0. The resulting saturation will be not be under 0.0 or above 1.0. The larger the value, the more saturated the result will be. Passing in a negative number is equivalent to calling *saturate(positive_amount)*. The default value is **0.1**.
 	*/
-	@warn_unused_result
-	public func desaturate(step: Double = 0.1) -> Color {
+	public func desaturate(_ step: Double = 0.1) -> Color {
 		return withSaturation(float: HSBView.saturation - step)
 	}
 
@@ -24,8 +22,7 @@ public extension Color {
 
 	- Parameter step: How much to darken a color, as double between -1.0 and 1.0. The resulting brightness will be not be under 0.0 or above 1.0. Passing in a negative number is equivalent to calling *lighten(positive_amount)*. The default value is **0.1**.
 	*/
-	@warn_unused_result
-	public func darken(step: Double = 0.1) -> Color {
+	public func darken(_ step: Double = 0.1) -> Color {
 		return withBrightness(float: HSBView.brightness - step)
 	}
 
@@ -34,8 +31,7 @@ public extension Color {
 
 	- Parameter step: How much to lighten a color, as double between -1.0 and 1.0. The resulting brightness will be not be under 0.0 or above 1.0. Passing in a negative number is equivalent to calling *lighten(positive_amount)*. The default value is **0.1**.
 	*/
-	@warn_unused_result
-	public func lighten(step: Double = 0.1) -> Color {
+	public func lighten(_ step: Double = 0.1) -> Color {
 		return withBrightness(float: HSBView.brightness + step)
 	}
 
@@ -45,7 +41,7 @@ public extension Color {
 	- Parameter angle: Maximum amount to rotate by on a color wheel. Passing in values below 0° or above 360° are equivalent to passing in *value % 360*. The default value is **20**.
 	- Parameter delta: Maximum amount to saturate the rotated color by. The default value is **0.5**.
 	*/
-	@warn_unused_result
+	
 	public func analog(angle a: Double = 20.0, delta d: Double = 0.5) -> Color {
 		let rotated = rotateRYB(Double.random(a))
 		let lightened = rotated.lighten(Double.random(d))
@@ -61,7 +57,6 @@ public extension Color {
 	- Parameter maxSaturation: Maximum amount to saturate the color by.The resulting saturation will not be under 0.0 or 1.0. The default value is **0.3**.
 	- Parameter maxBrightness: Maximum amount to adjust the brigtness by. The resulting brightness will not be under 0.0 or 1.0. The default value is **0.3**.
 	*/
-	@warn_unused_result
 	public func drift(maxHue h: Double = 0.1, maxSaturation s: Double = 0.3, maxBrightness b: Double = 0.3) -> Color {
 		let originalHSB = HSBView
 
@@ -141,8 +136,7 @@ public extension Color {
 	2. The left-complement of the current color.
 	3. The right-complement of the current color
 	*/
-	@warn_unused_result
-	public func splitComplementary(angle: Double = 30.0) -> [Color] {
+	public func splitComplementary(_ angle: Double = 30.0) -> [Color] {
 		var complementary = [ self ]
 
 		complementary.append(complement.rotateRYB(-angle))
@@ -167,8 +161,7 @@ public extension Color {
 	5. The exact left-complement of the current color, 180° away on a **Red-Yellow-Blue** color wheel.
 	6. A softer supporting color of our left-complement. This color will be brighter and more saturated than our complement.
 	*/
-	@warn_unused_result
-	public func leftComplementary(angle: Double = -30.0) -> [Color] {
+	public func leftComplementary(_ angle: Double = -30.0) -> [Color] {
 		let left = complement.rotateRYB(angle).lighten()
 
 		var complementaryColors = complementary
@@ -196,8 +189,7 @@ public extension Color {
 	5. The exact right-complement of the current color, 180° away on a **Red-Yellow-Blue** color wheel.
 	6. A softer supporting color of our right-complement. This color will be brighter and more saturated than our complement.
 	*/
-	@warn_unused_result
-	public func rightComplementary(angle: Double = 30.0) -> [Color] {
+	public func rightComplementary(_ angle: Double = 30.0) -> [Color] {
 		let right = complement.rotateRYB(angle).lighten()
 
 		var complementaryColors = complementary
@@ -217,8 +209,7 @@ public extension Color {
 
 	- Returns: Six values, the first of which is the current color, followed by five analogous colors.
 	*/
-	@warn_unused_result
-	public func analogous(angle: Double = 10.0, contrast: Double = 0.25) -> [Color] {
+	public func analogous(_ angle: Double = 10.0, contrast: Double = 0.25) -> [Color] {
 		let rangedContrast = contrast.inRange(0.0, max: 1.0)
 
 		var analogous = [ self ]
@@ -282,8 +273,7 @@ public extension Color {
 	2. The left-analog of the current color.
 	3. The right-analog of the current color
 	*/
-	@warn_unused_result
-	public func triad(angle: Double = 120.0) -> [Color] {
+	public func triad(_ angle: Double = 120.0) -> [Color] {
 		var triad = [ self ]
 
 		triad.append(rotateRYB(angle).lighten())
@@ -302,8 +292,7 @@ public extension Color {
 	2. The current color rotated by *angle * 2* degrees. If the color is considered bright (brightness > 0.5), the color is darkened, otherwise the color is lightened. In either case, the adjustment is less than the adjustment of the prior color.
 	2. The current color rotated by *angle * 3* degrees.
 	*/
-	@warn_unused_result
-	public func tetrad(angle: Double = 90.0) -> [Color] {
+	public func tetrad(_ angle: Double = 90.0) -> [Color] {
 		var tetrad = [ self ]
 
 		var rotated = rotateRYB(angle)
@@ -332,8 +321,7 @@ public extension Color {
 
 	- Returns: An array of six colors, the first of which is the current color.
 	*/
-	@warn_unused_result
-	public func compound(left: Bool = false) -> [Color] {
+	public func compound(_ left: Bool = false) -> [Color] {
 		let d = (left ? -1.0 : 1.0)
 
 		var compound = [ self ]
@@ -370,8 +358,7 @@ public extension Color {
 
 	- Parameter angle: Maximum amount to rotate by on a color wheel. Passing in values below 0° or above 360° are equivalent to passing in *value % 360*. The default value is **180**, or the complement of a color.
 	*/
-	@warn_unused_result
-	public func rotateRYB(angle: Double = 180.0) -> Color {
+	public func rotateRYB(_ angle: Double = 180.0) -> Color {
 		// Approximation of Itten's RYB color wheel.
 		// In HSB color hues range from 0-360, however, on the artistic color wheel these are not evenly distributed.
 		// The second tuple value contains the actual distribution.
@@ -384,7 +371,7 @@ public extension Color {
 		]
 
 		var h = HSBView.hue
-		let angle = angle % 360.0
+		let angle = angle.truncatingRemainder(dividingBy: 360.0)
 		var a = 0.0
 
 		// Given a hue, find out under what angle it is located on the artistic color wheel.
@@ -398,11 +385,11 @@ public extension Color {
 
 			if y0 <= h && h <= y1 {
 				a = 1.0 * x0 + (x1 - x0) * (h - y0) / (y1 - y0)
-				stop.memory = true
+				stop.pointee = true
 			}
 		}
 
-		a = (a + angle) % 360.0
+		a = (a + angle).truncatingRemainder(dividingBy: 360.0)
 
 		// For the given angle, find out what hue is located there on the artistic color wheel.
 		(RYBWheel.count - 1).times { (i, stop) in
@@ -418,11 +405,11 @@ public extension Color {
 
 			if x0 <= a && a <= x1 {
 				h = 1.0 * y0 + (y1 - y0) * (a - x0) / (x1 - x0)
-				stop.memory = true
+				stop.pointee = true
 			}
 		}
 
-		h %= 360.0
+		h = h.truncatingRemainder(dividingBy: 360.0)
 
 		let hsb = HSBView
 		return Color(h: h, s: hsb.saturation, b: hsb.brightness, a: AView)
@@ -433,9 +420,8 @@ public extension Color {
 
 	- Parameter angle: Maximum amount to rotate by on a color wheel. Passing in values below 0° or above 360° are equivalent to passing in *value % 360*. The default value is **180**, or the complement of a color.
 	*/
-	@warn_unused_result
-	public func rotateRGB(angle: Double = 180.0) -> Color {
-		let h = (HSBView.hue + 1.0 * angle / 360.0) % 1
+	public func rotateRGB(_ angle: Double = 180.0) -> Color {
+		let h = (HSBView.hue + 1.0 * angle / 360.0).truncatingRemainder(dividingBy: 1)
 		return withHue(float: h)
 	}
 

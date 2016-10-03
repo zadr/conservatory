@@ -29,7 +29,7 @@ public extension Color {
 		var red = 0.0, green = 0.0, blue = 0.0
 
 		let c = _brightness * _saturation
-		let x = c * (1 - (((_hue / 60.0) % 2.0) - 1).absoluteValue)
+		let x = c * (1 - (((_hue / 60.0).truncatingRemainder(dividingBy: 2.0)) - 1).absoluteValue)
 		let m = _brightness - c
 
 		switch _hue {
@@ -150,14 +150,14 @@ public extension Color {
 	public convenience init?(hexString hex: String) {
 		let rgb: String
 		if hex.hasPrefix("#") {
-			rgb = hex.substringFromIndex(hex.startIndex.advancedBy(1))
+			rgb = hex.substring(from: hex.characters.index(hex.startIndex, offsetBy: 1))
 		} else {
 			rgb = hex
 		}
 
-		if let value = Int(rgb, radix: 16) where rgb.utf8.count == 8 {
+		if let value = Int(rgb, radix: 16) , rgb.utf8.count == 8 {
 			self.init(hexRGBA: value)
-		} else if let value = Int(rgb, radix: 16) where rgb.utf8.count == 6 {
+		} else if let value = Int(rgb, radix: 16) , rgb.utf8.count == 6 {
 			self.init(hexRGB: value)
 		} else {
 			return nil
@@ -196,7 +196,7 @@ public extension Color {
 
 	- Returns: The return value is guaranteed to have an alpha of 1.0.
 	*/
-	@warn_unused_result
+	
 	public static func random() -> Color {
 		return Color(red: Double.random(), green: Double.random(), blue: Double.random(), alpha: 1.0)
 	}
@@ -211,7 +211,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *red* component replaced. Values below 0.0 will be treated as 0.0, and values above 1.0 will be treated as 1.0.
 	*/
-	@warn_unused_result
+	
 	public func withRed(float r: Double = 1.0) -> Color {
 		let color = RGBView
 		return Color(red: r, green: color.green, blue: color.blue, alpha: AView)
@@ -220,7 +220,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *red* component replaced.
 	*/
-	@warn_unused_result
+	
 	public func withRed(int red: UInt8 = 255) -> Color {
 		let r = Double(red) / 255.0
 
@@ -232,7 +232,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *green* component replaced. Values below 0.0 will be treated as 0.0, and values above 1.0 will be treated as 1.0.
 	*/
-	@warn_unused_result
+	
 	public func withGreen(float g: Double = 1.0) -> Color {
 		let color = RGBView
 		return Color(red: color.red, green: g, blue: color.blue, alpha: AView)
@@ -241,7 +241,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *green* component replaced.
 	*/
-	@warn_unused_result
+	
 	public func withGreen(int green: UInt8 = 255) -> Color {
 		let g = Double(green) / 255.0
 
@@ -253,7 +253,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *blue* component replaced. Values below 0.0 will be treated as 0.0, and values above 1.0 will be treated as 1.0.
 	*/
-	@warn_unused_result
+	
 	public func withBlue(float b: Double = 1.0) -> Color {
 		let color = RGBView
 		return Color(red: color.red, green: color.green, blue: b, alpha: AView)
@@ -262,7 +262,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *blue* component replaced.
 	*/
-	@warn_unused_result
+	
 	public func withBlue(int blue: UInt8 = 255) -> Color {
 		let b = Double(blue) / 255.0
 
@@ -279,7 +279,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *hue* component replaced.
 	*/
-	@warn_unused_result
+	
 	public func withHue(float hue: Double = 1.0) -> Color {
 		let View = HSBView
 
@@ -289,7 +289,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *hue* component replaced.
 	*/
-	@warn_unused_result
+	
 	public func withHue(UInt8 hue: UInt8 = 255) -> Color {
 		let h = Double(hue)
 
@@ -301,7 +301,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *saturation* component replaced.
 	*/
-	@warn_unused_result
+	
 	public func withSaturation(float saturation: Double = 1.0) -> Color {
 		let View = HSBView
 
@@ -311,7 +311,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *saturation* component replaced.
 	*/
-	@warn_unused_result
+	
 	public func withSaturation(UInt8 saturation: UInt8 = 255) -> Color {
 		let s = Double(saturation)
 
@@ -323,7 +323,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *brightness* component replaced.
 	*/
-	@warn_unused_result
+	
 	public func withBrightness(float brightness: Double = 1.0) -> Color {
 		let View = HSBView
 
@@ -333,7 +333,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *brightness* component replaced.
 	*/
-	@warn_unused_result
+	
 	public func withBrightness(UInt8 hue: UInt8 = 255) -> Color {
 		let b = Double(hue)
 
@@ -347,12 +347,12 @@ public extension Color {
 
 	// MARK: - alpha
 
-	@warn_unused_result
+	
 	public func withWhite(float white: Double = 1.0) -> Color {
 		return Color(red: white, green: white, blue: white, alpha: AView)
 	}
 
-	@warn_unused_result
+	
 	public func withWhite(int white: UInt8 = 255) -> Color {
 		let w = Double(white) / 255.0
 
@@ -369,7 +369,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *alpha* component replaced. Values below 0.0 will be treated as 0.0, and values above 1.0 will be treated as 1.0.
 	*/
-	@warn_unused_result
+	
 	public func withAlpha(float alpha: Double = 1.0) -> Color {
 		let View = RGBView
 
@@ -379,7 +379,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *alpha* component replaced.
 	*/
-	@warn_unused_result
+	
 	public func withAlpha(int alpha: UInt8 = 255) -> Color {
 		let a = Double(alpha) / 255.0
 		

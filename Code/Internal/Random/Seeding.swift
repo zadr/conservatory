@@ -6,23 +6,23 @@ import Glibc
 
 internal struct Seed {
 #if os(iOS) || os(OSX)
-	private static var bootTime: UInt {
+	fileprivate static var bootTime: UInt {
 		get {
 			var bootTime = timeval()
 			var mib = [ CTL_KERN, KERN_BOOTTIME ]
-			var size = strideof(timeval)
+			var size = MemoryLayout<timeval>.stride
 			sysctl(&mib, u_int(mib.count), &bootTime, &size, nil, 0)
 			return UInt(bootTime.tv_sec + bootTime.tv_usec)
 		}
 	}
 
-	private static var CPUTime: UInt {
+	fileprivate static var CPUTime: UInt {
 		get {
 			return 0
 		}
 	}
 
-	@warn_unused_result
+	
 	internal static func generate() -> [UInt] {
 		// todo: add in thread time, cpu time, cpu load, processor load, memory usage
 
@@ -37,7 +37,7 @@ internal struct Seed {
 		]
 	}
 #elseif os(Linux)
-	@warn_unused_result
+	
 	internal static func generate() -> [UInt] {
 		let seeds = [
 			UInt(getpid()),

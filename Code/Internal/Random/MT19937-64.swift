@@ -10,7 +10,7 @@ let leastSignificantBits: UInt = 0x7FFFFFFF // Least significant 31 bits
 
 // The array for the state vector
 private struct generated {
-	static var memory = [UInt](count: entropyCount, repeatedValue: 0)
+	static var memory = [UInt](repeating: 0, count: entropyCount)
 }
 
 var usedEntropyIndex: Int = entropyCount + 1
@@ -29,7 +29,7 @@ private struct MersenneTwister64 {
 		}
 	}
 
-	private static func seed(seed: UInt) {
+	fileprivate static func seed(_ seed: UInt) {
 		generated.memory[0] = seed
 
 		usedEntropyIndex = 1
@@ -38,7 +38,7 @@ private struct MersenneTwister64 {
 		}
 	}
 
-	private static func seed(keys: [UInt]) {
+	fileprivate static func seed(_ keys: [UInt]) {
 		seed(UInt(19650218))
 
 		var i: Int = 1, j: Int = 0
@@ -69,7 +69,7 @@ private struct MersenneTwister64 {
 		generated.memory[0] = 1 << 63 // mostSignificantBits is 1; assuring non-zero initial array
 	}
 
-	private static func random(entropy: () -> [UInt]) -> UInt {
+	fileprivate static func random(_ entropy: () -> [UInt]) -> UInt {
 		var x: UInt
 
 		struct mag01 {
@@ -116,7 +116,6 @@ extension UInt {
 
 	This function will automatically provide the initial seed, and provide any further entropy upon request.
 	*/
-	@warn_unused_result
 	internal static func MT19937_64_random() -> UInt {
 		struct local {
 			static var initiated: Bool = false

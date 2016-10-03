@@ -7,9 +7,9 @@ import CoreText
 A renderer that can take in inputs and output a CGImageRef.
 */
 public final class CGRenderer: Renderer {
-	public typealias RenderResultType = CGImageRef
+	public typealias RenderResultType = CGImage
 
-	private let bitmapContext: CGContextRef
+	private let bitmapContext: CGContext
 	private var bezier: Bezier?
 	private var backgroundColors: Gradient?
 	private var borderColors: Gradient?
@@ -21,19 +21,19 @@ public final class CGRenderer: Renderer {
 
 		size = _size
 
-		bitmapContext = CGBitmapContextCreate(nil, Int(size.width), Int(size.height), 8, 32 * Int(size.width), CGColorSpaceCreateDeviceRGB(), CGImageAlphaInfo.PremultipliedLast.rawValue)!
-		CGContextTranslateCTM(bitmapContext, 0.0, CGFloat(size.height))
-		CGContextScaleCTM(bitmapContext, 1.0, -1.0)
+		bitmapContext = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: 32 * Int(size.width), space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+		bitmapContext.translateBy(x: 0.0, y: CGFloat(size.height))
+		bitmapContext.scaleBy(x: 1.0, y: -1.0)
 	}
 
-	public func render(viewable: Viewable) -> RenderResultType? {
+	public func render(_ viewable: Viewable) -> RenderResultType? {
 		return render([ viewable ])
 	}
 
-	public func render(viewables: [Viewable]) -> RenderResultType? {
+	public func render(_ viewables: [Viewable]) -> RenderResultType? {
 		viewables.forEach({
 			// reset state before each run
-			CGContextSaveGState(bitmapContext); defer { CGContextRestoreGState(bitmapContext) }
+			bitmapContext.saveGState(); defer { bitmapContext.restoreGState() }
 			bezier = nil
 
 			$0.render(self)
@@ -41,13 +41,13 @@ public final class CGRenderer: Renderer {
 
 		bezier = nil
 
-		return CGBitmapContextCreateImage(bitmapContext)
+		return bitmapContext.makeImage()
 	}
 
 	private var antialias = true {
 		didSet {
-			CGContextSetAllowsAntialiasing(bitmapContext, antialias)
-			CGContextSetShouldAntialias(bitmapContext, antialias)
+			bitmapContext.setAllowsAntialiasing(antialias)
+			bitmapContext.setShouldAntialias(antialias)
 		}
 	}
 
@@ -58,127 +58,127 @@ public final class CGRenderer: Renderer {
 	}
 
 	// todo: investigate swift and figure out when this signature can be draw(bezier _bezier: BezierType) without conflicting with draw(image: ImageType)
-	public func draw(bezier: Bezier) {
+	public func draw(_ bezier: Bezier) {
 		// due to how CoreGraphics works, the bezier has to be added to the context before each call to fill() and stroke()
 		// todo?: investigate if we should we use CGContextSaveGState() before fill() and stroke() instead of keeping this around as a local property
 		self.bezier = bezier
 	}
 
-	public func draw(image: Image) {
-		let rect = CGRectMake(0.0, 0.0, CGFloat(image.size.width), CGFloat(image.size.height))
-		CGContextDrawImage(bitmapContext, rect, image.CGImage)
+	public func draw(_ image: Image) {
+		let rect = CGRect(x: 0.0, y: 0.0, width: CGFloat(image.size.width), height: CGFloat(image.size.height))
+		bitmapContext.draw(image.CGImageView, in: rect)
 	}
 
-	public func draw(text: String, withTextEffects effects: [TextEffect]) {
+	public func draw(_ text: String, withTextEffects effects: [TextEffect]) {
 		let attributedString = text.cocoaValue(effects)
 
-		CGContextSaveGState(bitmapContext); defer { CGContextRestoreGState(bitmapContext) }
+		bitmapContext.saveGState(); defer { bitmapContext.restoreGState() }
 
-		CGContextTranslateCTM(bitmapContext, 0.0, CGFloat(size.height))
-		CGContextScaleCTM(bitmapContext, 1.0, -1.0)
+		bitmapContext.translateBy(x: 0.0, y: CGFloat(size.height))
+		bitmapContext.scaleBy(x: 1.0, y: -1.0)
 
 		let framesetter = CTFramesetterCreateWithAttributedString(attributedString)
-		let path = CGPathCreateMutable()
-		CGPathAddRect(path, nil, encompassingRect)
+		let path = CGMutablePath()
+		path.addRect(encompassingRect)
 
 		let frame = CTFramesetterCreateFrame(framesetter, CFRange(location: 0, length: text.utf8.count), path, nil)
 		CTFrameDraw(frame, bitmapContext)
 	}
 
-	public func apply(aura: Aura?) {
+	public func apply(_ aura: Aura?) {
 		if let aura = aura {
-			CGContextSetShadowWithColor(bitmapContext, aura.offset.CGSizeView, CGFloat(aura.blur), aura.color.CGColorView)
+			bitmapContext.setShadow(offset: aura.offset.CGSizeView, blur: CGFloat(aura.blur), color: aura.color.CGColorView)
 		} else {
-			CGContextSetShadowWithColor(bitmapContext, Size.zero.CGSizeView, 0.0, nil)
+			bitmapContext.setShadow(offset: Size.zero.CGSizeView, blur: 0.0, color: nil)
 		}
 	}
 
-	public func apply(blendMode: BlendMode) {
-		CGContextSetBlendMode(bitmapContext, blendMode.CGBlendView)
+	public func apply(_ blendMode: BlendMode) {
+		bitmapContext.setBlendMode(blendMode.CGBlendView)
 	}
 
-	public func apply(background: Palette<Color, GradientOptions>) {
+	public func apply(_ background: Palette<Color, GradientOptions>) {
 		switch background {
-		case .None:
-			CGContextSetFillColorWithColor(bitmapContext, nil)
-		case .Solid(let backgroundColor):
-			CGContextSetFillColorWithColor(bitmapContext, backgroundColor.CGColorView)
-		case .Gradient(let backgroundColors, let options):
+		case .none:
+			bitmapContext.setFillColor(Color.clear.CGColorView)
+		case .solid(let backgroundColor):
+			bitmapContext.setFillColor(backgroundColor.CGColorView)
+		case .gradient(let backgroundColors, let options):
 			self.backgroundColors = Gradient(colors: backgroundColors, options: options)
 		}
 	}
 
-	public func apply(border: Palette<Color, GradientOptions>, width: Double) {
+	public func apply(_ border: Palette<Color, GradientOptions>, width: Double) {
 		switch border {
-		case .None:
-			CGContextSetFillColorWithColor(bitmapContext, nil)
-		case .Solid(let borderColor):
-			CGContextSetStrokeColorWithColor(bitmapContext, borderColor.CGColorView)
-		case .Gradient(let borderColors, let options):
+		case .none:
+			bitmapContext.setFillColor(Color.clear.CGColorView)
+		case .solid(let borderColor):
+			bitmapContext.setStrokeColor(borderColor.CGColorView)
+		case .gradient(let borderColors, let options):
 			self.borderColors = Gradient(colors: borderColors, options: options)
 		}
 
-		CGContextSetLineWidth(bitmapContext, CGFloat(width))
+		bitmapContext.setLineWidth(CGFloat(width))
 	}
 
-	public func apply(transform: Transform) {
-		CGContextConcatCTM(bitmapContext, transform.CGAffineTransformView)
+	public func apply(_ transform: Transform) {
+		bitmapContext.concatenate(transform.CGAffineTransformView)
 	}
 
-	private func draw(colors: [Color], positions: [Double], options: GradientOptions, bounds: CGRect) {
+	private func draw(_ colors: [Color], positions: [Double], options: GradientOptions, bounds: CGRect) {
 		let gradientOptions = options.CGGradientDrawingOptionsView
 
-		let CGColors = colors.map({ return $0.CGColorView })
+		let CGColors = colors.map({ return $0.CGColorView }) as CFArray
 		let CGPositions = positions.map({ return CGFloat($0) })
-		let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), CGColors, CGPositions)
+		let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: CGColors, locations: CGPositions)
 
 		switch options.type {
-		case .Linear:
-			var start = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMinY(bounds))
-			start = CGPointApplyAffineTransform(start, CGAffineTransformMakeRotation(CGFloat(options.rotation)))
+		case .linear:
+			var start = CGPoint(x: bounds.midX, y: bounds.minY)
+			start = start.applying(CGAffineTransform(rotationAngle: CGFloat(options.rotation)))
 
-			var end = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMaxY(bounds))
-			end = CGPointApplyAffineTransform(end, CGAffineTransformMakeRotation(CGFloat(options.rotation)))
+			var end = CGPoint(x: bounds.midX, y: bounds.maxY)
+			end = end.applying(CGAffineTransform(rotationAngle: CGFloat(options.rotation)))
 
-			CGContextDrawLinearGradient(bitmapContext, gradient, start, end, gradientOptions)
-		case .Radial:
-			let start = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
-			let end = CGPoint(x: CGRectGetMidX(bounds), y: CGRectGetMidY(bounds))
+			bitmapContext.drawLinearGradient(gradient!, start: start, end: end, options: gradientOptions)
+		case .radial:
+			let start = CGPoint(x: bounds.midX, y: bounds.midY)
+			let end = CGPoint(x: bounds.midX, y: bounds.midY)
 
-			CGContextDrawRadialGradient(bitmapContext, gradient, start, 0.0, end, CGRectGetMidX(bounds), gradientOptions)
+			bitmapContext.drawRadialGradient(gradient!, startCenter: start, startRadius: 0.0, endCenter: end, endRadius: bounds.midX, options: gradientOptions)
 		}
 	}
 
-	private func apply(mode: CGPathDrawingMode, gradient: Gradient?) {
-		CGContextSaveGState(bitmapContext)
+	private func apply(_ mode: CGPathDrawingMode, gradient: Gradient?) {
+		bitmapContext.saveGState()
 
 		let rect: CGRect
 		if let bezier = bezier {
-			rect = CGPathGetBoundingBox(bezier.CGPathView)
-			CGContextAddPath(bitmapContext, bezier.CGPathView)
+			rect = bezier.CGPathView.boundingBox
+			bitmapContext.addPath(bezier.CGPathView)
 		} else {
 			rect = encompassingRect
-			CGContextAddRect(bitmapContext, encompassingRect)
+			bitmapContext.addRect(encompassingRect)
 		}
 
 		if let gradient = gradient {
-			CGContextClip(bitmapContext)
+			bitmapContext.clip()
 
 			draw(gradient.colors, positions: gradient.colors.positions, options: gradient.options, bounds: rect)
 		} else {
-			CGContextDrawPath(bitmapContext, mode)
+			bitmapContext.drawPath(using: mode)
 		}
 
-		CGContextRestoreGState(bitmapContext)
+		bitmapContext.restoreGState()
 	}
 
 	public func fill() {
-		apply(.Fill, gradient: backgroundColors)
+		apply(.fill, gradient: backgroundColors)
 		backgroundColors = nil
 	}
 
 	public func stroke() {
-		apply(.Stroke, gradient: borderColors)
+		apply(.stroke, gradient: borderColors)
 		borderColors = nil
 	}
 }

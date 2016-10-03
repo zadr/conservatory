@@ -30,7 +30,7 @@ public final class Canvas<T: Renderer>: AppearanceContainer, Viewable {
 	/**
 	Add a *Viewable* object to be rendered onto the current canvas.
 	*/
-	public func add(viewable: Viewable) {
+	public func add(_ viewable: Viewable) {
 		viewables.append(viewable)
 	}
 
@@ -42,7 +42,7 @@ public final class Canvas<T: Renderer>: AppearanceContainer, Viewable {
 	}
 
 	public func debugQuickLookObject() -> AnyObject? {
-		return currentRepresentation as? AnyObject
+		return currentRepresentation as AnyObject?
 	}
 
 	/**
@@ -69,7 +69,7 @@ public final class Canvas<T: Renderer>: AppearanceContainer, Viewable {
 	5. Apply the aura
 	6. Apply the border color(s)
 	*/
-	public func render<T: Renderer>(renderer: T) {
+	public func render<T: Renderer>(_ renderer: T) {
 		renderer.apply(appearance.blendMode)
 		renderer.apply(appearance.transform)
 		renderer.apply(appearance.background)

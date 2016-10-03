@@ -5,8 +5,8 @@ let length = 2000.0
 let canvas = Canvas<CGRenderer>(size: Size(width: length, height: length))
 
 let color = Color.random()
-canvas.appearance.background = .Solid(color)
-canvas.appearance.border = .Solid(color.complement)
+canvas.appearance.background = .solid(color)
+canvas.appearance.border = .solid(color.complement)
 canvas.appearance.borderWidth = Double.random(150.0, min: 50.0)
 
 let add: (Shape) -> (Void) = { (shape) -> Void in
@@ -14,8 +14,8 @@ let add: (Shape) -> (Void) = { (shape) -> Void in
 
 	var colors = Color.random().compound()
 	let shapeColor = colors.removeFirst()
-	shapeDrawer.appearance.border = .Solid(shapeColor.complement)
-	shapeDrawer.appearance.background = Bool.random() ? .Gradient(colors, GradientOptions()) : .Solid(shapeColor)
+	shapeDrawer.appearance.border = .solid(shapeColor.complement)
+	shapeDrawer.appearance.background = Bool.random() ? .gradient(colors, GradientOptions()) : .solid(shapeColor)
 	shapeDrawer.appearance.borderWidth = Double.random(30.0, min: 5.0)
 	shapeDrawer.appearance.transform = Transform.move(Double.random(length), y: Double.random(length))
 	shapeDrawer.appearance.aura = Aura(color: shapeColor.withAlpha(float: 0.4), offset: Size(width: 0.0, height: -5.0), blur: 25.0)
@@ -36,4 +36,4 @@ Int.random(15, min: 5).times { (x, _) in
 	add(polygon)
 }
 
-UIImage(CGImage: canvas.currentRepresentation!) // changes every run!
+UIImage(cgImage: canvas.currentRepresentation!) // changes every run!

@@ -195,17 +195,17 @@ public extension Color {
 
 	- Returns: A 6 or 8 character hex string, in the format of *RRGGBB* or *RRGGBBAA*.
 	*/
-	@warn_unused_result
-	public func hexView(includeAlpha: Bool = false) -> String {
+	
+	public func hexView(_ includeAlpha: Bool = false) -> String {
 		let color = RGBView
 
 		var hexView = ""
-		hexView += String("%02X", color.red)
-		hexView += String("%02X", color.green)
-		hexView += String("%02X", color.blue)
+		hexView += String(Int(color.red), radix: 16)
+		hexView += String(Int(color.green), radix: 16)
+		hexView += String(Int(color.blue), radix: 16)
 
 		if includeAlpha {
-			hexView += String("%02x", AView)
+			hexView += String(Int(AView), radix: 16)
 		}
 
 		return hexView

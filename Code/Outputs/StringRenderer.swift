@@ -16,16 +16,16 @@ public final class StringRenderer: Renderer {
 		stringContext = ""
 	}
 
-	public func render(viewable: Viewable) -> RenderResultType? {
+	public func render(_ viewable: Viewable) -> RenderResultType? {
 		return render([ viewable ])
 	}
 
-	public func render(viewables: [Viewable]) -> RenderResultType? {
+	public func render(_ viewables: [Viewable]) -> RenderResultType? {
 		level += 1; defer { level -= 1 }
 
 		viewables.forEach({
 			if level > 0 {
-				append("// \(String($0.dynamicType))")
+				append("// \(String(describing: type(of: $0)))")
 			}
 
 			$0.render(self)
@@ -34,24 +34,24 @@ public final class StringRenderer: Renderer {
 		return stringContext
 	}
 
-	private func append(string: String) {
-		let tabs = String(count: level, repeatedValue: Character("\t"))
+	private func append(_ string: String) {
+		let tabs = String(repeating: "\t", count: level)
 		stringContext += tabs + string + "\n"
 	}
 
-	public func draw(bezier: Bezier) {
+	public func draw(_ bezier: Bezier) {
 		append("draw(bezier: \(bezier))")
 	}
 
-	public func draw(image: Image) {
+	public func draw(_ image: Image) {
 		append("draw(image: \(image))")
 	}
 
-	public func draw(text: String, withTextEffects effects: [TextEffect]) {
+	public func draw(_ text: String, withTextEffects effects: [TextEffect]) {
 		append("draw(text: \(text), withTextEffects: \(effects)")
 	}
 
-	public func apply(aura: Aura?) {
+	public func apply(_ aura: Aura?) {
 		if let aura = aura {
 			append("apply(aura: \(aura)")
 		} else {
@@ -59,30 +59,30 @@ public final class StringRenderer: Renderer {
 		}
 	}
 
-	public func apply(blendMode: BlendMode) {
+	public func apply(_ blendMode: BlendMode) {
 		append("apply(blendMode: \(blendMode))")
 	}
 
-	public func apply(background: Palette<Color, GradientOptions>) {
+	public func apply(_ background: Palette<Color, GradientOptions>) {
 		switch background {
-		case .None:
+		case .none:
 			append("apply(background: nil)")
-		case .Solid(let fillColor):
+		case .solid(let fillColor):
 			append("apply(background: \(fillColor))")
-		case .Gradient(let fillColors, let options):
+		case .gradient(let fillColors, let options):
 			append("apply(background: \(fillColors), options: \(options))")
 		}
 	}
 
-	public func apply(border: Palette<Color, GradientOptions>, width: Double) {
+	public func apply(_ border: Palette<Color, GradientOptions>, width: Double) {
 		var message = "apply(borderColor: "
 
 		switch border {
-		case .None:
+		case .none:
 			message += "nil"
-		case .Solid(let borderColor):
+		case .solid(let borderColor):
 			message += "\(borderColor)"
-		case .Gradient(let borderColors, let options):
+		case .gradient(let borderColors, let options):
 			message += "\(borderColors), options: \(options)"
 		}
 
@@ -91,7 +91,7 @@ public final class StringRenderer: Renderer {
 		append(message + ")")
 	}
 
-	public func apply(transform: Transform) {
+	public func apply(_ transform: Transform) {
 		append("apply(transform: \(transform))")
 	}
 

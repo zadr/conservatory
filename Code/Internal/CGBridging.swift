@@ -4,49 +4,33 @@ internal extension BlendMode {
 	internal var CGBlendView: CGBlendMode {
 		get {
 			switch self {
-			case Normal:
-				return CGBlendMode.Normal
-			case Multiply:
-				return CGBlendMode.Multiply
-			case Screen:
-				return CGBlendMode.Screen
-			case Overlay:
-				return CGBlendMode.Overlay
-			case Darken:
-				return CGBlendMode.Darken
-			case Lighten:
-				return CGBlendMode.Lighten
-			case ColorDodge:
-				return CGBlendMode.ColorDodge
-			case ColorBurn:
-				return CGBlendMode.ColorBurn
-			case SoftLight:
-				return CGBlendMode.SoftLight
-			case HardLight:
-				return CGBlendMode.HardLight
-			case Difference:
-				return CGBlendMode.Difference
-			case Exclusion:
-				return CGBlendMode.Exclusion
-			case Hue:
-				return CGBlendMode.Hue
-			case Saturation:
-				return CGBlendMode.Saturation
-			case Color:
-				return CGBlendMode.Color
-			case Luminosity:
-				return CGBlendMode.Luminosity
+			case .normal: return .normal
+			case .multiply: return .multiply
+			case .screen: return .screen
+			case .overlay: return .overlay
+			case .darken: return .darken
+			case .lighten: return .lighten
+			case .colorDodge: return .colorDodge
+			case .colorBurn: return .colorBurn
+			case .softLight: return .softLight
+			case .hardLight: return .hardLight
+			case .difference: return .difference
+			case .exclusion: return .exclusion
+			case .hue: return .hue
+			case .saturation: return .saturation
+			case .color: return .color
+			case .luminosity: return .luminosity
 			}
 		}
 	}
 }
 
 internal extension Color {
-	internal var CGColorView: CGColorRef {
+	internal var CGColorView: CGColor {
 		get {
 			let rgbView = RGBView
 			let components = [ CGFloat(rgbView.red), CGFloat(rgbView.green), CGFloat(rgbView.blue), CGFloat(AView) ]
-			return CGColorCreate(CGColorSpaceCreateDeviceRGB(), components)!
+			return CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: components)!
 		}
 	}
 }
@@ -56,14 +40,14 @@ internal extension GradientOptions {
 		get {
 			var optionsList = [CGGradientDrawingOptions]()
 			if beforeScene {
-				optionsList.append(.DrawsBeforeStartLocation)
+				optionsList.append(.drawsBeforeStartLocation)
 			}
 
 			if afterScene {
-				optionsList.append(.DrawsAfterEndLocation)
+				optionsList.append(.drawsAfterEndLocation)
 			}
 
-			return CGGradientDrawingOptions(rawValue: optionsList.reduce(0, combine: {
+			return CGGradientDrawingOptions(rawValue: optionsList.reduce(0, {
 				return $0 | $1.rawValue
 			}))
 		}
@@ -81,7 +65,7 @@ internal extension Point {
 
 	internal var CGPointView: CGPoint {
 		get {
-			return CGPointMake(CGFloat(x), CGFloat(y))
+			return CGPoint(x: CGFloat(x), y: CGFloat(y))
 		}
 	}
 }
@@ -97,7 +81,7 @@ internal extension Size {
 
 	internal var CGSizeView: CGSize {
 		get {
-			return CGSizeMake(CGFloat(width), CGFloat(height))
+			return CGSize(width: CGFloat(width), height: CGFloat(height))
 		}
 	}
 }
@@ -108,7 +92,7 @@ internal extension Box {
 			let point = location.CGPointView
 			let dimension = size.CGSizeView
 
-			return CGRectMake(point.x, point.y, dimension.width, dimension.height)
+			return CGRect(x: point.x, y: point.y, width: dimension.width, height: dimension.height)
 		}
 	}
 }
@@ -122,28 +106,28 @@ internal extension Transform {
 }
 
 internal extension Bezier {
-	internal var CGPathView: CGPathRef {
+	internal var CGPathView: CGPath {
 		get {
-			let path = CGPathCreateMutable()
+			let path = CGMutablePath()
 
 			segments.forEach({
 				switch $0 {
-				case .Move(let to):
-					CGPathMoveToPoint(path, nil, CGFloat(to.x), CGFloat(to.y))
-				case .Line(let to):
-					CGPathAddLineToPoint(path, nil, CGFloat(to.x), CGFloat(to.y))
-				case .Arc(let center, let radius, let start, let end):
-					CGPathAddArc(path, nil, CGFloat(center.x), CGFloat(center.y), CGFloat(radius), CGFloat(start), CGFloat(end), true)
-				case .Curve(let point, let controlPoint1, let controlPoint2):
-					CGPathAddCurveToPoint(path, nil, CGFloat(controlPoint1.x), CGFloat(controlPoint1.y), CGFloat(controlPoint2.x), CGFloat(controlPoint2.y), CGFloat(point.x), CGFloat(point.y))
-				case .QuadCurve(let point, let controlPoint):
-					CGPathAddQuadCurveToPoint(path, nil, CGFloat(controlPoint.x), CGFloat(controlPoint.y), CGFloat(point.x), CGFloat(point.y))
-				case .Close:
-					CGPathCloseSubpath(path)
+				case .move(let to):
+					path.move(to: to.CGPointView)
+				case .line(let to):
+					path.addLine(to: to.CGPointView)
+				case .arc(let center, let radius, let start, let end):
+					path.addArc(center: center.CGPointView, radius: CGFloat(radius), startAngle: CGFloat(start), endAngle: CGFloat(end), clockwise: true)
+				case .curve(let point, let controlPoint1, let controlPoint2):
+					path.addCurve(to: point.CGPointView, control1: controlPoint1.CGPointView, control2: controlPoint2.CGPointView)
+				case .quadCurve(let point, let controlPoint):
+					path.addQuadCurve(to: point.CGPointView, control: controlPoint.CGPointView)
+				case .close:
+					path.closeSubpath()
 				}
 			})
 
-			return CGPathCreateCopy(path)!
+			return path.copy()!
 		}
 	}
 }

@@ -10,10 +10,10 @@ public typealias Colour = Color
 The native Color type in Cotton Duck. Can be created with, and in turn, output RGB, HSL, HSV, XYZ, Yuv, and Lab values.
 */
 public final class Color {
-	private let red: Double
-	private let green: Double
-	private let blue: Double
-	private let alpha: Double
+	fileprivate let red: Double
+	fileprivate let green: Double
+	fileprivate let blue: Double
+	fileprivate let alpha: Double
 
 	/**
 	Initialize a *Color* object by passing in *red*, *green*, *blue*, and *alpha* components.
@@ -129,10 +129,10 @@ public func -(x: Color, y: Color) -> Color {
 	return Color(red: red, green: green, blue: blue, alpha: alpha)
 }
 
-public func +=(inout x: Color, y: Color) {
+public func +=(x: inout Color, y: Color) {
 	x = x + y
 }
 
-public func -=(inout x: Color, y: Color) {
+public func -=(x: inout Color, y: Color) {
 	x = x - y
 }

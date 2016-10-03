@@ -61,7 +61,7 @@ public struct ImageDrawer: AppearanceContainer, Viewable {
 	5. Apply our background color(s).
 	6. Apply our border color(s).
 	*/
-	public func render<T: Renderer>(renderer: T) {
+	public func render<T: Renderer>(_ renderer: T) {
 		renderer.draw(image)
 
 		renderer.apply(appearance.aura)

@@ -1,15 +1,15 @@
 public enum Axis {
-	case Horizontal
-	case Vertical
+	case horizontal
+	case vertical
 }
 
 private enum Position: Int {
-	case A = 0
-	case B = 1
-	case C = 3
-	case D = 4
-	case TX = 6
-	case TY = 7
+	case a = 0
+	case b = 1
+	case c = 3
+	case d = 4
+	case tx = 6
+	case ty = 7
 }
 
 // possible starting points:
@@ -19,7 +19,7 @@ public struct Transform {
 	internal let a: Double, b: Double, c: Double, d: Double
 	internal let tx: Double, ty: Double
 
-	private var matrix: [Double] {
+	fileprivate var matrix: [Double] {
 		get {
 			return [
 				a, b, 0.0,
@@ -57,74 +57,67 @@ public struct Transform {
 	/**
 	Returns a matrix of `[ sx 0 0 sy 0 0 ]`.
 	*/
-	@warn_unused_result
-	public static func scale(x: Double, y: Double) -> Transform {
+	
+	public static func scale(_ x: Double, y: Double) -> Transform {
 		return Transform().scale(x, y: y)
 	}
 
-	@warn_unused_result
-	public func scale(x: Double, y: Double) -> Transform {
+	public func scale(_ x: Double, y: Double) -> Transform {
 		var replacement = matrix
-		replacement[Position.A.rawValue] = x
-		replacement[Position.D.rawValue] = y
+		replacement[Position.a.rawValue] = x
+		replacement[Position.d.rawValue] = y
 		return Transform(matrix: replacement)
 	}
 
 	/**
 	Returns a matrix of `[ 1 0 0 1 tx ty ]`.
 	*/
-	@warn_unused_result
-	public static func move(x: Double, y: Double) -> Transform {
+	public static func move(_ x: Double, y: Double) -> Transform {
 		return Transform().move(x, y: y)
 	}
 
-	@warn_unused_result
-	public func move(x: Double, y: Double) -> Transform {
+	public func move(_ x: Double, y: Double) -> Transform {
 		var replacement = matrix
-		replacement[Position.TX.rawValue] = x
-		replacement[Position.TY.rawValue] = y
+		replacement[Position.tx.rawValue] = x
+		replacement[Position.ty.rawValue] = y
 		return Transform(matrix: replacement)
 	}
 
 	/**
 	Returns a matrix of `[ cos(angle) sin(angle) -sin(angle) cos(angle) 0 0 ]`.
 	*/
-	@warn_unused_result
-	public static func rotate(angle: Degree) -> Transform {
+	public static func rotate(_ angle: Degree) -> Transform {
 		return Transform().rotate(angle)
 	}
 
-	@warn_unused_result
-	public func rotate(angle: Degree) -> Transform {
+	public func rotate(_ angle: Degree) -> Transform {
 		var replacement = matrix
-		replacement[Position.A.rawValue] = Radian(angle).cosine
-		replacement[Position.B.rawValue] = Radian(angle).sine
-		replacement[Position.C.rawValue] = -Radian(angle).sine
-		replacement[Position.D.rawValue] = Radian(angle).cosine
+		replacement[Position.a.rawValue] = Radian(angle).cosine
+		replacement[Position.b.rawValue] = Radian(angle).sine
+		replacement[Position.c.rawValue] = -Radian(angle).sine
+		replacement[Position.d.rawValue] = Radian(angle).cosine
 		return Transform(matrix: replacement)
 	}
 
 	/**
 	Returns a matrix of `[ x, 0, 0, -x, 0, 0 ]`.
 	*/
-	@warn_unused_result
-	public static func flip(axis: Axis = .Horizontal) -> Transform {
-		if axis == .Horizontal {
+	public static func flip(_ axis: Axis = .horizontal) -> Transform {
+		if axis == .horizontal {
 			return Transform(a: -1, d: 1)
 		}
 
 		return Transform(a: 1, d: -1)
 	}
 
-	@warn_unused_result
-	public func flip(axis: Axis = .Horizontal) -> Transform {
+	public func flip(_ axis: Axis = .horizontal) -> Transform {
 		var replacement = matrix
-		if axis == .Horizontal {
-			replacement[Position.A.rawValue] = -1
-			replacement[Position.D.rawValue] = 1
+		if axis == .horizontal {
+			replacement[Position.a.rawValue] = -1
+			replacement[Position.d.rawValue] = 1
 		} else {
-			replacement[Position.A.rawValue] = 1
-			replacement[Position.D.rawValue] = -1
+			replacement[Position.a.rawValue] = 1
+			replacement[Position.d.rawValue] = -1
 		}
 
 		return Transform(matrix: replacement)
@@ -133,18 +126,16 @@ public struct Transform {
 	/**
 	Returns a matrix of `[ 1, tan(y), -tan(y), 1, 0, 0 ]`.
 	*/
-	@warn_unused_result
-	public static func skew(x: Double, y: Double) -> Transform {
+	public static func skew(_ x: Double, y: Double) -> Transform {
 		return Transform().skew(x, y: y)
 	}
 
-	@warn_unused_result
-	public func skew(x: Double, y: Double) -> Transform {
+	public func skew(_ x: Double, y: Double) -> Transform {
 		var replacement = matrix
-		replacement[Position.A.rawValue] = 1
-		replacement[Position.B.rawValue] = Radian(y).tangent
-		replacement[Position.C.rawValue] = -Radian(x).tangent
-		replacement[Position.D.rawValue] = 1
+		replacement[Position.a.rawValue] = 1
+		replacement[Position.b.rawValue] = Radian(y).tangent
+		replacement[Position.c.rawValue] = -Radian(x).tangent
+		replacement[Position.d.rawValue] = 1
 
 		return Transform(matrix: replacement)
 	}
@@ -152,9 +143,8 @@ public struct Transform {
 	/**
 	Returns a matrix of `t1 * t2`.
 	*/
-	@warn_unused_result
 	public func append(transform t: Transform) -> Transform {
-		var result = [Double](count: 9, repeatedValue : 0.0)
+		var result = [Double](repeating: 0.0, count: 9)
 		let x = matrix, y = t.matrix
 
 		result[0] = (x[0 /* position(0, 0) */] * y[0 /* position(0, 0) */]) +
@@ -208,7 +198,6 @@ extension Transform: Hashable {
 }
 
 public extension Transform {
-	@warn_unused_result
 	public func apply(to point: Point) -> Point {
 		let x = (a * point.x + c * point.y + tx)
 		let y = (b * point.x + d * point.y + ty)
@@ -216,7 +205,6 @@ public extension Transform {
 		return Point(x: x, y: y)
 	}
 
-	@warn_unused_result
 	public func apply(to size: Size) -> Size {
 		let width = (a * size.width + c * size.height)
 		let height = (b * size.width + d * size.height)
@@ -224,7 +212,6 @@ public extension Transform {
 		return Size(width: width, height: height)
 	}
 
-	@warn_unused_result
 	public func apply(to box: Box) -> Box {
 		return Box(location: apply(to: box.location), size: apply(to: box.size))
 	}
@@ -244,6 +231,6 @@ public func +(x: Transform, y: Transform) -> Transform {
 /**
 t1 = t1 * t2
 */
-public func +=(inout x: Transform, y: Transform) {
+public func +=(x: inout Transform, y: Transform) {
 	x = x.append(transform: y)
 }

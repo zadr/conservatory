@@ -18,7 +18,7 @@ extension Int {
 	}
 	```
 	*/
-	public func times(@noescape body: (Int, UnsafeMutablePointer<Bool>) throws -> Void) rethrows {
+	public func times(body: (Int, UnsafeMutablePointer<Bool>) throws -> Void) rethrows {
 		for i in 0 ..< self {
 			var stop = false
 			try body(i, &stop)
@@ -45,8 +45,7 @@ extension Int {
 	canvas.add(transformedShapes)
 	```
 	*/
-	@warn_unused_result
-	public func map<T>(@noescape transform: (Int) throws -> T) rethrows -> [T] {
+	public func map<T>(transform: (Int) throws -> T) rethrows -> [T] {
 		var results = [T]()
 		for i in 0 ..< self {
 			let result = try transform(i)

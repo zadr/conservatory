@@ -14,20 +14,20 @@ public struct TextDrawer: AppearanceContainer, Viewable {
 
 	// MARK: - Text
 
-	public mutating func add(effect: TextEffect) {
+	public mutating func add(_ effect: TextEffect) {
 		add([effect])
 	}
 
-	public mutating func add(newTextEffects: [TextEffect]) {
-		effects.unionInPlace(Set(newTextEffects))
+	public mutating func add(_ newTextEffects: [TextEffect]) {
+		effects.formUnion(Set(newTextEffects))
 	}
 
-	public mutating func remove(effect: TextEffect) {
+	public mutating func remove(_ effect: TextEffect) {
 		remove([effect])
 	}
 
-	public mutating func remove(oldTextEffects: [TextEffect]) {
-		effects.subtractInPlace(Set(oldTextEffects))
+	public mutating func remove(_ oldTextEffects: [TextEffect]) {
+		effects.subtract(Set(oldTextEffects))
 	}
 
 	public mutating func removeAllEffects() {
@@ -49,7 +49,7 @@ public struct TextDrawer: AppearanceContainer, Viewable {
 	5. Apply the border color(s)
 	6. Draw the text (and any effects)
 	*/
-	public func render<T: Renderer>(renderer: T) {
+	public func render<T: Renderer>(_ renderer: T) {
 		renderer.apply(appearance.aura)
 		renderer.apply(appearance.blendMode)
 		renderer.apply(appearance.transform)
@@ -75,7 +75,7 @@ public struct Font {
 extension Font: Hashable {
 	public var hashValue: Int {
 		get {
-			return [ name, size ].hashValue
+			return [ name.hashValue, size.hashValue ].hashValue
 		}
 	}
 }
@@ -87,14 +87,14 @@ public func ==(x: Font, y: Font) -> Bool {
 // MARK: -
 
 public enum LinePattern {
-	case None
-	case Single
-	case Thick
-	case Double
-	case Dotted
-	case Dashed
-	case DashedAndDotted
-	case DashedAndDottedTwice
+	case none
+	case single
+	case thick
+	case double
+	case dotted
+	case dashed
+	case dashedAndDotted
+	case dashedAndDottedTwice
 }
 
 // todo: underline color, strikethrough, auras
@@ -111,7 +111,7 @@ public struct TextEffect: Hashable {
 	internal let range: Range<String.Index>
 
 	public init(bold _bold: Bool = false, italic _italic: Bool = false,
-				underline _underline: LinePattern = .None, /* strikethrough _strikethrough: LinePattern = .None, */
+				underline _underline: LinePattern = .none, /* strikethrough _strikethrough: LinePattern = .None, */
 				font _font: Font = Font(name: "Optima", size: 18.0), kerning _kerning: Double = 0.0, ligature _ligature: Bool = true,
 				/* aura _aura: Aura = Aura(), */ metadata _metadata: [String: AnyObject] = [String: AnyObject](),
 				range _range: Range<String.Index>) {
@@ -129,7 +129,7 @@ public struct TextEffect: Hashable {
 
 	public var hashValue: Int {
 		get {
-			return [ bold, italic, underline.hashValue, /* strikethrough.hashValue, */ font.hashValue, /* aura.hashValue, */ kerning, ligature, range.hashValue ].hashValue
+			return [ bold.hashValue, italic.hashValue, underline.hashValue, /* strikethrough.hashValue, */ font.hashValue, /* aura.hashValue, */ kerning.hashValue, ligature.hashValue, range.hashValue ].hashValue
 		}
 	}
 }

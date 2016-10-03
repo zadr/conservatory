@@ -1,8 +1,8 @@
 public extension Color {
 	// todo: `public func blend(with target: Color, mode: BlendMode = .Normal) -> Color { … }`
 
-	@warn_unused_result
-	public func interpolate(towards: Color, step: Double) -> Color {
+	
+	public func interpolate(_ towards: Color, step: Double) -> Color {
 		let HSB = HSBView
 		let towardsHSB = towards.HSBView
 		let h = HSB.hue.linearInterpolate(towardsHSB.hue, step: step).absoluteValue

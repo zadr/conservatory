@@ -21,7 +21,7 @@ extension Shape {
 			return CV_PI_2 - interiorAngle / 2.0
 		}()
 
-		let points = sideCount.map({ (x) -> Point in
+		let points = sideCount.map(transform: { (x) -> Point in
 			let angle = Radian(startAngle + (Double(x) * interiorAngle))
 			return Point.zero.coordinate(radius, angle: angle)
 		})
@@ -42,7 +42,7 @@ extension Shape {
 
 		var out: Double = -1
 		var angle = 360.0 / Double(pointCount * 2)
-		let points = (pointCount * 2).map({ (x) -> Point in
+		let points = (pointCount * 2).map(transform: { (x) -> Point in
 			defer { out *= -1 }
 
 			let currentAngle = Radian(Double(x) * angle)
@@ -113,7 +113,7 @@ extension Shape {
 		// http://scienceprimer.com/draw-oval-html5-canvas
 		let angleSine = CV_PI.sine
 		let angleCosine = CV_PI.cosine
-		let points = 0.stride(to: CV_2_PI, by: 0.01).map({ (x) -> Point in
+		let points = stride(from: 0, to: CV_2_PI, by: 0.01).map({ (x) -> Point in
 			let xSine = x.sine
 			let xCosine = x.cosine
 

@@ -40,8 +40,7 @@ public struct Point {
 
 	- Returns: A new *Point*.
 	*/
-	@warn_unused_result
-	public func apply(transform: Transform) -> Point {
+	public func apply(_ transform: Transform) -> Point {
 		return transform.apply(to: self)
 	}
 
@@ -50,8 +49,7 @@ public struct Point {
 
 	- Returns: The angle required to join two points together.
 	*/
-	@warn_unused_result
-	public func angle(point: Point) -> Double {
+	public func angle(_ point: Point) -> Double {
 		return Degree(degrees: (point.y - y).arcTangent(point.x - x))
 	}
 
@@ -60,8 +58,7 @@ public struct Point {
 
 	- Returns: The distance between two points.
 	*/
-	@warn_unused_result
-	public func distance(point: Point) -> Double {
+	public func distance(_ point: Point) -> Double {
 		return Degree(degrees: ((point.x - x).squareRoot ** 2) + ((point.y - y) ** 2))
 	}
 
@@ -71,8 +68,8 @@ public struct Point {
 
 	- Returns: A new coordinate radius units away at angle° from the current point.
 	*/
-	@warn_unused_result
-	public func coordinate(radius: Double, angle: Degree) -> Point {
+	
+	public func coordinate(_ radius: Double, angle: Degree) -> Point {
 		precondition(angle > -360.0)
 		precondition(angle < 360.0)
 
@@ -111,11 +108,11 @@ public func -(x: Point, y: Point) -> Point {
 	return Point(x: x.x - y.x, y: x.y - y.y)
 }
 
-public func +=(inout x: Point, y: Point) {
+public func +=(x: inout Point, y: Point) {
 	x = x + y
 }
 
-public func -=(inout x: Point, y: Point) {
+public func -=(x: inout Point, y: Point) {
 	x = x - y
 }
 
@@ -195,19 +192,19 @@ public func /(x: Size, y: Double) -> Size {
 	return Size(width: x.width / y, height: x.height / y)
 }
 
-public func +=(inout x: Size, y: Size) {
+public func +=(x: inout Size, y: Size) {
 	x = x + y
 }
 
-public func -=(inout x: Size, y: Size) {
+public func -=(x: inout Size, y: Size) {
 	x = x - y
 }
 
-public func *=(inout x: Size, y: Double) {
+public func *=(x: inout Size, y: Double) {
 	x = x * y
 }
 
-public func /=(inout x: Size, y: Double) {
+public func /=(x: inout Size, y: Double) {
 	x = x / y
 }
 
@@ -221,18 +218,18 @@ public enum Grid {
 	A *Column* is an enumeration of vertical positions within a coordinate system.
 	*/
 	public enum Column {
-		case Top
-		case Middle
-		case Bottom
+		case top
+		case middle
+		case bottom
 	}
 
 	/**
 	A *Row* is an enumeration of horizontal positions within a coordinate system.
 	*/
 	public enum Row {
-		case Left
-		case Center
-		case Right
+		case left
+		case center
+		case right
 	}
 }
 
@@ -283,22 +280,22 @@ public struct Box {
 		get {
 			let x: Double = {
 				switch horizontal {
-				case .Left:
+				case .left:
 					return location.x
-				case .Center:
+				case .center:
 					return location.x + (size.width / 2.0)
-				case .Right:
+				case .right:
 					return location.x + size.width
 				}
 			}()
 
 			let y: Double = {
 				switch vertical {
-				case .Top:
+				case .top:
 					return location.y
-				case .Middle:
+				case .middle:
 					return location.y + (size.height / 2.0)
-				case .Bottom:
+				case .bottom:
 					return location.y + size.height
 				}
 			}()
@@ -310,7 +307,6 @@ public struct Box {
 	/**
 	- Returns: A random coordinate within the current bounding box.
 	*/
-	@warn_unused_result
 	public func randomPoint() -> Point {
 		return Point(x: Double.random(size.width), y: Double.random(size.height))
 	}
@@ -320,7 +316,7 @@ public struct Box {
 
 	- Returns: **true** or **false**.
 	*/
-	public func contains(point: Point) -> Bool {
+	public func contains(_ point: Point) -> Bool {
 		if point.x > size.width || point.x < 0.0 {
 			return false
 		}
@@ -385,34 +381,34 @@ public func /(x: Box, y: Double) -> Box {
 	return Box(location: x.location, size: x.size / y)
 }
 
-public func += (inout x: Box, y: Box) {
+public func += (x: inout Box, y: Box) {
 	x = x + y
 }
 
-public func += (inout x: Box, y: Point) {
+public func += (x: inout Box, y: Point) {
 	x = x + y
 }
 
-public func += (inout x: Box, y: Size) {
+public func += (x: inout Box, y: Size) {
 	x = x + y
 }
 
-public func -= (inout x: Box, y: Box) {
+public func -= (x: inout Box, y: Box) {
 	x = x - y
 }
 
-public func -= (inout x: Box, y: Point) {
+public func -= (x: inout Box, y: Point) {
 	x = x - y
 }
 
-public func -= (inout x: Box, y: Size) {
+public func -= (x: inout Box, y: Size) {
 	x = x - y
 }
 
-public func *= (inout x: Box, y: Double) {
+public func *= (x: inout Box, y: Double) {
 	x = x * y
 }
 
-public func /= (inout x: Box, y: Double) {
+public func /= (x: inout Box, y: Double) {
 	x = x / y
 }

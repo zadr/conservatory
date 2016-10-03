@@ -2,35 +2,40 @@ import CoreText
 import Foundation
 
 internal extension String {
-	@warn_unused_result
-	internal func cocoaValue(effects: [TextEffect]) -> NSAttributedString {
+	internal func cocoaValue(_ effects: [TextEffect]) -> NSAttributedString {
 		let result = NSMutableAttributedString(string: self)
 		effects.forEach({
-			var fontDescriptor = CTFontDescriptorCreateWithNameAndSize($0.font.name, CGFloat($0.font.size))
+			var fontDescriptor = CTFontDescriptorCreateWithNameAndSize($0.font.name as CFString, CGFloat($0.font.size))
 			if $0.bold {
-				let attribute = (CTFontDescriptorCopyAttribute(fontDescriptor, kCTFontSymbolicTrait) ?? 0) as! Int
+				var attribute: Int = 0
+				if let copiedAttribute = CTFontDescriptorCopyAttribute(fontDescriptor, kCTFontSymbolicTrait) {
+					attribute = copiedAttribute as! Int
+				}
 
 				fontDescriptor = CTFontDescriptorCreateCopyWithAttributes(fontDescriptor, [
-					String(kCTFontSymbolicTrait): attribute | Int(CTFontSymbolicTraits.BoldTrait.rawValue)
-				] as [String: AnyObject]) ?? fontDescriptor
+					String(kCTFontSymbolicTrait): Int(attribute | Int(CTFontSymbolicTraits.boldTrait.rawValue)) as AnyObject
+				] as CFDictionary)
 			}
 
 			if $0.italic {
-				let attribute = (CTFontDescriptorCopyAttribute(fontDescriptor, kCTFontSymbolicTrait) ?? 0) as! Int
+				var attribute: Int = 0
+				if let copiedAttribute = CTFontDescriptorCopyAttribute(fontDescriptor, kCTFontSymbolicTrait) {
+					attribute = copiedAttribute as! Int
+				}
 
 				fontDescriptor = CTFontDescriptorCreateCopyWithAttributes(fontDescriptor, [
-					String(kCTFontSymbolicTrait): attribute | Int(CTFontSymbolicTraits.ItalicTrait.rawValue)
-				] as [String: AnyObject]) ?? fontDescriptor
+					String(kCTFontSymbolicTrait): Int(attribute | Int(CTFontSymbolicTraits.italicTrait.rawValue)) as AnyObject
+				] as CFDictionary)
 			}
 
 			var attributes: [String: AnyObject] = [
 				String(kCTFontAttributeName): CTFontCreateWithFontDescriptor(fontDescriptor, CGFloat($0.font.size), nil),
-				String(kCTLigatureAttributeName): $0.ligature,
-				String(kCTKernAttributeName): $0.kerning
+				String(kCTLigatureAttributeName): $0.ligature as AnyObject,
+				String(kCTKernAttributeName): $0.kerning as AnyObject
 			]
 
-			if $0.underline != .None {
-				attributes[String(kCTUnderlineStyleAttributeName)] = Int($0.underline.coreTextView)
+			if $0.underline != .none {
+				attributes[String(kCTUnderlineStyleAttributeName)] = Int($0.underline.coreTextView) as AnyObject?
 			}
 /*
 			if $0.strikethrough != .None {
@@ -54,11 +59,10 @@ internal extension String {
 		return result
 	}
 
-	// todo: extend `Range` instead
-	@warn_unused_result
-	private func toNSRange(range: Range<String.Index>) -> NSRange {
-		let start = startIndex.distanceTo(range.startIndex)
-		let length = range.startIndex.distanceTo(range.endIndex)
+	// todo: extend `Range` instead?
+	fileprivate func toNSRange(_ range: Range<String.Index>) -> NSRange {
+		let start = characters.distance(from: startIndex, to: range.lowerBound)
+		let length = distance(from: range.lowerBound, to: range.upperBound)
 		return NSMakeRange(start, length)
 	}
 }
@@ -98,25 +102,25 @@ private extension Color {
 */
 
 private extension LinePattern {
-	private var coreTextView: Int32 {
+	var coreTextView: Int32 {
 		get {
 			switch self {
-			case None:
-				return CTUnderlineStyle.None.rawValue
-			case Single:
-				return CTUnderlineStyle.Single.rawValue
-			case Thick:
-				return CTUnderlineStyle.Thick.rawValue
-			case Double:
-				return CTUnderlineStyle.Double.rawValue
-			case Dotted:
-				return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDot.rawValue
-			case Dashed:
-				return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDash.rawValue
-			case DashedAndDotted:
-				return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDashDot.rawValue
-			case DashedAndDottedTwice:
-				return CTUnderlineStyle.Single.rawValue | CTUnderlineStyleModifiers.PatternDashDotDot.rawValue
+			case .none:
+				return CTUnderlineStyle().rawValue
+			case .single:
+				return CTUnderlineStyle.single.rawValue
+			case .thick:
+				return CTUnderlineStyle.thick.rawValue
+			case .double:
+				return CTUnderlineStyle.double.rawValue
+			case .dotted:
+				return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDot.rawValue
+			case .dashed:
+				return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDash.rawValue
+			case .dashedAndDotted:
+				return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDashDot.rawValue
+			case .dashedAndDottedTwice:
+				return CTUnderlineStyle.single.rawValue | CTUnderlineStyleModifiers.patternDashDotDot.rawValue
 			}
 		}
 	}

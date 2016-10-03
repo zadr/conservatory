@@ -7,7 +7,7 @@ extension Aura {
 
 extension Color {
 	public func debugQuickLookObject() -> AnyObject? {
-		return UIColor(CGColor: CGColorView) as AnyObject?
+		return UIColor(cgColor: CGColorView) as AnyObject?
 	}
 }
 
@@ -20,7 +20,7 @@ extension Image {
 
 extension Bezier {
 	public func debugQuickLookObject() -> AnyObject? {
-		return UIBezierPath(CGPath: CGPathView) as AnyObject?
+		return UIBezierPath(cgPath: CGPathView) as AnyObject?
 	}
 }
 #endif

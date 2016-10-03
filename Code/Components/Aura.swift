@@ -66,7 +66,7 @@ extension Aura: Hashable {
 		get {
 			// todo: figure out how to use offset's hash without passing in `.hashValue` directly
 			// (it works if `Point` is a class, but not a struct)
-			return [ color, offset.hashValue, blur ].hashValue
+			return [ color.hashValue, offset.hashValue, blur.hashValue ].hashValue
 		}
 	}
 }

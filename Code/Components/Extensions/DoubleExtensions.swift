@@ -56,8 +56,8 @@ public extension Radian {
 	/**
 	- Returns: The inverse tangent of the current number by x, that is, of y / x.
 	*/
-	@warn_unused_result
-	public func arcTangent(x: Double) -> Double {
+	
+	public func arcTangent(_ x: Double) -> Double {
 		return atan2(self, x)
 	}
 }
@@ -108,8 +108,7 @@ public extension Double {
 
 	- Returns: A random value.
 	*/
-	@warn_unused_result
-	public static func random(max: Double = 1.0, min: Double = 0.0) -> Double {
+	public static func random(_ max: Double = 1.0, min: Double = 0.0) -> Double {
 		let value = Double(UInt.random()) / Double(UInt.max)
 		return (value * max) + min
 	}
@@ -122,8 +121,7 @@ public extension Double {
 
 	- Returns: If the current number is below the *min* value, *min* is returned. If the current number is above the *max* value, *max* is returned. Otherwise the current number is returned.
 	*/
-	@warn_unused_result
-	public func inRange(min: Double, max: Double) -> Double {
+	public func inRange(_ min: Double, max: Double) -> Double {
 		if self < min {
 			return min
 		}
@@ -144,8 +142,7 @@ public extension Double {
 
 	If the max value is above *self - min*, return self plus the amount to wrap, specified by *add*. Otherwise, return self minus the minimum to wrap the other way.
 	*/
-	@warn_unused_result
-	public func wrap(min: Double, max: Double, add: Double) -> Double {
+	public func wrap(_ min: Double, max: Double, add: Double) -> Double {
 		if self - min < max {
 			return self + add
 		}
@@ -154,7 +151,7 @@ public extension Double {
 	}
 }
 
-infix operator ** {}
+infix operator **
 
 /**
 - Returns: The exponent of the current number to a new power.

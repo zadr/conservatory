@@ -33,7 +33,7 @@ public struct BezierDrawer: AppearanceContainer, Viewable {
 	5. Apply the aura
 	6. Apply the border color(s)
 	*/
-	public func render<T: Renderer>(renderer: T) {
+	public func render<T: Renderer>(_ renderer: T) {
 		renderer.apply(appearance.blendMode)
 		renderer.apply(appearance.transform)
 

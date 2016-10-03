@@ -6,10 +6,10 @@ import MobileCoreServices
 import CoreServices
 #endif
 
-extension CGImageRef: ImageViewable {
-	private func data(format: CFString) -> UnsafePointer<UInt8> {
+extension CGImage: ImageViewable {
+	private func data(_ format: CFString) -> UnsafePointer<UInt8> {
 		let data = CFDataCreateMutable(nil, 0)
-		let destination = CGImageDestinationCreateWithData(data, format, 1, nil)!
+		let destination = CGImageDestinationCreateWithData(data!, format, 1, nil)!
 		CGImageDestinationAddImage(destination, self, nil)
 		CGImageDestinationFinalize(destination)
 		return CFDataGetBytePtr(data)
@@ -35,25 +35,25 @@ extension CGImageRef: ImageViewable {
 }
 
 extension Image {
-	public init(image: CGImageRef) {
+	public init(image: CGImage) {
 		// todo: support non-RGBA pixel ordering so these preconditions can go away
-		precondition(CGColorSpaceGetModel(CGImageGetColorSpace(image)) == .RGB, "Unable to initalize Image with non-RGB images")
-		precondition(CGImageGetAlphaInfo(image) == .PremultipliedLast, "Unable to initalize Image without alpha component at end")
+		precondition(image.colorSpace?.model == .rgb, "Unable to initalize Image with non-RGB images")
+		precondition(image.alphaInfo == .premultipliedLast, "Unable to initalize Image without alpha component at end")
 
-		let data = CGDataProviderCopyData(CGImageGetDataProvider(image))
+		let data = image.dataProvider?.data
 		let bytes = CFDataGetBytePtr(data)
-		let size = Size(width: CGImageGetWidth(image), height: CGImageGetHeight(image))
+		let size = Size(width: image.width, height: image.height)
 
-		self.init(data: bytes, size: size)
+		self.init(data: bytes!, size: size)
 	}
 }
 
 public extension Image {
-	internal var CGImage: CGImageRef {
+	internal var CGImageView: CGImage {
 		get {
-			let bytes = UnsafeMutablePointer<Void>(storage)
-			let context = CGBitmapContextCreate(bytes, Int(size.width), Int(size.height), 8, 4 * Int(size.width), CGColorSpaceCreateDeviceRGB(), CGImageAlphaInfo.PremultipliedLast.rawValue)
-			return CGBitmapContextCreateImage(context)!
+			let bytes = UnsafeMutableRawPointer(mutating: storage)
+			let context = CGContext(data: bytes, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: 4 * Int(size.width), space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+			return context!.makeImage()!
 		}
 	}
 }

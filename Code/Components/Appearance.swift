@@ -14,14 +14,14 @@ public struct Appearance {
 
 	This has a default value of **Palette.None**.
 	*/
-	public var background: Palette<Color, GradientOptions> = .None
+	public var background: Palette<Color, GradientOptions> = .none
 
 	/**
 	The border color of an input to be drawn. By default, this is **.None**, which is results in a transparent border.
 
 	This has a default value of **Palette.None**.
 	*/
-	public var border: Palette<Color, GradientOptions> = .None
+	public var border: Palette<Color, GradientOptions> = .none
 
 	/**
 	The width of a border to draw.
@@ -35,7 +35,7 @@ public struct Appearance {
 
 	This has a default value of **.Normal**.
 	*/
-	public var blendMode: BlendMode = .Normal
+	public var blendMode: BlendMode = .normal
 
 	/**
 	The top-left coordinate of where an input should appear in a canvas?.

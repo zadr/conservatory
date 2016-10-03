@@ -3,20 +3,20 @@
 A list of common blend modes that renderers can support. See [here](https://en.wikipedia.org/wiki/Blend_modes) for discussions on blend modes. The default *BlendMode* is *.Normal*.
 */
 public enum BlendMode {
-	case Normal
-	case Multiply
-	case Screen
-	case Overlay
-	case Darken
-	case Lighten
-	case ColorDodge
-	case ColorBurn
-	case SoftLight
-	case HardLight
-	case Difference
-	case Exclusion
-	case Hue
-	case Saturation
-	case Color
-	case Luminosity
+	case normal
+	case multiply
+	case screen
+	case overlay
+	case darken
+	case lighten
+	case colorDodge
+	case colorBurn
+	case softLight
+	case hardLight
+	case difference
+	case exclusion
+	case hue
+	case saturation
+	case color
+	case luminosity
 }
