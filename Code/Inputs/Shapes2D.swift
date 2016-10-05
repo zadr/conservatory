@@ -111,8 +111,8 @@ extension Shape {
 		precondition(radius.width > 0, "Unable to draw an oval with a negative width radius (width = \(radius.width)).")
 
 		// http://scienceprimer.com/draw-oval-html5-canvas
-		let angleSine = CV_PI.sine
-		let angleCosine = CV_PI.cosine
+		let angleSine = Double.pi.sine
+		let angleCosine = Double.pi.cosine
 		let points = stride(from: 0, to: CV_2_PI, by: 0.01).map({ (x) -> Point in
 			let xSine = x.sine
 			let xCosine = x.cosine

@@ -57,7 +57,7 @@ public struct Point {
 	- Returns: The distance between two points.
 	*/
 	public func distance(_ point: Point) -> Double {
-		return Degree(degrees: ((point.x - x).squareRoot ** 2) + ((point.y - y) ** 2))
+		return Degree(degrees: ((point.x - x).squareRoot() ** 2) + ((point.y - y) ** 2))
 	}
 
 	/**

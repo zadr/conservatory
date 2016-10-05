@@ -195,8 +195,109 @@ class ColorViewTests: XCTestCase {
 		XCTAssertTrue(blackHSL.luminosity ~= 0.0)
 	}
 
-	// CMYK
-	// Yuv
+	func testCMYK() {
+		let redCMYK = Color.red.CMYKView;
+		XCTAssertTrue(redCMYK.cyan ~= 0.0)
+		XCTAssertTrue(redCMYK.magenta ~= 1.0)
+		XCTAssertTrue(redCMYK.yellow ~= 1.0)
+		XCTAssertTrue(redCMYK.key ~= 0.0)
+
+		let orangeCMYK = Color.orange.CMYKView
+		XCTAssertTrue(orangeCMYK.cyan ~= 0.0)
+		XCTAssertTrue(orangeCMYK.magenta ~= 0.5)
+		XCTAssertTrue(orangeCMYK.yellow ~= 1.0)
+		XCTAssertTrue(orangeCMYK.key ~= 0.0)
+
+		let yellowCMYK = Color.yellow.CMYKView
+		XCTAssertTrue(yellowCMYK.cyan ~= 0.0)
+		XCTAssertTrue(yellowCMYK.magenta ~= 0.0)
+		XCTAssertTrue(yellowCMYK.yellow ~= 1.0)
+		XCTAssertTrue(yellowCMYK.key ~= 0.0)
+
+		let greenCMYK = Color.green.CMYKView
+		XCTAssertTrue(greenCMYK.cyan ~= 1.0)
+		XCTAssertTrue(greenCMYK.magenta ~= 0.0)
+		XCTAssertTrue(greenCMYK.yellow ~= 1.0)
+		XCTAssertTrue(greenCMYK.key ~= 0.0)
+
+		let blueCMYK = Color.blue.CMYKView
+		XCTAssertTrue(blueCMYK.cyan ~= 1.0)
+		XCTAssertTrue(blueCMYK.magenta ~= 1.0)
+		XCTAssertTrue(blueCMYK.yellow ~= 0.0)
+		XCTAssertTrue(blueCMYK.key ~= 0.0)
+
+		let magentaCMYK = Color.magenta.CMYKView
+		XCTAssertTrue(magentaCMYK.cyan ~= 0.0)
+		XCTAssertTrue(magentaCMYK.magenta ~= 1.0)
+		XCTAssertTrue(magentaCMYK.yellow ~= 0.0)
+		XCTAssertTrue(magentaCMYK.key ~= 0.0)
+
+		let whiteCMYK = Color.white.CMYKView
+		XCTAssertTrue(whiteCMYK.cyan ~= 0.0)
+		XCTAssertTrue(whiteCMYK.magenta ~= 0.0)
+		XCTAssertTrue(whiteCMYK.yellow ~= 0.0)
+		XCTAssertTrue(whiteCMYK.key ~= 0.0)
+
+		let brownCMYK = Color.brown.CMYKView
+		XCTAssertTrue(brownCMYK.cyan ~= 0.0)
+		XCTAssertTrue(brownCMYK.magenta ~= (1.0 / 3.0))
+		XCTAssertTrue(brownCMYK.yellow ~= 0.66666666666666674)
+		XCTAssertTrue(brownCMYK.key ~= 0.4)
+
+		let blackCMYK = Color.black.CMYKView
+		XCTAssertTrue(blackCMYK.cyan ~= 0.0)
+		XCTAssertTrue(blackCMYK.magenta ~= 0.0)
+		XCTAssertTrue(blackCMYK.yellow ~= 0.0)
+		XCTAssertTrue(blackCMYK.key ~= 1.0)
+	}
+
+	func testYuv() {
+		let redYuv = Color.red.YUVView;
+		XCTAssertTrue(redYuv.luminance ~= 0.298)
+		XCTAssertTrue(redYuv.chrominance.u ~= 0.329)
+		XCTAssertTrue(redYuv.chrominance.v ~= 1.0)
+
+		let orangeYuv = Color.orange.YUVView
+		XCTAssertTrue(orangeYuv.luminance ~= 0.0)
+		XCTAssertTrue(orangeYuv.chrominance.u ~= 0.5)
+		XCTAssertTrue(orangeYuv.chrominance.v ~= 1.0)
+
+		let yellowYuv = Color.yellow.YUVView
+		XCTAssertTrue(yellowYuv.luminance ~= 0.0)
+		XCTAssertTrue(yellowYuv.chrominance.u ~= 0.0)
+		XCTAssertTrue(yellowYuv.chrominance.v ~= 1.0)
+
+		let greenYuv = Color.green.YUVView
+		XCTAssertTrue(greenYuv.luminance ~= 1.0)
+		XCTAssertTrue(greenYuv.chrominance.u ~= 0.0)
+		XCTAssertTrue(greenYuv.chrominance.v ~= 1.0)
+
+		let blueYuv = Color.blue.YUVView
+		XCTAssertTrue(blueYuv.luminance ~= 1.0)
+		XCTAssertTrue(blueYuv.chrominance.u ~= 1.0)
+		XCTAssertTrue(blueYuv.chrominance.v ~= 0.0)
+
+		let magentaYuv = Color.magenta.YUVView
+		XCTAssertTrue(magentaYuv.luminance ~= 0.0)
+		XCTAssertTrue(magentaYuv.chrominance.u ~= 1.0)
+		XCTAssertTrue(magentaYuv.chrominance.v ~= 0.0)
+
+		let whiteYuv = Color.white.YUVView
+		XCTAssertTrue(whiteYuv.luminance ~= 0.0)
+		XCTAssertTrue(whiteYuv.chrominance.u ~= 0.0)
+		XCTAssertTrue(whiteYuv.chrominance.v ~= 0.0)
+
+		let brownYuv = Color.brown.YUVView
+		XCTAssertTrue(brownYuv.luminance ~= 0.0)
+		XCTAssertTrue(brownYuv.chrominance.u ~= (1.0 / 3.0))
+		XCTAssertTrue(brownYuv.chrominance.v ~= 0.66666666666666674)
+
+		let blackYuv = Color.black.YUVView
+		XCTAssertTrue(blackYuv.luminance ~= 0.0)
+		XCTAssertTrue(blackYuv.chrominance.u ~= 0.0)
+		XCTAssertTrue(blackYuv.chrominance.v ~= 0.0)
+	}
+
 	// XYZ
 	// Lab
 }

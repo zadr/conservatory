@@ -4,9 +4,8 @@ import Darwin
 import Glibc
 #endif
 
-internal let CV_PI = 3.14159265358979323846264338327950288
-internal let CV_2_PI = CV_PI * 2.0
-internal let CV_PI_2 = CV_PI / 2.0
+internal let CV_2_PI = Double.pi * 2.0
+internal let CV_PI_2 = Double.pi / 2.0
 
 public typealias Radian = Double
 public extension Radian {
@@ -14,7 +13,7 @@ public extension Radian {
 	Convert a given value in degrees to radians.
 	*/
 	public init(degrees: Degree) {
-		self.init(degrees * (CV_PI / 180.0))
+		self.init(degrees * (Double.pi / 180.0))
 	}
 
 	/**
@@ -60,7 +59,7 @@ public extension Degree {
 	Convert a given value in radians to degrees.
 	*/
 	public init(radians: Radian) {
-		self.init(radians * (180.0 / CV_PI))
+		self.init(radians * (180.0 / Double.pi))
 	}
 }
 
@@ -70,13 +69,6 @@ public extension Double {
 	*/
 	public var roundedDown: Int {
 		return Int(floor(self))
-	}
-
-	/**
-	- Returns: The square root of the current number.
-	*/
-	public var squareRoot: Double {
-		return sqrt(self)
 	}
 
 	/**
@@ -155,9 +147,9 @@ public func ~=(x: Double, y: Double) -> Bool {
 	}
 
 	let difference = (x - y).absoluteValue
-	if x == 0 || y == 0 || difference < Double.minNormal {
-		return difference < (epsilon * Double.minNormal)
+	if x == 0 || y == 0 || difference < epsilon {
+		return difference < (epsilon * Double.leastNormalMagnitude)
 	}
 
-	return difference / min((x.absoluteValue + y.absoluteValue), Double.maxValue) < epsilon
+	return difference / min((x.absoluteValue + y.absoluteValue), Double.greatestFiniteMagnitude) < epsilon
 }

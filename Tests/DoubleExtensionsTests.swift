@@ -11,7 +11,7 @@ class DoubleExtensionsTests: XCTestCase {
 
 	func testAbsoluteValue() {
 		XCTAssertEqual(5.0.absoluteValue, 5.0)
-		XCTAssertEqual(-5.0.absoluteValue, 5.0)
+		XCTAssertEqual((-5.0).absoluteValue, 5.0)
 		XCTAssertEqual(0.0.absoluteValue, 0.0)
 		XCTAssertEqual(-0.0.absoluteValue, 0.0)
 	}

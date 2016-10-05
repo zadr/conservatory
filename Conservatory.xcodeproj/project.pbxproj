@@ -36,7 +36,6 @@
 		B61381DA1C3D9B2F00C90817 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B31C3D9B2F00C90817 /* ArrayExtensions.swift */; };
 		B61381DB1C3D9B2F00C90817 /* CGBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B41C3D9B2F00C90817 /* CGBridging.swift */; };
 		B61381DC1C3D9B2F00C90817 /* CocoaTextBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B51C3D9B2F00C90817 /* CocoaTextBridging.swift */; };
-		B61381DD1C3D9B2F00C90817 /* FloatingPointDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B61C3D9B2F00C90817 /* FloatingPointDefinitions.swift */; };
 		B61381DE1C3D9B2F00C90817 /* PlaygroundSupport-iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B71C3D9B2F00C90817 /* PlaygroundSupport-iOS.swift */; };
 		B61381DF1C3D9B2F00C90817 /* MT19937-64.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B91C3D9B2F00C90817 /* MT19937-64.swift */; };
 		B61381E01C3D9B2F00C90817 /* Seeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381BA1C3D9B2F00C90817 /* Seeding.swift */; };
@@ -77,7 +76,6 @@
 		B622690F1C40885E005A679D /* Seeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381BA1C3D9B2F00C90817 /* Seeding.swift */; };
 		B62269101C40885E005A679D /* CocoaTextBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B51C3D9B2F00C90817 /* CocoaTextBridging.swift */; };
 		B62269111C40885E005A679D /* CGBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B41C3D9B2F00C90817 /* CGBridging.swift */; };
-		B62269121C40885E005A679D /* FloatingPointDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381B61C3D9B2F00C90817 /* FloatingPointDefinitions.swift */; };
 		B62269141C40885E005A679D /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381961C3D9B2F00C90817 /* Appearance.swift */; };
 		B62269151C40885E005A679D /* CGImageBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62268B91C406B3A005A679D /* CGImageBridging.swift */; };
 		B62269161C40885E005A679D /* ImageAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381AE1C3D9B2F00C90817 /* ImageAnalysis.swift */; };
@@ -128,7 +126,6 @@
 		B61381B31C3D9B2F00C90817 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		B61381B41C3D9B2F00C90817 /* CGBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGBridging.swift; sourceTree = "<group>"; };
 		B61381B51C3D9B2F00C90817 /* CocoaTextBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaTextBridging.swift; sourceTree = "<group>"; };
-		B61381B61C3D9B2F00C90817 /* FloatingPointDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingPointDefinitions.swift; sourceTree = "<group>"; };
 		B61381B71C3D9B2F00C90817 /* PlaygroundSupport-iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlaygroundSupport-iOS.swift"; sourceTree = "<group>"; };
 		B61381B91C3D9B2F00C90817 /* MT19937-64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MT19937-64.swift"; sourceTree = "<group>"; };
 		B61381BA1C3D9B2F00C90817 /* Seeding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seeding.swift; sourceTree = "<group>"; };
@@ -265,7 +262,6 @@
 				B61381B31C3D9B2F00C90817 /* ArrayExtensions.swift */,
 				B61381B41C3D9B2F00C90817 /* CGBridging.swift */,
 				B61381B51C3D9B2F00C90817 /* CocoaTextBridging.swift */,
-				B61381B61C3D9B2F00C90817 /* FloatingPointDefinitions.swift */,
 				B61381B71C3D9B2F00C90817 /* PlaygroundSupport-iOS.swift */,
 				B61381B81C3D9B2F00C90817 /* Random */,
 			);
@@ -506,7 +502,6 @@
 				B61381DC1C3D9B2F00C90817 /* CocoaTextBridging.swift in Sources */,
 				B61381DB1C3D9B2F00C90817 /* CGBridging.swift in Sources */,
 				B63851B31C589F4500F0531A /* CARenderer.swift in Sources */,
-				B61381DD1C3D9B2F00C90817 /* FloatingPointDefinitions.swift in Sources */,
 				B61381C11C3D9B2F00C90817 /* Appearance.swift in Sources */,
 				B62268BA1C406B3A005A679D /* CGImageBridging.swift in Sources */,
 				B61381D61C3D9B2F00C90817 /* ImageAnalysis.swift in Sources */,
@@ -558,7 +553,6 @@
 				B622690F1C40885E005A679D /* Seeding.swift in Sources */,
 				B62269101C40885E005A679D /* CocoaTextBridging.swift in Sources */,
 				B62269111C40885E005A679D /* CGBridging.swift in Sources */,
-				B62269121C40885E005A679D /* FloatingPointDefinitions.swift in Sources */,
 				B62269141C40885E005A679D /* Appearance.swift in Sources */,
 				B62269151C40885E005A679D /* CGImageBridging.swift in Sources */,
 				B62269161C40885E005A679D /* ImageAnalysis.swift in Sources */,
@@ -619,6 +613,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -659,6 +654,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -679,7 +675,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = be.radiantdot.Conservatory;
 				PRODUCT_NAME = Conservatory;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -696,7 +691,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = be.radiantdot.Conservatory;
 				PRODUCT_NAME = Conservatory;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

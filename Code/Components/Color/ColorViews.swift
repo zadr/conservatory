@@ -102,10 +102,10 @@ public extension Color {
 				return 0.0
 			}
 
-			if l > 0 && l >= 0.5 {
+			if l < 0.5 {
 				return (maxView - minView) / (maxView + minView)
 			}
-			// else l < 0.5 {
+			// else l >= 0.5 {
 				return (maxView - minView) / (2 - (maxView + minView))
 //			}
 		}()
@@ -118,17 +118,17 @@ public extension Color {
 	*/
 	public var CMYKView: (cyan: Double, magenta: Double, yellow: Double, key: Double) {
 		let color = RGBView
-
-		let c = 255.0 - color.red
-		let m = 255.0 - color.green
-		let y = 255.0 - color.blue
-		let k = min(c, min(m, y))
+		let k = 1.0 - max(max(color.red, color.green), color.blue)
 
 		if k == 1.0 {
-			return (cyan: c, magenta: m, yellow: y, key: 1.0)
+			return (cyan: 0.0, magenta: 0.0, yellow: 0.0, key: 1.0)
 		}
 
-		return (cyan: (c - k) / (1 - k), magenta: (m - k) / (1 - k), yellow: (y - k) / (1 - k), key: k)
+		let convert = { (color: Double) -> Double in
+			return (1 - color - k) / (1 - k)
+		}
+		return (cyan: convert(color.red), magenta: convert(color.green), yellow: convert(color.blue), key: k)
+//		return (cyan: (c - k) / (1 - k), magenta: (m - k) / (1 - k), yellow: (y - k) / (1 - k), key: k)
 	}
 
 	/**

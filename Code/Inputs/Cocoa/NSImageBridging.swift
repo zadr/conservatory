@@ -5,20 +5,21 @@ import AppKit
 extension NSImage: ImageViewable {
 	private func representation(type: NSBitmapImageFileType) -> UnsafePointer<UInt8> {
 		let representation = representations.first as! NSBitmapImageRep
-		let data = representation.representationUsingType(type, properties: [:])!
+		let data = representation.representation(using: type, properties: [:])!
+		return data.bytes.bindMemory(to: UInt8.self, capacity: data.length)
 		return UnsafePointer<UInt8>(data.bytes)
 	}
 
 	public var bitmapView: UnsafePointer<UInt8> {
-		return representation(.NSBMPFileType)
+		return representation(type: .BMP)
 	}
 
 	public var JPEGView: UnsafePointer<UInt8> {
-		return representation(.NSJPEGFileType)
+		return representation(type: .JPEG)
 	}
 
 	public var PNGView: UnsafePointer<UInt8> {
-		return representation(.NSPNGFileType)
+		return representation(type: .PNG)
 	}
 }
 
