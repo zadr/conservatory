@@ -61,13 +61,13 @@ public extension Color {
 		let originalHSB = HSBView
 
 		var randomHue = ((Double.random() * h) - h / 2.0) + originalHSB.hue
-		randomHue = randomHue.inRange(h / 2.0, max: originalHSB.hue + h / 2.0)
+		randomHue = ((h / 2.0) ..< (originalHSB.hue + h / 2.0)).constraining(randomHue)
 
 		var randomSaturation = ((Double.random() * s) - h / 2.0) + originalHSB.saturation
-		randomSaturation = randomSaturation.inRange(s / 2.0, max: originalHSB.saturation + s / 2.0)
+		randomSaturation = ((s / 2.0) ..< (originalHSB.saturation + s / 2.0)).constraining(randomSaturation)
 
 		var randomBrightness = ((Double.random() * b) - b / 2.0) + originalHSB.saturation
-		randomBrightness = randomBrightness.inRange(b / 2.0, max: originalHSB.saturation + b / 2.0)
+		randomBrightness = ((b / 2.0) ..< (originalHSB.saturation + b / 2.0)).constraining(randomBrightness)
 
 		return Color(h: randomHue, s: randomSaturation, b: randomBrightness, a: AView)
 	}
@@ -206,7 +206,7 @@ public extension Color {
 	- Returns: Six values, the first of which is the current color, followed by five analogous colors.
 	*/
 	public func analogous(_ angle: Double = 10.0, contrast: Double = 0.25) -> [Color] {
-		let rangedContrast = contrast.inRange(0.0, max: 1.0)
+		let rangedContrast = (0.0 ..< 1.0).constraining(contrast)
 
 		var analogous = [ self ]
 

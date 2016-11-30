@@ -8,7 +8,7 @@ public typealias Colour = Color
 // todo: Color's native type should be L*a*b, not RGB
 // todo: Color should support exporting to P3
 /**
-The native Color type in Cotton Duck. Can be created with, and in turn, output RGB, HSL, HSV, XYZ, Yuv, and Lab values.
+The native Color type in Conservatory. Can be created with, and in turn, output RGB, HSL, HSV, XYZ, Yuv, and Lab values.
 */
 public final class Color {
 	fileprivate let red: Double
@@ -25,10 +25,10 @@ public final class Color {
 	- Parameter alpha: A decimal value between 0.0 and 1.0 that controls the *alpha* channel. There is no default value.
 	*/
 	public init(red _red: Double, green _green: Double, blue _blue: Double, alpha _alpha: Double) {
-		red = _red.inRange(0.0, max: 1.0)
-		green = _green.inRange(0.0, max: 1.0)
-		blue = _blue.inRange(0.0, max: 1.0)
-		alpha = _alpha.inRange(0.0, max: 1.0)
+		red = (0.0 ..< 1.0).constraining(_red)
+		green = (0.0 ..< 1.0).constraining(_green)
+		blue = (0.0 ..< 1.0).constraining(_blue)
+		alpha = (0.0 ..< 1.0).constraining(_alpha)
 	}
 
 	/**

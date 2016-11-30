@@ -1,5 +1,5 @@
 /**
-The native Image type in Cotton Duck.
+The native Image type in Conservatory.
 */
 
 /**

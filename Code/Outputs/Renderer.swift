@@ -1,5 +1,5 @@
 /**
-A protocol that defines the interface that all renderers in Cotton Duck support drawing onto. This protocol seeks to define the interface for a renderer, without defining any implementation details.
+A protocol that defines the interface that all renderers in Conservatory support drawing onto. This protocol seeks to define the interface for a renderer, without defining any implementation details.
 */
 public protocol Renderer {
 	/**

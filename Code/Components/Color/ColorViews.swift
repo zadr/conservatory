@@ -142,7 +142,7 @@ public extension Color {
 		let u = (color.red * 255.0) * -0.168736 + (color.green * 255.0) * -0.331264 + (color.blue * 255.0) * 0.5 + 128
 		let v = (color.red * 255.0) * 0.500000 + (color.green * 255.0) * -0.418688 + (color.blue * 255.0) * -0.081312 + 128
 
-		return (luminance: y.inRange(0, max: 255) / 255.0, (u: u.inRange(16, max: 255) / 255.0, v: v.inRange(16, max: 255) / 255.0))
+		return (luminance: (0 ..< 255).constraining(y) / 255.0, (u: (16 ..< 255).constraining(u) / 255.0, v: (16 ..< 255).constraining(v) / 255.0))
 	}
 
 	/**

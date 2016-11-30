@@ -1,5 +1,5 @@
 /**
-The native Point type in Cotton Duck, used to represent an x, y coordinate on a coordinate system .
+The native Point type in Conservatory, used to represent an x, y coordinate on a coordinate system .
 */
 public struct Point {
 	public let x: Double
@@ -113,7 +113,7 @@ public func -=(x: inout Point, y: Point) {
 // MARK: -
 
 /**
-The native Size type in Cotton Duck, used to represent the width and height of an object in a coordinate system.
+The native Size type in Conservatory, used to represent the width and height of an object in a coordinate system.
 */
 public struct Size {
 	public var width: Double
@@ -223,7 +223,7 @@ public enum Grid {
 
 // Do we really need this?
 /**
-The native bounding box type in Cotton Duck, combines a *Point* and a *Size* to represent the area and volume of an object in a coordinate system.
+The native bounding box type in Conservatory, combines a *Point* and a *Size* to represent the area and volume of an object in a coordinate system.
 */
 public struct Box {
 	public var location: Point

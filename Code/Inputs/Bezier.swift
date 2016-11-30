@@ -1,5 +1,5 @@
 /**
-The native Bezier type in Cotton Duck, used to represent a list of segment that make up a bezier path that can be drawn by a *Renderer*.
+The native Bezier type in Conservatory, used to represent a list of segment that make up a bezier path that can be drawn by a *Renderer*.
 */
 public struct Bezier {
 	// todo: public generator instead of exposing this internally

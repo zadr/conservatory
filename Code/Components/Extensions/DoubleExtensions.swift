@@ -63,6 +63,20 @@ public extension Degree {
 	}
 }
 
+public extension Range {
+    public func constraining(_ value: Bound) -> Bound {
+        if value < lowerBound {
+            return lowerBound
+        }
+
+        if value > upperBound {
+            return upperBound
+        }
+        
+        return value
+    }
+}
+
 public extension Double {
 	/**
 	- Returns: The current number, rounded down to the preceeding integral value.
@@ -92,31 +106,13 @@ public extension Double {
 	}
 
 	/**
-	Ensures that a number is in range of another number.
-
-	- Parameter min: The minimum value to constrain ourselves to.
-	- Parameter max: The maximum value to constrain ourselves to.
-
-	- Returns: If the current number is below the *min* value, *min* is returned. If the current number is above the *max* value, *max* is returned. Otherwise the current number is returned.
-	*/
-	public func inRange(_ min: Double, max: Double) -> Double {
-		if self < min {
-			return min
-		}
-
-		if self > max {
-			return max
-		}
-
-		return self
-	}
-
-	/**
 	Wrap the current number if necessary.
 
 	- Parameter min:
 	- Parameter max:
 	- Parameter add:
+
+	- Todo: move this into `extension Range where Bound: …some protocol that can be added and subtracted… {}
 
 	If the max value is above *self - min*, return self plus the amount to wrap, specified by *add*. Otherwise, return self minus the minimum to wrap the other way.
 	*/
