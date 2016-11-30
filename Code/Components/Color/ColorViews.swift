@@ -19,6 +19,8 @@ internal enum CIE {
 // references:
 // http://www.codeproject.com/Articles/19045/Manipulating-colors-in-NET-Part-1
 // http://www.color.org/srgb.pdf
+// http://softpixel.com/~cwright/programming/colorspace/yuv/
+// http://www.easyrgb.com/index.php?X=MATH
 public extension Color {
 	/**
 	- Returns: A tuple of the current color View in terms of HSB. See [here](https://en.wikipedia.org/wiki/HSL_and_HSV) for further discussion of the HSB color coordinate system.
@@ -128,7 +130,6 @@ public extension Color {
 			return (1 - color - k) / (1 - k)
 		}
 		return (cyan: convert(color.red), magenta: convert(color.green), yellow: convert(color.blue), key: k)
-//		return (cyan: (c - k) / (1 - k), magenta: (m - k) / (1 - k), yellow: (y - k) / (1 - k), key: k)
 	}
 
 	/**
@@ -137,11 +138,11 @@ public extension Color {
 	public var YUVView: (luminance: Double, chrominance: (u: Double, v: Double)) {
 		let color = RGBView
 
-		let y = 0.299 * color.red + 0.587 * color.green + 0.114 * color.blue
-		let u = -0.14713 * color.red - 0.28886 * color.green + 0.436 * color.blue
-		let v = 0.615 * color.red - 0.51499 * color.green - 0.10001 * color.blue
+		let y = (color.red * 255.0) * 0.299 + (color.green * 255.0) * 0.587 + (color.blue * 255.0) * 0.114
+		let u = (color.red * 255.0) * -0.168736 + (color.green * 255.0) * -0.331264 + (color.blue * 255.0) * 0.5 + 128
+		let v = (color.red * 255.0) * 0.500000 + (color.green * 255.0) * -0.418688 + (color.blue * 255.0) * -0.081312 + 128
 
-		return (luminance: y, (u: u, v: v))
+		return (luminance: y.inRange(0, max: 255) / 255.0, (u: u.inRange(16, max: 255) / 255.0, v: v.inRange(16, max: 255) / 255.0))
 	}
 
 	/**
@@ -150,10 +151,14 @@ public extension Color {
 	public var XYZView: (x: Double, y: Double, z: Double) {
 		let color = RGBView
 
-		let x = (color.red > 0.04045) ? ((color.red + 0.055) / (1 + 0.055)) ** (2.2) : (color.red / 12.92)
-		let y = (color.green > 0.04045) ? ((color.green + 0.055) / (1 + 0.055))  **  (2.2) : (color.green / 12.92)
-		let z = (color.blue > 0.04045) ? ((color.blue + 0.055) / (1 + 0.055))  **  (2.2) : (color.blue / 12.92)
+		let r = 100 * ((color.red > 0.04045) ? ((color.red + 0.055) / (1 + 0.055)) ** (2.4) : (color.red / 12.92))
+		let g = 100 * ((color.green > 0.04045) ? ((color.green + 0.055) / (1 + 0.055))  **  (2.4) : (color.green / 12.92))
+		let b = 100 * ((color.blue > 0.04045) ? ((color.blue + 0.055) / (1 + 0.055))  **  (2.4) : (color.blue / 12.92))
 
+        let x = r * 0.4124 + g * 0.3576 + b * 0.1805
+        let y = r * 0.2126 + g * 0.7152 + b * 0.0722
+        let z = r * 0.0193 + g * 0.1192 + b * 0.9505
+        
 		return (x: x, y: y, z: z)
 	}
 

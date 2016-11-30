@@ -43,7 +43,7 @@ public extension Color {
 			red = 0; green = x; blue = c
 		case 240.0 ..< 300.0:
 			red = x; green = 0.0; blue = c
-		case 300.0 ..< 360.0:
+		case 300.0 ... 360.0:
 			red = c; green = 0.0; blue = x
 		default:
 			precondition(false, "invalid hue \(_hue)")

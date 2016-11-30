@@ -6,6 +6,7 @@ public typealias Colour = Color
 // todo: this should be a struct. make it a struct when arrays can be extended by struct types (swift 2.2? 3.0?) (related code lives in Internal/ArrayExtensions.swift)
 
 // todo: Color's native type should be L*a*b, not RGB
+// todo: Color should support exporting to P3
 /**
 The native Color type in Cotton Duck. Can be created with, and in turn, output RGB, HSL, HSV, XYZ, Yuv, and Lab values.
 */
@@ -93,6 +94,9 @@ public func >(x: Color, y: Color) -> Bool {
 	return x.AView > y.AView
 }
 
+public func <(x: Color, y: Color) -> Bool {
+	return x != y && !(x > y)
+}
 /**
 Add two *Color*s together. For example, `Color.red + Color.blue` will return `Color.purple`. This operation happens in the RGB color space.
 

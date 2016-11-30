@@ -1,7 +1,7 @@
 // http://paulbourke.net/miscellaneous/interpolation/
 
 public protocol Interpolatable {
-	func linearInterpolate(_ towards: Self, step: Self, of steps: Self?) -> Self
+	func linearInterpolate(_ towards: Self, step: Self) -> Self
 
 //	todo: func cubicInterpolate(…) -> Self
 //	todo: func cosineInterpolate(…) -> Self
@@ -10,17 +10,21 @@ public protocol Interpolatable {
 }
 
 public extension Interpolatable where Self: IntegerArithmetic {
-	public func linearInterpolate(_ towards: Self, step: Self, of steps: Self?) -> Self {
-		return ((self - towards) * step) / steps!
+	public func linearInterpolate(_ towards: Self, step: Self) -> Self {
+        if self == towards {
+            return self
+        }
+
+		return ((self - towards) * step)
 	}
 }
 
 extension Double: Interpolatable {
-	public func linearInterpolate(_ towards: Double, step: Double, of steps: Double? = Double.nan) -> Double {
-		if self == towards {
-			return self
-		}
+    public func linearInterpolate(_ towards: Double, step: Double) -> Double {
+        if self == towards {
+            return self
+        }
 
-		return (self - towards) * step
-	}
+        return ((self - towards) * step)
+    }
 }

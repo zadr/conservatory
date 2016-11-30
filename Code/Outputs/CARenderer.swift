@@ -5,8 +5,8 @@ public final class CARenderer: Renderer {
 
 	private let layer = CALayer()
 
-	private var activeLayer: CALayer?
-	private var activeLayerAppearance: Appearance?
+	private var activeLayer: CALayer!
+	private var activeLayerAppearance: Appearance!
 
 	public init(size: Size) {
 		layer.bounds = Box(size: size).CGRectView
@@ -21,7 +21,7 @@ public final class CARenderer: Renderer {
 	}
 
 	public func render(_ viewables: [Viewable]) -> RenderResultType? {
-		viewables.forEach({
+		viewables.forEach {
 			// reset state before each run
 			activeLayerAppearance = Appearance()
 			activeLayer = nil
@@ -40,46 +40,6 @@ public final class CARenderer: Renderer {
 				activeLayer.shadowRadius = CGFloat(aura.blur)
 			}
 
-			// background
-			switch activeLayerAppearance.background {
-			case .none:
-				activeLayer.backgroundColor = Color.transparent.CGColorView
-			case .solid(let backgroundColor):
-				activeLayer.backgroundColor = backgroundColor.CGColorView
-			case .gradient(let backgroundColors, let options):
-				switch options.type {
-				case .linear:
-					var start = CGPoint(x: layer.bounds.midX, y: layer.bounds.minY)
-					start = start.applying(CGAffineTransform(rotationAngle: CGFloat(options.rotation)))
-
-					var end = CGPoint(x: layer.bounds.midX, y: layer.bounds.maxY)
-					end = end.applying(CGAffineTransform(rotationAngle: CGFloat(options.rotation)))
-
-					let gradientLayer = CAGradientLayer()
-					gradientLayer.bounds = activeLayer.bounds
-					gradientLayer.colors = backgroundColors.map({ return $0.CGColorView })
-					gradientLayer.locations = backgroundColors.positions.map({ return NSNumber(value: $0) })
-					gradientLayer.startPoint = start
-					gradientLayer.endPoint = end
-
-					activeLayer.addSublayer(gradientLayer)
-				case .radial:
-					precondition(false, "radial gradients not yet supported with CARenderer")
-				}
-			}
-
-			// border
-			switch activeLayerAppearance.border {
-			case .none:
-				activeLayer.borderColor = nil
-				activeLayer.borderWidth = 0.0
-			case .solid(let borderColor):
-				activeLayer.borderColor = borderColor.CGColorView
-				activeLayer.borderWidth = CGFloat(activeLayerAppearance.borderWidth)
-			case .gradient(_, _):
-				precondition(false, "border gradients not yet supported with CARenderer")
-			}
-
 			// blend modes
 			if var blendableLayer = activeLayer as? CVBlendableLayer {
 				blendableLayer.blendMode = activeLayerAppearance.blendMode
@@ -89,7 +49,7 @@ public final class CARenderer: Renderer {
 			activeLayer.setAffineTransform(activeLayerAppearance.transform.CGAffineTransformView)
 
 			layer.addSublayer(activeLayer)
-		})
+		}
 
 		layer.setNeedsDisplay()
 		layer.displayIfNeeded()
@@ -121,29 +81,68 @@ public final class CARenderer: Renderer {
 	}
 
 	public func apply(_ aura: Aura?) {
-		activeLayerAppearance!.aura = aura
+		activeLayerAppearance.aura = aura
 	}
 
 	public func apply(_ background: Palette<Color, GradientOptions>) {
-		activeLayerAppearance!.background = background
+		activeLayerAppearance.background = background
 	}
 
 	public func apply(_ border: Palette<Color, GradientOptions>, width: Double) {
-		activeLayerAppearance!.border = border
-		activeLayerAppearance!.borderWidth = width
+		activeLayerAppearance.border = border
+		activeLayerAppearance.borderWidth = width
 	}
 
 	public func apply(_ blendMode: BlendMode) {
-		activeLayerAppearance!.blendMode = blendMode
+		activeLayerAppearance.blendMode = blendMode
 	}
 
 	public func apply(_ transform: Transform) {
-		activeLayerAppearance!.transform = transform
+		activeLayerAppearance.transform = transform
 	}
 
-	public func fill() { /* noop */ }
+	public func fill() {
+		switch activeLayerAppearance.background {
+		case .none:
+			activeLayer.backgroundColor = Color.transparent.CGColorView
+		case .solid(let backgroundColor):
+			activeLayer.backgroundColor = backgroundColor.CGColorView
+		case .gradient(let backgroundColors, let options):
+			switch options.type {
+			case .linear:
+				var start = CGPoint(x: layer.bounds.midX, y: layer.bounds.minY)
+				start = start.applying(CGAffineTransform(rotationAngle: CGFloat(options.rotation)))
 
-	public func stroke() { /* noop */ }
+				var end = CGPoint(x: layer.bounds.midX, y: layer.bounds.maxY)
+				end = end.applying(CGAffineTransform(rotationAngle: CGFloat(options.rotation)))
+
+				let gradientLayer = CAGradientLayer()
+				gradientLayer.bounds = activeLayer.bounds
+				gradientLayer.colors = backgroundColors.map { return $0.CGColorView }
+				gradientLayer.locations = backgroundColors.positions.map { return NSNumber(value: $0) }
+				gradientLayer.startPoint = start
+				gradientLayer.endPoint = end
+
+				activeLayer.addSublayer(gradientLayer)
+			case .radial:
+				precondition(false, "radial gradients not yet supported with CARenderer")
+			}
+		}
+	}
+
+	public func stroke() {
+		// border
+		switch activeLayerAppearance.border {
+		case .none:
+			activeLayer.borderColor = nil
+			activeLayer.borderWidth = 0.0
+		case .solid(let borderColor):
+			activeLayer.borderColor = borderColor.CGColorView
+			activeLayer.borderWidth = CGFloat(activeLayerAppearance.borderWidth)
+		case .gradient(_, _):
+			precondition(false, "border gradients not yet supported with CARenderer")
+		}
+	}
 }
 
 // MARK: -

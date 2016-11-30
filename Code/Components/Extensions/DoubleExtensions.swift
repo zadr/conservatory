@@ -140,16 +140,5 @@ public func **(x: Double, to: Double) -> Double {
 
 // http://floating-point-gui.de/errors/comparison/
 public func ~=(x: Double, y: Double) -> Bool {
-	let epsilon = 0.00001
-
-	if x == y {
-		return true
-	}
-
-	let difference = (x - y).absoluteValue
-	if x == 0 || y == 0 || difference < epsilon {
-		return difference < (epsilon * Double.leastNormalMagnitude)
-	}
-
-	return difference / min((x.absoluteValue + y.absoluteValue), Double.greatestFiniteMagnitude) < epsilon
+	return Double(round(x.distance(to: y).absoluteValue * 1000) / 1000) <= 0.001
 }

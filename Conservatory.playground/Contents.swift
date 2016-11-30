@@ -2,7 +2,7 @@ import Conservatory
 import UIKit
 
 let length = 2000.0
-let canvas = Canvas<CGRenderer>(size: Size(width: length, height: length))
+let canvas = Canvas<CARenderer>(size: Size(width: length, height: length))
 
 let color = Color.random()
 canvas.appearance.background = .solid(color)
@@ -36,4 +36,7 @@ Int.random(15, min: 5).times { (x, _) in
 	add(polygon)
 }
 
-UIImage(cgImage: canvas.currentRepresentation!) // changes every run!
+let view = UIView()
+view.layer.addSublayer(canvas.currentRepresentation!)
+view
+//UIImage(cgImage: canvas.currentRepresentation!) // changes every run!
