@@ -6,8 +6,10 @@ extension NSImage: ImageViewable {
 	private func representation(type: NSBitmapImageFileType) -> UnsafePointer<UInt8> {
 		let representation = representations.first as! NSBitmapImageRep
 		let data = representation.representation(using: type, properties: [:])!
-		return data.bytes.bindMemory(to: UInt8.self, capacity: data.length)
-		return UnsafePointer<UInt8>(data.bytes)
+		return data.withUnsafeBytes { return $0 }
+//		return data.bytes.bindMemory(to: UInt8.self, capacity: data.length)
+//		return UnsafePointer<UInt8>(data.bytes)
+//		data.withUnsafeBytes(<#T##body: (UnsafePointer<ContentType>) throws -> ResultType##(UnsafePointer<ContentType>) throws -> ResultType#>)
 	}
 
 	public var bitmapView: UnsafePointer<UInt8> {
