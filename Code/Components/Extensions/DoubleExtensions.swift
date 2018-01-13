@@ -95,14 +95,13 @@ public extension Double {
 	/**
 	- Returns: A *Double* between 0.0 and 1.0.
 
-	- Parameter max: The maximum value to return. The default value is **1.0**.
-	- Parameter min: The minimum value to return. The default value is **0.0**.
+	- Parameter range: The maximum value to return. The default value is **0.0** ... **1.0**.
 
 	- Returns: A random value.
 	*/
-	public static func random(_ max: Double = 1.0, min: Double = 0.0) -> Double {
+	public static func random(_ range: ClosedRange<Double> = 0 ... 1.0) -> Double {
 		let value = Double(UInt.random()) / Double(UInt.max)
-		return (value * max) + min
+		return (value * range.upperBound) + range.lowerBound
 	}
 
 	/**

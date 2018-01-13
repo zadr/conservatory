@@ -2,11 +2,10 @@ public extension UInt {
 	/**
 	- Returns: A random value.
 
-	- Parameter max: The maximum value to return. The default value is **UInt.max**, or **18446744073709551615**.
-	- Parameter min: The minimum value to return. The default value is **0**.
+	- Parameter range: The range of values to return. The default value is 0 ... **UInt.max**, or **18446744073709551615**.
 	*/
-	public static func random(_ max: UInt = UInt.max, min: UInt = 0) -> UInt {
-		return (MT19937_64_random() % (max - min)) + min
+	public static func random(_ range: CountableClosedRange<UInt> = 0 ... UInt.max) -> UInt {
+		return (MT19937_64_random() % (range.upperBound - range.lowerBound)) + range.lowerBound
 	}
 }
 
@@ -14,12 +13,11 @@ public extension Int {
 	/**
 	- Returns: A random value.
 
-	- Parameter max: The maximum value to return. The default value is **Int.max**, or **9223372036854775807**.
-	- Parameter min: The minimum value to return. The default value is **Int.min**, or **-9223372036854775808**.
+	- Parameter range: The range of values to return. The default value is **Int.min**, or **-9223372036854775808** ... **UInt.max**, or **18446744073709551615**.
 	*/
-	public static func random(_ max: Int = Int.max, min: Int = Int.min) -> Int {
+	public static func random(_ range: CountableClosedRange<Int> = Int.min ... Int.max) -> Int {
 		let value = Int(UInt.random() % UInt(Int.max))
-		return (value % (max - min)) + min
+		return (value % (range.upperBound - range.lowerBound)) + range.lowerBound
 	}
 }
 
@@ -27,12 +25,11 @@ public extension UInt8 {
 	/**
 	- Returns: a random value.
 
-	- Parameter max: The maximum value to return. The default value is **UInt8.max**, or **255**
-	- Parameter min: The minimum value to return. The default value is **0**.
+	- Parameter range: The range of values to return. The default value is 0 ... **UInt8.max**, or **255**
 	*/
-	public static func random(_ max: UInt8 = UInt8.max, min: UInt8 = 0) -> UInt8 {
+	public static func random(_ range: CountableClosedRange<UInt8> = 0 ... UInt8.max) -> UInt8 {
 		let value = UInt8(UInt.random() % UInt(UInt8.max))
-		return (value % (max - min)) + min
+		return (value % (range.upperBound - range.lowerBound)) + range.lowerBound
 	}
 }
 

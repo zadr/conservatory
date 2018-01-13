@@ -19,7 +19,7 @@ extension Image {
 	A color at random that is picked from the image.
 	*/
 	public func randomColor() -> Color {
-		return color(Box(size: size).randomPoint())
+		return color(Box(size: size).randomCoordinate())
 	}
 
 	/**

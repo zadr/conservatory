@@ -291,8 +291,8 @@ public struct Box {
 	/**
 	- Returns: A random coordinate within the current bounding box.
 	*/
-	public func randomPoint() -> Point {
-		return Point(x: Double.random(size.width), y: Double.random(size.height))
+	public func randomCoordinate() -> Point {
+		return Point(x: Double.random(0 ... size.width), y: Double.random(0 ... size.height))
 	}
 
 	/**

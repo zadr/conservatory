@@ -43,9 +43,9 @@ public extension Color {
 	*/
 	
 	public func analog(angle a: Double = 20.0, delta d: Double = 0.5) -> Color {
-		let rotated = rotateRYB(Double.random(a))
-		let lightened = rotated.lighten(Double.random(d))
-		return lightened.saturate(Double.random(d))
+		let rotated = rotateRYB(Double.random(0 ... a))
+		let lightened = rotated.lighten(Double.random(0 ... d))
+		return lightened.saturate(Double.random(0 ... d))
 	}
 
 	/**
