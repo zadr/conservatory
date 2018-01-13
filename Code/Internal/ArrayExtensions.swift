@@ -1,4 +1,4 @@
-internal extension Array where Element: Color {
+internal extension Array where Element == Color {
 	/**
 	Given a list of colors, calculate the points to be used when drawing a gradient. Defaults to linear interpolation to come up with values.
 	*/

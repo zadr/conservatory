@@ -44,7 +44,7 @@ internal struct Seed {
 		// todo: add in processor load, memory usage
 		let ids = [ CLOCK_MONOTONIC_RAW, CLOCK_BOOTTIME,
 					CLOCK_PROCESS_CPUTIME_ID, CLOCK_THREAD_CPUTIME_ID ]
-		return ids.map({ return clock($0) }) + seeds
+		return ids.map { return clock($0) } + seeds
 	}
 
 	private static func clock(id: clockid_t) -> UInt {

@@ -1,5 +1,3 @@
-// todo?: init(text: String markdown: Bool = false) (which flavor of markdown?)
-
 /**
 A renderer that knows how to draw text, and how to store it's appearance attributes until render-time.
 */

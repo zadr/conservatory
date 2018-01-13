@@ -9,7 +9,7 @@ public extension Color {
 
 	`init(red: 127)`, `init(red: 12, green: 24, blue: 48)`, and `init(red: 12, green: 24, blue: 48, alpha: 96)` are all valid.
 	*/
-	public convenience init(red _red: UInt8 = 255, green _green: UInt8 = 255, blue _blue: UInt8 = 255, alpha _alpha: UInt8 = 255) {
+	public init(red _red: UInt8 = 255, green _green: UInt8 = 255, blue _blue: UInt8 = 255, alpha _alpha: UInt8 = 255) {
 		let red = (Double(_red) / 255.0)
 		let green = (Double(_green) / 255.0)
 		let blue = (Double(_blue) / 255.0)
@@ -25,7 +25,7 @@ public extension Color {
 	The parameters specifying *hue*, *saturation*, and *brightness* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.
 	*/
-	public convenience init(h _hue: Double, s _saturation: Double, b _brightness: Double, a _alpha: Double = 1.0) {
+	public init(h _hue: Double, s _saturation: Double, b _brightness: Double, a _alpha: Double = 1.0) {
 		var red = 0.0, green = 0.0, blue = 0.0
 
 		let c = _brightness * _saturation
@@ -60,7 +60,7 @@ public extension Color {
 	The parameters specifying *cyan*, *magenta*, *yellow*, and *key* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.
 	*/
-	public convenience init(c cyan: Double, m magenta: Double, y yellow: Double, k _key: Double, alpha: Double = 1.0) {
+	public init(c cyan: Double, m magenta: Double, y yellow: Double, k _key: Double, alpha: Double = 1.0) {
 		let key = _key
 
 		let red = (1.0 - cyan) * (1.0 - key)
@@ -77,7 +77,7 @@ public extension Color {
 	The parameters specifying *Y*, *u*, and *v* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.
 	*/
-	public convenience init(Y _luma: Double, u _u: Double, v _v: Double, alpha: Double = 1.0) {
+	public init(Y _luma: Double, u _u: Double, v _v: Double, alpha: Double = 1.0) {
 		let luma = _luma
 		let u = _u
 		let v = _v
@@ -96,7 +96,7 @@ public extension Color {
 	The parameters specifying *X*, *Y*, and *Z* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.
 	*/
-	public convenience init(x _mix: Double, y _luminance: Double, z _blueStimulation: Double, alpha: Double = 1.0) {
+	public init(x _mix: Double, y _luminance: Double, z _blueStimulation: Double, alpha: Double = 1.0) {
 		let Fxyz: (Double) -> (Double) = { (t: Double) in
 			return t <= 0.0031308 ? 12.92 * t : (1 + 0.055) * (t ** (1.0 / 2.4)) - 0.055
 		}
@@ -119,7 +119,7 @@ public extension Color {
 	The parameters specifying *L*, *a*, and *b* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.
 	*/
-	public convenience init(L _lightness: Double, a _a: Double, b _b: Double, alpha: Double = 1.0) {
+	public init(L _lightness: Double, a _a: Double, b _b: Double, alpha: Double = 1.0) {
 		let FLab: (Double, Double) -> Double = { (t: Double, tristimulus: Double) in
 			let delta = 6.0 / 29.0
 			return (t > delta) ? tristimulus * (t * t * t) : (t - 16.0 / 116.0) * 3.0 * (delta * delta) * tristimulus
@@ -147,7 +147,7 @@ public extension Color {
 
 	Any other length string will result in nil being returned.
 	*/
-	public convenience init?(hexString hex: String) {
+	public init?(hexString hex: String) {
 		let rgb: String
 		if hex.hasPrefix("#") {
 			rgb = hex.substring(from: hex.index(hex.startIndex, offsetBy: 1))
@@ -169,7 +169,7 @@ public extension Color {
 
 	The 8 uppermost bits will be considered the *red* value, with the following two bits being the *green* value, and the next two bits being *blue* value.
 	*/
-	public convenience init(hexRGB hex: Int) {
+	public init(hexRGB hex: Int) {
 		let r = UInt8((hex >> 16) & 0xFF)
 		let g = UInt8((hex >> 8) & 0xFF)
 		let b = UInt8(hex & 0xFF)
@@ -182,7 +182,7 @@ public extension Color {
 
 	The 8 uppermost bits will be considered the *red* value, with the following two bits being the *green* value, and the next two bits being *blue* value. The last two bits will be considered the *alpha* value.
 	*/
-	public convenience init(hexRGBA hex: Int) {
+	public init(hexRGBA hex: Int) {
 		let r = UInt8((hex >> 24) & 0xFF)
 		let g = UInt8((hex >> 16) & 0xFF)
 		let b = UInt8((hex >> 8) & 0xFF)

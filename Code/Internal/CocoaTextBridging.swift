@@ -10,7 +10,7 @@ import Foundation
 internal extension String {
 	internal func cocoaValue(_ effects: [TextEffect]) -> NSAttributedString {
 		let result = NSMutableAttributedString(string: self)
-		effects.forEach({
+		effects.forEach {
 			var fontDescriptor = CTFontDescriptorCreateWithNameAndSize($0.font.name as CFString, CGFloat($0.font.size))
 			if $0.bold {
 				var attribute: Int = 0
@@ -60,12 +60,11 @@ internal extension String {
 			}
 
 			result.addAttributes(attributes, range: toNSRange($0.range))
-		})
+		}
 
 		return result
 	}
 
-	// todo: extend `Range` instead?
 	fileprivate func toNSRange(_ range: Range<String.Index>) -> NSRange {
 		let start = distance(from: startIndex, to: range.lowerBound)
 		let length = distance(from: range.lowerBound, to: range.upperBound)

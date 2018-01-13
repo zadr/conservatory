@@ -3,14 +3,12 @@ I've been told that I spell *color* funnily, and that it should really be spelle
 */
 public typealias Colour = Color
 
-// todo: this should be a struct. make it a struct when arrays can be extended by struct types (swift 2.2? 3.0?) (related code lives in Internal/ArrayExtensions.swift)
-
 // todo: Color's native type should be L*a*b, not RGB
 // todo: Color should support exporting to P3
 /**
 The native Color type in Conservatory. Can be created with, and in turn, output RGB, HSL, HSV, XYZ, Yuv, and Lab values.
 */
-public final class Color {
+public struct Color {
 	fileprivate let red: Double
 	fileprivate let green: Double
 	fileprivate let blue: Double

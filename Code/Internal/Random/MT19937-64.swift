@@ -131,8 +131,8 @@ extension UInt {
 			MersenneTwister64.seed(Seed.generate())
 		}
 
-		return MersenneTwister64.random({
+		return MersenneTwister64.random {
 			return Seed.generate()
-		})
+		}
 	}
 }

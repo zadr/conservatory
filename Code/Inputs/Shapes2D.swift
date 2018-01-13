@@ -113,7 +113,7 @@ extension Shape {
 		// http://scienceprimer.com/draw-oval-html5-canvas
 		let angleSine = Double.pi.sine
 		let angleCosine = Double.pi.cosine
-		let points = stride(from: 0, to: CV_2_PI, by: 0.01).map({ (x) -> Point in
+		let points = stride(from: 0, to: CV_2_PI, by: 0.01).map { (x) -> Point in
 			let xSine = x.sine
 			let xCosine = x.cosine
 
@@ -121,7 +121,7 @@ extension Shape {
 			let y = (radius.height * xCosine) * angleSine + (radius.width * xSine) * angleCosine
 
 			return Point(x: x, y: y)
-		})
+		}
 
 		self.init(points: points)
 	}

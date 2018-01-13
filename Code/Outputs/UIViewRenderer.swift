@@ -1,16 +1,15 @@
 import UIKit
 
-// todo! move this to an internal struct that can be re-used for LayerRenderer and AppKitRenderer
 public final class UIViewRenderer: Renderer {
 	public typealias RenderResultType = UIView
 
 	public typealias ImageType = UIImage
-	public typealias BezierType = UIBezierPath
 
-	private var mostRecentSubview: UIView? = self
+	public let size: Size
+
+	private var mostRecentSubview: UIView!
 	private let view: UIView
 	private var backgroundGradientLayers = [UIView: CALayer]()
-	public let size: Size
 
 	private var appearanceStorage = Appearance()
 	public init(size: Size = Size(width: 1024.0, height: 768.0)) {
@@ -19,6 +18,7 @@ public final class UIViewRenderer: Renderer {
 		self.size = size
 
 		view = UIView(frame: CGRect(x: 0.0, y: 0.0, width: CGFloat(size.width), height: CGFloat(size.height)))
+		mostRecentSubview = view
 	}
 
 	public func render(_ viewable: Viewable) -> RenderResultType? {
@@ -26,7 +26,7 @@ public final class UIViewRenderer: Renderer {
 	}
 
 	public func render(_ viewables: [Viewable]) -> RenderResultType? {
-		viewables.forEach({ $0.render(self) })
+		viewables.forEach { $0.render(self) }
 
 		UIGraphicsBeginImageContext(size.CGSizeView)
 		defer {
@@ -174,8 +174,8 @@ extension UIBezierPath {
 	internal convenience init(_ bezier: Bezier) {
 		self.init()
 
-		bezier.segments.forEach {
-			switch $0 {
+		bezier.forEach { (segment) in
+			switch segment {
 			case let .move(to):
 				move(to: to.CGPointView)
 			case let .line(to):

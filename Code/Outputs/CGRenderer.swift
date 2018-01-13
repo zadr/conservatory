@@ -31,13 +31,13 @@ public final class CGRenderer: Renderer {
 	}
 
 	public func render(_ viewables: [Viewable]) -> RenderResultType? {
-		viewables.forEach({
+		viewables.forEach {
 			// reset state before each run
 			bitmapContext.saveGState(); defer { bitmapContext.restoreGState() }
 			bezier = nil
 
 			$0.render(self)
-		})
+		}
 
 		bezier = nil
 
@@ -55,7 +55,6 @@ public final class CGRenderer: Renderer {
 		return Box(size: size).CGRectView
 	}
 
-	// todo: investigate swift and figure out when this signature can be draw(bezier _bezier: BezierType) without conflicting with draw(image: ImageType)
 	public func draw(_ bezier: Bezier) {
 		// due to how CoreGraphics works, the bezier has to be added to the context before each call to fill() and stroke()
 		// todo?: investigate if we should we use CGContextSaveGState() before fill() and stroke() instead of keeping this around as a local property
@@ -126,8 +125,8 @@ public final class CGRenderer: Renderer {
 	private func draw(_ colors: [Color], positions: [Double], options: GradientOptions, bounds: CGRect) {
 		let gradientOptions = options.CGGradientDrawingOptionsView
 
-		let CGColors = colors.map({ return $0.CGColorView }) as CFArray
-		let CGPositions = positions.map({ return CGFloat($0) })
+		let CGColors = colors.map { return $0.CGColorView } as CFArray
+		let CGPositions = positions.map { return CGFloat($0) }
 		let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: CGColors, locations: CGPositions)
 
 		switch options.type {

@@ -95,8 +95,8 @@ internal extension Bezier {
 	internal var CGPathView: CGPath {
 		let path = CGMutablePath()
 
-		segments.forEach({
-			switch $0 {
+		forEach { (segment) in
+			switch segment {
 			case .move(let to):
 				path.move(to: to.CGPointView)
 			case .line(let to):
@@ -110,7 +110,7 @@ internal extension Bezier {
 			case .close:
 				path.closeSubpath()
 			}
-		})
+		}
 
 		return path.copy()!
 	}

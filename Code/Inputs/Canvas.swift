@@ -1,5 +1,3 @@
-// todo: non-rectangular canvases
-
 /**
 A *Canvas* is the base object that everything is rendered onto.
 

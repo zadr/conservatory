@@ -2,8 +2,7 @@
 The native Bezier type in Conservatory, used to represent a list of segment that make up a bezier path that can be drawn by a *Renderer*.
 */
 public struct Bezier {
-	// todo: public generator instead of exposing this internally
-	internal var segments = [Segment]()
+	fileprivate var segments = [Segment]()
 
 	public init() {}
 
@@ -31,9 +30,9 @@ public struct Bezier {
 
 		move(points.removeFirst())
 
-		points.forEach({
+		points.forEach {
 			addLine($0)
-		})
+		}
 
 		if closes {
 			close()
@@ -45,8 +44,8 @@ public struct Bezier {
 	*/
 	public func apply(_ transform: Transform) -> Bezier {
 		var newBezier = Bezier()
-		newBezier.segments = segments.map({
-			switch $0 {
+		newBezier.segments = map { (segment) in
+			switch segment {
 			case let .move(to):
 				return .move(to.apply(transform))
 			case let .line(to):
@@ -60,7 +59,7 @@ public struct Bezier {
 			case .close:
 				return .close
 			}
-		})
+		}
 
 		return newBezier
 	}
@@ -158,8 +157,32 @@ extension Bezier: Hashable {
 	}
 }
 
+extension Bezier: Sequence {
+	public func makeIterator() -> BezierSegmentIterator {
+		return BezierSegmentIterator(self)
+	}
+}
+
 public func ==(x: Bezier, y: Bezier) -> Bool {
 	return x.segments == y.segments
+}
+
+// MARK: -
+
+public struct BezierSegmentIterator: IteratorProtocol {
+	public typealias Element = Segment
+
+	fileprivate var segments: ArraySlice<Segment>
+
+	init(_ bezier: Bezier) {
+		segments = ArraySlice(bezier.segments)
+	}
+
+	public mutating func next() -> Element? {
+		let next = segments.first
+		segments = segments.dropFirst()
+		return next
+	}
 }
 
 // MARK: -

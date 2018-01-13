@@ -23,13 +23,13 @@ public final class StringRenderer: Renderer {
 	public func render(_ viewables: [Viewable]) -> RenderResultType? {
 		level += 1; defer { level -= 1 }
 
-		viewables.forEach({
+		viewables.forEach {
 			if level > 0 {
 				append("// \(String(describing: type(of: $0)))")
 			}
 
 			$0.render(self)
-		})
+		}
 
 		return stringContext
 	}

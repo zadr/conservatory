@@ -214,7 +214,7 @@ public extension Color {
 			(1.0, 2.2), (2.0, 1.0), (-1.0, -0.5), (-2.0, 1.0)
 		]
 
-		anglesAndContrasts.forEach({
+		anglesAndContrasts.forEach {
 			var color = rotateRYB(angle * $0.angle)
 			let newBrightness = 0.44 - $0.contrast * 0.1
 			if HSBView.brightness - contrast * $0.contrast < newBrightness {
@@ -224,7 +224,7 @@ public extension Color {
 			}
 
 			analogous.append(color.withSaturation(float: color.HSBView.saturation - 0.05))
-		})
+		}
 
 		return analogous
 	}
@@ -238,7 +238,7 @@ public extension Color {
 		var monochrome = [ self ]
 
 		var color = self
-		color = color.withBrightness(float: HSBView.brightness.wrap(0.5, max: 0.2, add: 0.3))
+		color = color.withBrightness(float:  HSBView.brightness.wrap(0.5, max: 0.2, add: 0.3))
 		color = color.withSaturation(float: HSBView.saturation.wrap(0.3, max: 0.1, add: 0.3))
 		monochrome.append(color)
 
