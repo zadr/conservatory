@@ -150,7 +150,7 @@ public extension Color {
 	public convenience init?(hexString hex: String) {
 		let rgb: String
 		if hex.hasPrefix("#") {
-			rgb = hex.substring(from: hex.characters.index(hex.startIndex, offsetBy: 1))
+			rgb = hex.substring(from: hex.index(hex.startIndex, offsetBy: 1))
 		} else {
 			rgb = hex
 		}
