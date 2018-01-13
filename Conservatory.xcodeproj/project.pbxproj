@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		195F4E752009C040001435D1 /* UIViewRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F4E742009C040001435D1 /* UIViewRenderer.swift */; };
 		B6056F621C3F910800E876D8 /* DoubleExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6056F611C3F910800E876D8 /* DoubleExtensionsTests.swift */; };
 		B61381851C3D9AC800C90817 /* Conservatory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B613817A1C3D9AC700C90817 /* Conservatory.framework */; };
 		B61381C11C3D9B2F00C90817 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381961C3D9B2F00C90817 /* Appearance.swift */; };
@@ -96,6 +97,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		195F4E742009C040001435D1 /* UIViewRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewRenderer.swift; sourceTree = "<group>"; };
 		B6056F611C3F910800E876D8 /* DoubleExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtensionsTests.swift; sourceTree = "<group>"; };
 		B613817A1C3D9AC700C90817 /* Conservatory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Conservatory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61381841C3D9AC800C90817 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -284,6 +286,7 @@
 				B61381BC1C3D9B2F00C90817 /* CGRenderer.swift */,
 				B61381BD1C3D9B2F00C90817 /* Renderer.swift */,
 				B61381BE1C3D9B2F00C90817 /* StringRenderer.swift */,
+				195F4E742009C040001435D1 /* UIViewRenderer.swift */,
 			);
 			path = Outputs;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				B61381C91C3D9B2F00C90817 /* ColorViews.swift in Sources */,
 				B61381D91C3D9B2F00C90817 /* Text.swift in Sources */,
 				B61381E11C3D9B2F00C90817 /* CGRenderer.swift in Sources */,
+				195F4E752009C040001435D1 /* UIViewRenderer.swift in Sources */,
 				B61381D51C3D9B2F00C90817 /* Image.swift in Sources */,
 				B61381E31C3D9B2F00C90817 /* StringRenderer.swift in Sources */,
 				B61381CE1C3D9B2F00C90817 /* Random.swift in Sources */,
