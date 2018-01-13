@@ -1,6 +1,12 @@
 import CoreText
 import Foundation
 
+#if os(OSX)
+	import AppKit
+#elseif os(iOS)
+	import UIKit
+#endif
+
 internal extension String {
 	internal func cocoaValue(_ effects: [TextEffect]) -> NSAttributedString {
 		let result = NSMutableAttributedString(string: self)
@@ -61,7 +67,7 @@ internal extension String {
 
 	// todo: extend `Range` instead?
 	fileprivate func toNSRange(_ range: Range<String.Index>) -> NSRange {
-		let start = characters.distance(from: startIndex, to: range.lowerBound)
+		let start = distance(from: startIndex, to: range.lowerBound)
 		let length = distance(from: range.lowerBound, to: range.upperBound)
 		return NSMakeRange(start, length)
 	}
@@ -69,9 +75,9 @@ internal extension String {
 
 // MARK: -
 
-/*
-private extension Aura {
-	private var cocoaValue: NSShadow {
+#if os(OSX)
+fileprivate extension Aura {
+	fileprivate var cocoaValue: NSShadow {
 		let shadow = NSShadow()
 		shadow.shadowOffset = CGSize(width: offset.width, height: offset.height)
 		shadow.shadowColor = color.cocoaValue
@@ -80,22 +86,22 @@ private extension Aura {
 	}
 }
 
-private extension Color {
-	#if os(iOS)
-	private var cocoaValue: UIColor {
-		let rgb = RGBView
-		return UIColor(red: CGFloat(rgb.red), green: CGFloat(rgb.green), blue: CGFloat(rgb.blue), alpha: CGFloat(AView))
-	}
-	#elseif os(OSX)
-	private var cocoaValue: NSColor {
+fileprivate extension Color {
+	fileprivate var cocoaValue: NSColor {
 		let rgb = RGBView
 		return NSColor(red: CGFloat(rgb.red), green: CGFloat(rgb.green), blue: CGFloat(rgb.blue), alpha: CGFloat(AView))
 	}
-	#endif
 }
-*/
+#elseif os(iOS)
+fileprivate extension Color {
+	fileprivate var cocoaValue: UIColor {
+		let rgb = RGBView
+		return UIColor(red: CGFloat(rgb.red), green: CGFloat(rgb.green), blue: CGFloat(rgb.blue), alpha: CGFloat(AView))
+	}
+}
+#endif
 
-private extension LinePattern {
+fileprivate extension LinePattern {
 	var coreTextView: Int32 {
 		switch self {
 		case .none:
