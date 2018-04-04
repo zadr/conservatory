@@ -96,5 +96,5 @@ Also, [HotCocoa::Graphics](https://github.com/HotCocoa/HotCocoaGraphics), [proce
 
 **Q.** What does a monad look like?
 
-**A.** A burrito, who's shell is gluten-free. And is dripping with guac and sour cream. If you need help visualizing this, fly to San Francisco, and take BART to 24th Street station, and then go to the first taqueria you see after exiting the station.
+**A.** A burrito, whose shell is gluten-free. And is dripping with guac and sour cream. If you need help visualizing this, fly to San Francisco, and take BART to 24th Street station, and then go to the first taqueria you see after exiting the station.
 
