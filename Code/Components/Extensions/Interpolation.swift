@@ -9,7 +9,7 @@ public protocol Interpolatable {
 //	todo: func gaussianInerpolate(…) -> Self
 }
 
-public extension Interpolatable where Self: IntegerArithmetic {
+public extension Interpolatable where Self: BinaryInteger {
 	public func linearInterpolate(_ towards: Self, step: Self) -> Self {
         if self == towards {
             return self

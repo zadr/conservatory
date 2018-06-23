@@ -8,11 +8,11 @@ extension UIImage: ImageViewable {
 	}
 
 	public var JPEGView: UnsafePointer<UInt8> {
-		return (UIImageJPEGRepresentation(self, 1.0)! as NSData).bytes.bindMemory(to: UInt8.self, capacity: UIImageJPEGRepresentation(self, 1.0)!.count)
+		return (pngData()! as NSData).bytes.bindMemory(to: UInt8.self, capacity: jpegData(compressionQuality: 1.0)!.count)
 	}
 
 	public var PNGView: UnsafePointer<UInt8> {
-		return (UIImagePNGRepresentation(self)! as NSData).bytes.bindMemory(to: UInt8.self, capacity: UIImagePNGRepresentation(self)!.count)
+		return (pngData()! as NSData).bytes.bindMemory(to: UInt8.self, capacity: pngData()!.count)
 	}
 }
 

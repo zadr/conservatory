@@ -34,14 +34,14 @@ internal extension String {
 				] as CFDictionary)
 			}
 
-			var attributes: [String: AnyObject] = [
-				String(kCTFontAttributeName): CTFontCreateWithFontDescriptor(fontDescriptor, CGFloat($0.font.size), nil),
-				String(kCTLigatureAttributeName): $0.ligature as AnyObject,
-				String(kCTKernAttributeName): $0.kerning as AnyObject
+			var attributes: [NSAttributedString.Key: Any] = [
+				NSAttributedString.Key(String(kCTFontAttributeName)): CTFontCreateWithFontDescriptor(fontDescriptor, CGFloat($0.font.size), nil),
+				NSAttributedString.Key(String(kCTLigatureAttributeName)): $0.ligature,
+				NSAttributedString.Key(String(kCTKernAttributeName)): $0.kerning
 			]
 
 			if $0.underline != .none {
-				attributes[String(kCTUnderlineStyleAttributeName)] = Int($0.underline.coreTextView) as AnyObject?
+				attributes[NSAttributedString.Key(String(kCTUnderlineStyleAttributeName))] = Int($0.underline.coreTextView)
 			}
 /*
 			if $0.strikethrough != .None {
@@ -54,9 +54,7 @@ internal extension String {
 */
 
 			for (key, value) in $0.metadata {
-				if let NSObjectValue = value as? NSObject {
-					attributes[key] = NSObjectValue
-				}
+				attributes[NSAttributedString.Key(key)] = value
 			}
 
 			result.addAttributes(attributes, range: toNSRange($0.range))

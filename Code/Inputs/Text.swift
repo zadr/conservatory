@@ -134,10 +134,3 @@ public func ==(x: TextEffect, y: TextEffect) -> Bool {
 		  x.kerning == y.kerning && x.range == y.range
 }
 
-// MARK: -
-
-extension Range: Hashable {
-	public var hashValue: Int {
-		return description.hashValue
-	}
-}

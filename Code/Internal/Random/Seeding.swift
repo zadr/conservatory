@@ -11,7 +11,7 @@ internal struct Seed {
 		var mib = [ CTL_KERN, KERN_BOOTTIME ]
 		var size = MemoryLayout<timeval>.stride
 		sysctl(&mib, u_int(mib.count), &bootTime, &size, nil, 0)
-		return UInt(bootTime.tv_sec + bootTime.tv_usec)
+		return UInt(bootTime.tv_sec) + UInt(bootTime.tv_usec)
 	}
 
 	fileprivate static var CPUTime: UInt {
