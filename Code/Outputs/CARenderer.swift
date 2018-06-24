@@ -122,10 +122,25 @@ public final class CARenderer: Renderer {
 				gradientLayer.locations = backgroundColors.positions.map { return NSNumber(value: $0) }
 				gradientLayer.startPoint = start
 				gradientLayer.endPoint = end
+				gradientLayer.type = .axial
 
 				activeLayer.addSublayer(gradientLayer)
 			case .radial:
-				precondition(false, "radial gradients not yet supported with CARenderer")
+				var start = CGPoint(x: layer.bounds.midX, y: layer.bounds.minY)
+				start = start.applying(CGAffineTransform(rotationAngle: CGFloat(options.rotation)))
+
+				var end = CGPoint(x: layer.bounds.midX, y: layer.bounds.maxY)
+				end = end.applying(CGAffineTransform(rotationAngle: CGFloat(options.rotation)))
+
+				let gradientLayer = CAGradientLayer()
+				gradientLayer.bounds = activeLayer.bounds
+				gradientLayer.colors = backgroundColors.map { return $0.CGColorView }
+				gradientLayer.locations = backgroundColors.positions.map { return NSNumber(value: $0) }
+				gradientLayer.startPoint = start
+				gradientLayer.endPoint = end
+				gradientLayer.type = .radial
+
+				activeLayer.addSublayer(gradientLayer)
 			}
 		}
 	}
