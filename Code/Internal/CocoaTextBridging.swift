@@ -10,38 +10,38 @@ import Foundation
 internal extension String {
 	internal func cocoaValue(_ effects: [TextEffect]) -> NSAttributedString {
 		let result = NSMutableAttributedString(string: self)
-		effects.forEach {
-			var fontDescriptor = CTFontDescriptorCreateWithNameAndSize($0.font.name as CFString, CGFloat($0.font.size))
-			if $0.bold {
+		for effect in effects {
+			var fontDescriptor = CTFontDescriptorCreateWithNameAndSize(effect.font.name as CFString, CGFloat(effect.font.size))
+			if effect.bold {
 				var attribute: Int = 0
 				if let copiedAttribute = CTFontDescriptorCopyAttribute(fontDescriptor, kCTFontSymbolicTrait) {
 					attribute = copiedAttribute as! Int
 				}
 
 				fontDescriptor = CTFontDescriptorCreateCopyWithAttributes(fontDescriptor, [
-					String(kCTFontSymbolicTrait): Int(attribute | Int(CTFontSymbolicTraits.boldTrait.rawValue)) as AnyObject
+					String(kCTFontSymbolicTrait): Int(attribute | Int(CTFontSymbolicTraits.boldTrait.rawValue))
 				] as CFDictionary)
 			}
 
-			if $0.italic {
+			if effect.italic {
 				var attribute: Int = 0
 				if let copiedAttribute = CTFontDescriptorCopyAttribute(fontDescriptor, kCTFontSymbolicTrait) {
 					attribute = copiedAttribute as! Int
 				}
 
 				fontDescriptor = CTFontDescriptorCreateCopyWithAttributes(fontDescriptor, [
-					String(kCTFontSymbolicTrait): Int(attribute | Int(CTFontSymbolicTraits.italicTrait.rawValue)) as AnyObject
+					String(kCTFontSymbolicTrait): Int(attribute | Int(CTFontSymbolicTraits.italicTrait.rawValue))
 				] as CFDictionary)
 			}
 
 			var attributes: [NSAttributedString.Key: Any] = [
-				NSAttributedString.Key(String(kCTFontAttributeName)): CTFontCreateWithFontDescriptor(fontDescriptor, CGFloat($0.font.size), nil),
-				NSAttributedString.Key(String(kCTLigatureAttributeName)): $0.ligature,
-				NSAttributedString.Key(String(kCTKernAttributeName)): $0.kerning
+				NSAttributedString.Key(String(kCTFontAttributeName)): CTFontCreateWithFontDescriptor(fontDescriptor, CGFloat(effect.font.size), nil),
+				NSAttributedString.Key(String(kCTLigatureAttributeName)): effect.ligature,
+				NSAttributedString.Key(String(kCTKernAttributeName)): effect.kerning
 			]
 
-			if $0.underline != .none {
-				attributes[NSAttributedString.Key(String(kCTUnderlineStyleAttributeName))] = Int($0.underline.coreTextView)
+			if effect.underline != .none {
+				attributes[NSAttributedString.Key(String(kCTUnderlineStyleAttributeName))] = Int(effect.underline.coreTextView)
 			}
 /*
 			if $0.strikethrough != .None {
@@ -53,11 +53,11 @@ internal extension String {
 			}
 */
 
-			for (key, value) in $0.metadata {
+			for (key, value) in effect.metadata {
 				attributes[NSAttributedString.Key(key)] = value
 			}
 
-			result.addAttributes(attributes, range: toNSRange($0.range))
+			result.addAttributes(attributes, range: toNSRange(effect.range))
 		}
 
 		return result
