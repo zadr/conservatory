@@ -78,7 +78,7 @@ public final class CGRenderer: Renderer {
 		let path = CGMutablePath()
 		path.addRect(encompassingRect)
 
-		let frame = CTFramesetterCreateFrame(framesetter, CFRange(location: 0, length: text.utf8.count), path, nil)
+		let frame = CTFramesetterCreateFrame(framesetter, CFRange(location: 0, length: text.count), path, nil)
 		CTFrameDraw(frame, bitmapContext)
 	}
 
