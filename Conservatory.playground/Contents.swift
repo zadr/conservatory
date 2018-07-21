@@ -2,14 +2,13 @@ import Conservatory
 import UIKit
 
 let length = 2000.0
-let canvas = Canvas<UIViewRenderer>(size: Size(width: length, height: length))
-
+let canvas = Canvas<CARenderer>(size: Size(width: length, height: length))
 var color = Color.random()
 canvas.appearance.background = .solid(color)
 canvas.appearance.border = .solid(color.complement)
 canvas.appearance.borderWidth = Double.random(50.0 ... 150.0)
 
-let add: (Shape) -> (Void) = { (shape) -> Void in
+let add: (Shape) -> Void = { (shape) -> Void in
 	var colors = Color.random().compound()
 	let shapeColor = colors.removeFirst()
 	var shapeDrawer = ShapeDrawer(shape: shape)
@@ -37,3 +36,5 @@ Int.random(5 ... 15).times { (x, _) in
 
 canvas.currentRepresentation!
 // UIImage(cgImage: canvas.currentRepresentation!) // changes every run!
+
+let view = UIView(frame: CGRect(x: 0, y: 0, width: canvas.size.width, height: canvas.size.height))
