@@ -1,4 +1,8 @@
 public extension Color {
+	enum InitializationMistake: Error {
+		case invalidHexString
+	}
+
 	/**
 	A convenience initializer, to create a *Color* given integral red, green, blue and alpha values.
 
@@ -147,20 +151,20 @@ public extension Color {
 
 	Any other length string will result in nil being returned.
 	*/
-	public init?(hexString hex: String) {
+	public init(hexString hex: String) throws {
 		let rgb: String
 		if hex.hasPrefix("#") {
-			rgb = String(hex[hex.index(hex.startIndex, offsetBy: 1)...])
+			rgb = String(hex[hex.index(hex.startIndex, offsetBy: 1)...hex.endIndex])
 		} else {
 			rgb = hex
 		}
 
-		if let value = Int(rgb, radix: 16) , rgb.utf8.count == 8 {
+		if let value = Int(rgb, radix: 16) , rgb.count == 8 {
 			self.init(hexRGBA: value)
-		} else if let value = Int(rgb, radix: 16) , rgb.utf8.count == 6 {
+		} else if let value = Int(rgb, radix: 16) , rgb.count == 6 {
 			self.init(hexRGB: value)
 		} else {
-			return nil
+			throw Color.InitializationMistake.invalidHexString
 		}
 	}
 
