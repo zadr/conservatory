@@ -13,7 +13,7 @@ public extension Color {
 
 	`init(red: 127)`, `init(red: 12, green: 24, blue: 48)`, and `init(red: 12, green: 24, blue: 48, alpha: 96)` are all valid.
 	*/
-	public init(red _red: UInt8 = 255, green _green: UInt8 = 255, blue _blue: UInt8 = 255, alpha _alpha: UInt8 = 255) {
+	init(red _red: UInt8 = 255, green _green: UInt8 = 255, blue _blue: UInt8 = 255, alpha _alpha: UInt8 = 255) {
 		let red = (Double(_red) / 255.0)
 		let green = (Double(_green) / 255.0)
 		let blue = (Double(_blue) / 255.0)
@@ -29,7 +29,7 @@ public extension Color {
 	The parameters specifying *hue*, *saturation*, and *brightness* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.
 	*/
-	public init(h _hue: Double, s _saturation: Double, b _brightness: Double, a _alpha: Double = 1.0) {
+	init(h _hue: Double, s _saturation: Double, b _brightness: Double, a _alpha: Double = 1.0) {
 		var red = 0.0, green = 0.0, blue = 0.0
 
 		let c = _brightness * _saturation
@@ -64,7 +64,7 @@ public extension Color {
 	The parameters specifying *cyan*, *magenta*, *yellow*, and *key* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.
 	*/
-	public init(c cyan: Double, m magenta: Double, y yellow: Double, k _key: Double, alpha: Double = 1.0) {
+	init(c cyan: Double, m magenta: Double, y yellow: Double, k _key: Double, alpha: Double = 1.0) {
 		let key = _key
 
 		let red = (1.0 - cyan) * (1.0 - key)
@@ -81,7 +81,7 @@ public extension Color {
 	The parameters specifying *Y*, *u*, and *v* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.
 	*/
-	public init(Y _luma: Double, u _u: Double, v _v: Double, alpha: Double = 1.0) {
+	init(Y _luma: Double, u _u: Double, v _v: Double, alpha: Double = 1.0) {
 		let luma = _luma
 		let u = _u
 		let v = _v
@@ -100,7 +100,7 @@ public extension Color {
 	The parameters specifying *X*, *Y*, and *Z* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.
 	*/
-	public init(x _mix: Double, y _luminance: Double, z _blueStimulation: Double, alpha: Double = 1.0) {
+	init(x _mix: Double, y _luminance: Double, z _blueStimulation: Double, alpha: Double = 1.0) {
 		let Fxyz: (Double) -> (Double) = { (t: Double) in
 			return t <= 0.0031308 ? 12.92 * t : (1 + 0.055) * (t ** (1.0 / 2.4)) - 0.055
 		}
@@ -123,7 +123,7 @@ public extension Color {
 	The parameters specifying *L*, *a*, and *b* are required, and do not have any default values.
 	The parameter specifying the *alpha* has a default value of **1.0**.
 	*/
-	public init(L _lightness: Double, a _a: Double, b _b: Double, alpha: Double = 1.0) {
+	init(L _lightness: Double, a _a: Double, b _b: Double, alpha: Double = 1.0) {
 		let FLab: (Double, Double) -> Double = { (t: Double, tristimulus: Double) in
 			let delta = 6.0 / 29.0
 			return (t > delta) ? tristimulus * (t * t * t) : (t - 16.0 / 116.0) * 3.0 * (delta * delta) * tristimulus
@@ -151,10 +151,10 @@ public extension Color {
 
 	Any other length string will result in nil being returned.
 	*/
-	public init(hexString hex: String) throws {
+	init(hexString hex: String) throws {
 		let rgb: String
 		if hex.hasPrefix("#") {
-			rgb = String(hex[hex.index(hex.startIndex, offsetBy: 1)...hex.endIndex])
+			rgb = String(hex[hex.index(hex.startIndex, offsetBy: 1) ... hex.endIndex])
 		} else {
 			rgb = hex
 		}
@@ -173,7 +173,7 @@ public extension Color {
 
 	The 8 uppermost bits will be considered the *red* value, with the following two bits being the *green* value, and the next two bits being *blue* value.
 	*/
-	public init(hexRGB hex: Int) {
+	init(hexRGB hex: Int) {
 		let r = UInt8((hex >> 16) & 0xFF)
 		let g = UInt8((hex >> 8) & 0xFF)
 		let b = UInt8(hex & 0xFF)
@@ -186,7 +186,7 @@ public extension Color {
 
 	The 8 uppermost bits will be considered the *red* value, with the following two bits being the *green* value, and the next two bits being *blue* value. The last two bits will be considered the *alpha* value.
 	*/
-	public init(hexRGBA hex: Int) {
+	init(hexRGBA hex: Int) {
 		let r = UInt8((hex >> 24) & 0xFF)
 		let g = UInt8((hex >> 16) & 0xFF)
 		let b = UInt8((hex >> 8) & 0xFF)
@@ -200,9 +200,8 @@ public extension Color {
 
 	- Returns: The return value is guaranteed to have an alpha of 1.0.
 	*/
-	
-	public static func random() -> Color {
-		return Color(red: Double.random(), green: Double.random(), blue: Double.random(), alpha: 1.0)
+	static func random() -> Color {
+		return Color(red: Double.random(in: 0.0 ..< 1.0), green: Double.random(in: 0.0 ..< 1.0), blue: Double.random(in: 0.0 ..< 1.0), alpha: 1.0)
 	}
 }
 
@@ -215,8 +214,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *red* component replaced. Values below 0.0 will be treated as 0.0, and values above 1.0 will be treated as 1.0.
 	*/
-	
-	public func withRed(float r: Double = 1.0) -> Color {
+	func withRed(float r: Double = 1.0) -> Color {
 		let color = RGBView
 		return Color(red: r, green: color.green, blue: color.blue, alpha: AView)
 	}
@@ -224,8 +222,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *red* component replaced.
 	*/
-	
-	public func withRed(int red: UInt8 = 255) -> Color {
+	func withRed(int red: UInt8 = 255) -> Color {
 		let r = Double(red) / 255.0
 
 		return withRed(float: r)
@@ -236,8 +233,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *green* component replaced. Values below 0.0 will be treated as 0.0, and values above 1.0 will be treated as 1.0.
 	*/
-	
-	public func withGreen(float g: Double = 1.0) -> Color {
+	func withGreen(float g: Double = 1.0) -> Color {
 		let color = RGBView
 		return Color(red: color.red, green: g, blue: color.blue, alpha: AView)
 	}
@@ -245,8 +241,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *green* component replaced.
 	*/
-	
-	public func withGreen(int green: UInt8 = 255) -> Color {
+	func withGreen(int green: UInt8 = 255) -> Color {
 		let g = Double(green) / 255.0
 
 		return withGreen(float: g)
@@ -257,8 +252,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *blue* component replaced. Values below 0.0 will be treated as 0.0, and values above 1.0 will be treated as 1.0.
 	*/
-	
-	public func withBlue(float b: Double = 1.0) -> Color {
+	func withBlue(float b: Double = 1.0) -> Color {
 		let color = RGBView
 		return Color(red: color.red, green: color.green, blue: b, alpha: AView)
 	}
@@ -266,8 +260,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *blue* component replaced.
 	*/
-	
-	public func withBlue(int blue: UInt8 = 255) -> Color {
+	func withBlue(int blue: UInt8 = 255) -> Color {
 		let b = Double(blue) / 255.0
 
 		return withBlue(float: b)
@@ -283,8 +276,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *hue* component replaced.
 	*/
-	
-	public func withHue(float hue: Double = 1.0) -> Color {
+	func withHue(float hue: Double = 1.0) -> Color {
 		let View = HSBView
 
 		return Color(h: hue, s: View.saturation, b: View.brightness, a: AView)
@@ -293,8 +285,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *hue* component replaced.
 	*/
-	
-	public func withHue(UInt8 hue: UInt8 = 255) -> Color {
+	func withHue(UInt8 hue: UInt8 = 255) -> Color {
 		let h = Double(hue)
 
 		return withHue(float: h)
@@ -305,8 +296,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *saturation* component replaced.
 	*/
-	
-	public func withSaturation(float saturation: Double = 1.0) -> Color {
+	func withSaturation(float saturation: Double = 1.0) -> Color {
 		let View = HSBView
 
 		return Color(h: View.hue, s: saturation, b: View.brightness, a: AView)
@@ -315,8 +305,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *saturation* component replaced.
 	*/
-	
-	public func withSaturation(UInt8 saturation: UInt8 = 255) -> Color {
+	func withSaturation(UInt8 saturation: UInt8 = 255) -> Color {
 		let s = Double(saturation)
 
 		return withSaturation(float: s)
@@ -327,8 +316,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *brightness* component replaced.
 	*/
-	
-	public func withBrightness(float brightness: Double = 1.0) -> Color {
+	func withBrightness(float brightness: Double = 1.0) -> Color {
 		let View = HSBView
 
 		return Color(h: View.hue, s: View.saturation, b: brightness, a: AView)
@@ -337,8 +325,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *brightness* component replaced.
 	*/
-	
-	public func withBrightness(UInt8 hue: UInt8 = 255) -> Color {
+	func withBrightness(UInt8 hue: UInt8 = 255) -> Color {
 		let b = Double(hue)
 
 		return withBrightness(float: b)
@@ -351,13 +338,11 @@ public extension Color {
 
 	// MARK: - alpha
 
-	
-	public func withWhite(float white: Double = 1.0) -> Color {
+	func withWhite(float white: Double = 1.0) -> Color {
 		return Color(red: white, green: white, blue: white, alpha: AView)
 	}
 
-	
-	public func withWhite(int white: UInt8 = 255) -> Color {
+	func withWhite(int white: UInt8 = 255) -> Color {
 		let w = Double(white) / 255.0
 
 		return withWhite(float: w)
@@ -373,8 +358,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *alpha* component replaced. Values below 0.0 will be treated as 0.0, and values above 1.0 will be treated as 1.0.
 	*/
-	
-	public func withAlpha(float alpha: Double = 1.0) -> Color {
+	func withAlpha(float alpha: Double = 1.0) -> Color {
 		let View = RGBView
 
 		return Color(red: View.red, green: View.green, blue: View.blue, alpha: alpha)
@@ -383,8 +367,7 @@ public extension Color {
 	/**
 	- Returns: A new color with the *alpha* component replaced.
 	*/
-	
-	public func withAlpha(int alpha: UInt8 = 255) -> Color {
+	func withAlpha(int alpha: UInt8 = 255) -> Color {
 		let a = Double(alpha) / 255.0
 		
 		return withAlpha(float: a)

@@ -25,7 +25,7 @@ public extension Color {
 	/**
 	- Returns: A tuple of the current color View in terms of HSB. See [here](https://en.wikipedia.org/wiki/HSL_and_HSV) for further discussion of the HSB color coordinate system.
 	*/
-	public var HSBView: (hue: Double, saturation: Double, brightness: Double) {
+	var HSBView: (hue: Double, saturation: Double, brightness: Double) {
 		let color = RGBView
 		var hue: Double = 0, saturation: Double = 0, brightness: Double = 0
 
@@ -65,7 +65,7 @@ public extension Color {
 	/**
 	- Returns: A tuple of the current color View in terms of HSL. See [here](https://en.wikipedia.org/wiki/HSL_and_HSV) for further discussion of the HSL color coordinate system.
 	*/
-	public var HSLView: (hue: Double, saturation: Double, luminosity: Double)? {
+	var HSLView: (hue: Double, saturation: Double, luminosity: Double)? {
 		let color = RGBView
 
 		let maxView = max(color.red, max(color.green, color.blue))
@@ -118,7 +118,7 @@ public extension Color {
 	/**
 	- Returns: A tuple of the current color View in terms of CMYK. Due to differences in RGB and CMYK color models, this conversion may be lossy. See [here](https://en.wikipedia.org/wiki/CMYK_color_model) for further discussion of the CMYK color model.
 	*/
-	public var CMYKView: (cyan: Double, magenta: Double, yellow: Double, key: Double) {
+	var CMYKView: (cyan: Double, magenta: Double, yellow: Double, key: Double) {
 		let color = RGBView
 		let k = 1.0 - max(max(color.red, color.green), color.blue)
 
@@ -135,7 +135,7 @@ public extension Color {
 	/**
 	- Returns: A tuple of the current color View in terms of YUV444. Due to differences in RGB and YUV444 color models, this conversion may be lossy. See [here](https://en.wikipedia.org/wiki/YUV) for further discussion of the YUV444 color model.
 	*/
-	public var YUVView: (luminance: Double, chrominance: (u: Double, v: Double)) {
+	var YUVView: (luminance: Double, chrominance: (u: Double, v: Double)) {
 		let color = RGBView
 
 		let y = (color.red * 255.0) * 0.299 + (color.green * 255.0) * 0.587 + (color.blue * 255.0) * 0.114
@@ -148,7 +148,7 @@ public extension Color {
 	/**
 	- Returns: A tuple of the current color View in terms of XYZ. Due to differences in RGB and XYZ color models, this conversion may be lossy. See [here](https://en.wikipedia.org/wiki/CIE_1931_color_space) for further discussion of the XYZ color space.
 	*/
-	public var XYZView: (x: Double, y: Double, z: Double) {
+	var XYZView: (x: Double, y: Double, z: Double) {
 		let color = RGBView
 
 		let r = 100 * ((color.red > 0.04045) ? ((color.red + 0.055) / (1 + 0.055)) ** (2.4) : (color.red / 12.92))
@@ -165,7 +165,7 @@ public extension Color {
 	/**
 	- Returns: A tuple of the current color View in terms of L*a*b. Due to significant differences in RGB and L*a*b color models, this conversion may be lossy. See [here](https://en.wikipedia.org/wiki/Lab_color_space) for further discussion of the L*a*b color space.
 	*/
-	public var LabView: (L: Double, a: Double, b: Double) {
+	var LabView: (L: Double, a: Double, b: Double) {
 		let color = XYZView
 
 		let Fxyz: (Double) -> (Double) = { (t) -> Double in
@@ -187,7 +187,7 @@ public extension Color {
 	- Returns: A 6 or 8 character hex string, in the format of *RRGGBB* or *RRGGBBAA*.
 	*/
 	
-	public func hexView(_ includeAlpha: Bool = false) -> String {
+	func hexView(_ includeAlpha: Bool = false) -> String {
 		let color = RGBView
 
 		var hexView = ""

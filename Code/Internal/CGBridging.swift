@@ -1,7 +1,7 @@
 import CoreGraphics
 
 internal extension BlendMode {
-	internal var CGBlendView: CGBlendMode {
+	var CGBlendView: CGBlendMode {
 		switch self {
 		case .normal: return .normal
 		case .multiply: return .multiply
@@ -24,7 +24,7 @@ internal extension BlendMode {
 }
 
 internal extension Color {
-	internal var CGColorView: CGColor {
+	var CGColorView: CGColor {
 		let rgbView = RGBView
 		let components = [ CGFloat(rgbView.red), CGFloat(rgbView.green), CGFloat(rgbView.blue), CGFloat(AView) ]
 		return CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: components)!
@@ -32,7 +32,7 @@ internal extension Color {
 }
 
 internal extension GradientOptions {
-	internal var CGGradientDrawingOptionsView: CGGradientDrawingOptions {
+	var CGGradientDrawingOptionsView: CGGradientDrawingOptions {
 		var optionsList = [CGGradientDrawingOptions]()
 		if beforeScene {
 			optionsList.append(.drawsBeforeStartLocation)
@@ -49,35 +49,35 @@ internal extension GradientOptions {
 }
 
 internal extension Point {
-	internal init(x: CGFloat, y: CGFloat) {
+	init(x: CGFloat, y: CGFloat) {
 		self.init(x: Double(x), y: Double(y))
 	}
 
-	internal init(point: CGPoint) {
+	init(point: CGPoint) {
 		self.init(x: Double(point.x), y: Double(point.y))
 	}
 
-	internal var CGPointView: CGPoint {
+	var CGPointView: CGPoint {
 		return CGPoint(x: CGFloat(x), y: CGFloat(y))
 	}
 }
 
 internal extension Size {
-	internal init(width: CGFloat, height: CGFloat) {
+	init(width: CGFloat, height: CGFloat) {
 		self.init(width: Double(width), height: Double(height))
 	}
 
-	internal init(size: CGSize) {
+	init(size: CGSize) {
 		self.init(width: Double(size.width), height: Double(size.height))
 	}
 
-	internal var CGSizeView: CGSize {
+	var CGSizeView: CGSize {
 		return CGSize(width: CGFloat(width), height: CGFloat(height))
 	}
 }
 
 internal extension Box {
-	internal var CGRectView: CGRect {
+	var CGRectView: CGRect {
 		let point = location.CGPointView
 		let dimension = size.CGSizeView
 
@@ -86,16 +86,14 @@ internal extension Box {
 }
 
 internal extension Transform {
-	internal var CGAffineTransformView: CGAffineTransform {
+	var CGAffineTransformView: CGAffineTransform {
 		return CGAffineTransform(a: CGFloat(a), b: CGFloat(b), c: CGFloat(c), d: CGFloat(d), tx: CGFloat(tx), ty: CGFloat(ty))
 	}
 }
 
 internal extension Bezier {
-	internal var CGPathView: CGPath {
-		let path = CGMutablePath()
-
-		forEach { (segment) in
+	var CGPathView: CGPath {
+		return reduce(CGMutablePath()) { (path, segment) in
 			switch segment {
 			case .move(let to):
 				path.move(to: to.CGPointView)
@@ -110,8 +108,8 @@ internal extension Bezier {
 			case .close:
 				path.closeSubpath()
 			}
-		}
 
-		return path.copy()!
+			return path
+		} .copy()!
 	}
 }

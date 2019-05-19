@@ -152,8 +152,9 @@ extension Bezier: CustomStringConvertible {
 }
 
 extension Bezier: Hashable {
-	public var hashValue: Int {
-		return segments.hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(segments)
+		_ = hasher.finalize()
 	}
 }
 
@@ -216,8 +217,9 @@ extension Segment: CustomStringConvertible {
 }
 
 extension Segment: Hashable {
-	public var hashValue: Int {
-		return description.hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(description)
+		_ = hasher.finalize()
 	}
 }
 

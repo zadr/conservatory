@@ -2,7 +2,7 @@ public extension Color {
 	// todo: `public func blend(with target: Color, mode: BlendMode = .Normal) -> Color { … }`
 
 	
-	public func interpolate(_ towards: Color, step: Double) -> Color {
+	func interpolate(_ towards: Color, step: Double) -> Color {
 		let HSB = HSBView
 		let towardsHSB = towards.HSBView
 

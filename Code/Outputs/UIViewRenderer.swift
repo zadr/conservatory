@@ -194,7 +194,7 @@ extension UIBezierPath {
 }
 
 internal extension Color {
-	internal var UIColorView: UIColor {
+	var UIColorView: UIColor {
 		let hsb = HSBView
 		return UIColor(hue: CGFloat(hsb.hue), saturation: CGFloat(hsb.saturation), brightness: CGFloat(hsb.brightness), alpha: CGFloat(AView))
 	}

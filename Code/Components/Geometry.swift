@@ -85,8 +85,10 @@ extension Point: CustomStringConvertible {
 }
 
 extension Point: Hashable {
-	public var hashValue: Int {
-		return [ x, y ].hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(x)
+		hasher.combine(y)
+		_ = hasher.finalize()
 	}
 }
 
@@ -155,8 +157,10 @@ extension Size: CustomStringConvertible {
 }
 
 extension Size: Hashable {
-	public var hashValue: Int {
-		return [ width, height ].hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(width)
+		hasher.combine(height)
+		_ = hasher.finalize()
 	}
 }
 
@@ -292,7 +296,7 @@ public struct Box {
 	- Returns: A random coordinate within the current bounding box.
 	*/
 	public func randomCoordinate() -> Point {
-		return Point(x: Double.random(0 ... size.width), y: Double.random(0 ... size.height))
+		return Point(x: Double.random(in: 0 ... size.width), y: Double.random(in: 0 ... size.height))
 	}
 
 	/**
@@ -320,8 +324,10 @@ extension Box: CustomStringConvertible {
 }
 
 extension Box: Hashable {
-	public var hashValue: Int {
-		return [ location.hashValue, size.hashValue ].hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(location)
+		hasher.combine(size)
+		_ = hasher.finalize()
 	}
 }
 

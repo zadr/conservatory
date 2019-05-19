@@ -71,8 +71,10 @@ public struct Font {
 }
 
 extension Font: Hashable {
-	public var hashValue: Int {
-		return [ name.hashValue, size.hashValue ].hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(name)
+		hasher.combine(size)
+		_ = hasher.finalize()
 	}
 }
 
@@ -123,8 +125,15 @@ public struct TextEffect: Hashable {
 		range = _range
 	}
 
-	public var hashValue: Int {
-		return [ bold.hashValue, italic.hashValue, underline.hashValue, /* strikethrough.hashValue, */ font.hashValue, /* aura.hashValue, */ kerning.hashValue, ligature.hashValue, range.hashValue ].hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(bold)
+		hasher.combine(italic)
+		hasher.combine(underline)
+		hasher.combine(font)
+		hasher.combine(kerning)
+		hasher.combine(ligature)
+		hasher.combine(range)
+		_ = hasher.finalize()
 	}
 }
 

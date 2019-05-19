@@ -23,7 +23,6 @@
 		B61381CB1C3D9B2F00C90817 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A21C3D9B2F00C90817 /* DoubleExtensions.swift */; };
 		B61381CC1C3D9B2F00C90817 /* Interpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A31C3D9B2F00C90817 /* Interpolation.swift */; };
 		B61381CD1C3D9B2F00C90817 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A41C3D9B2F00C90817 /* IntExtensions.swift */; };
-		B61381CE1C3D9B2F00C90817 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A51C3D9B2F00C90817 /* Random.swift */; };
 		B61381D01C3D9B2F00C90817 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A71C3D9B2F00C90817 /* Geometry.swift */; };
 		B61381D11C3D9B2F00C90817 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A81C3D9B2F00C90817 /* Transform.swift */; };
 		B61381D21C3D9B2F00C90817 /* Conservatory.h in Headers */ = {isa = PBXBuildFile; fileRef = B61381A91C3D9B2F00C90817 /* Conservatory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -65,7 +64,6 @@
 		B62269021C40885E005A679D /* CGRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381BC1C3D9B2F00C90817 /* CGRenderer.swift */; };
 		B62269031C40885E005A679D /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381AD1C3D9B2F00C90817 /* Image.swift */; };
 		B62269041C40885E005A679D /* StringRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381BE1C3D9B2F00C90817 /* StringRenderer.swift */; };
-		B62269051C40885E005A679D /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A51C3D9B2F00C90817 /* Random.swift */; };
 		B62269061C40885E005A679D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B613819A1C3D9B2F00C90817 /* Color.swift */; };
 		B62269071C40885E005A679D /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61381A41C3D9B2F00C90817 /* IntExtensions.swift */; };
 		B62269081C40885E005A679D /* ColorRelations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B613819D1C3D9B2F00C90817 /* ColorRelations.swift */; };
@@ -114,7 +112,6 @@
 		B61381A21C3D9B2F00C90817 /* DoubleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 		B61381A31C3D9B2F00C90817 /* Interpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interpolation.swift; sourceTree = "<group>"; };
 		B61381A41C3D9B2F00C90817 /* IntExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
-		B61381A51C3D9B2F00C90817 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		B61381A71C3D9B2F00C90817 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		B61381A81C3D9B2F00C90817 /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		B61381A91C3D9B2F00C90817 /* Conservatory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conservatory.h; sourceTree = "<group>"; };
@@ -238,7 +235,6 @@
 				B61381A21C3D9B2F00C90817 /* DoubleExtensions.swift */,
 				B61381A31C3D9B2F00C90817 /* Interpolation.swift */,
 				B61381A41C3D9B2F00C90817 /* IntExtensions.swift */,
-				B61381A51C3D9B2F00C90817 /* Random.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -492,7 +488,6 @@
 				195F4E752009C040001435D1 /* UIViewRenderer.swift in Sources */,
 				B61381D51C3D9B2F00C90817 /* Image.swift in Sources */,
 				B61381E31C3D9B2F00C90817 /* StringRenderer.swift in Sources */,
-				B61381CE1C3D9B2F00C90817 /* Random.swift in Sources */,
 				B61381C41C3D9B2F00C90817 /* Color.swift in Sources */,
 				B61381CD1C3D9B2F00C90817 /* IntExtensions.swift in Sources */,
 				B61381C71C3D9B2F00C90817 /* ColorRelations.swift in Sources */,
@@ -545,7 +540,6 @@
 				B62269021C40885E005A679D /* CGRenderer.swift in Sources */,
 				B62269031C40885E005A679D /* Image.swift in Sources */,
 				B62269041C40885E005A679D /* StringRenderer.swift in Sources */,
-				B62269051C40885E005A679D /* Random.swift in Sources */,
 				B62269061C40885E005A679D /* Color.swift in Sources */,
 				B62269071C40885E005A679D /* IntExtensions.swift in Sources */,
 				B62269081C40885E005A679D /* ColorRelations.swift in Sources */,
@@ -615,6 +609,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -warn-long-function-bodies=100";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -657,6 +652,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -warn-long-function-bodies=100";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -674,7 +670,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Resources/Info-iOS.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = be.radiantdot.Conservatory;
 				PRODUCT_NAME = Conservatory;
@@ -690,7 +686,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Resources/Info-iOS.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = be.radiantdot.Conservatory;
 				PRODUCT_NAME = Conservatory;
@@ -705,7 +701,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = be.radiantdot.ConservatoryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -716,7 +711,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = be.radiantdot.ConservatoryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -751,6 +745,7 @@
 				PRODUCT_NAME = Conservatory;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_REFLECTION_METADATA_LEVEL = none;
 			};
 			name = Release;
 		};

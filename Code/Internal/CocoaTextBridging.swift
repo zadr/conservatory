@@ -8,7 +8,7 @@ import Foundation
 #endif
 
 internal extension String {
-	internal func cocoaValue(_ effects: [TextEffect]) -> NSAttributedString {
+	func cocoaValue(_ effects: [TextEffect]) -> NSAttributedString {
 		let result = NSMutableAttributedString(string: self)
 		for effect in effects {
 			var fontDescriptor = CTFontDescriptorCreateWithNameAndSize(effect.font.name as CFString, CGFloat(effect.font.size))
@@ -91,7 +91,7 @@ fileprivate extension Color {
 }
 #elseif os(iOS)
 fileprivate extension Color {
-	fileprivate var cocoaValue: UIColor {
+	var cocoaValue: UIColor {
 		let rgb = RGBView
 		return UIColor(red: CGFloat(rgb.red), green: CGFloat(rgb.green), blue: CGFloat(rgb.blue), alpha: CGFloat(AView))
 	}

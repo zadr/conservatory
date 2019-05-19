@@ -53,8 +53,12 @@ extension Color: CustomStringConvertible {
 }
 
 extension Color: Hashable {
-	public var hashValue: Int {
-		return [ red, green, blue, alpha ].hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(red)
+		hasher.combine(green)
+		hasher.combine(blue)
+		hasher.combine(alpha)
+		_ = hasher.finalize()
 	}
 }
 

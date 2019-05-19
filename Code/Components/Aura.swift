@@ -54,10 +54,11 @@ extension Aura: CustomStringConvertible {
 }
 
 extension Aura: Hashable {
-	public var hashValue: Int {
-		// todo: figure out how to use offset's hash without passing in `.hashValue` directly
-		// (it works if `Point` is a class, but not a struct)
-		return [ color.hashValue, offset.hashValue, blur.hashValue ].hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(color)
+		hasher.combine(offset)
+		hasher.combine(blur)
+		_ = hasher.finalize()
 	}
 }
 

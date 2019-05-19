@@ -10,7 +10,7 @@ public protocol Interpolatable {
 }
 
 public extension Interpolatable where Self: BinaryInteger {
-	public func linearInterpolate(_ towards: Self, step: Self) -> Self {
+	func linearInterpolate(_ towards: Self, step: Self) -> Self {
         if self == towards {
             return self
         }

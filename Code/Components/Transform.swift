@@ -184,27 +184,28 @@ extension Transform: CustomStringConvertible {
 }
 
 extension Transform: Hashable {
-	public var hashValue: Int {
-		return matrix.hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(matrix)
+		_ = hasher.finalize()
 	}
 }
 
 public extension Transform {
-	public func apply(to point: Point) -> Point {
+	func apply(to point: Point) -> Point {
 		let x = (a * point.x + c * point.y + tx)
 		let y = (b * point.x + d * point.y + ty)
 
 		return Point(x: x, y: y)
 	}
 
-	public func apply(to size: Size) -> Size {
+	func apply(to size: Size) -> Size {
 		let width = (a * size.width + c * size.height)
 		let height = (b * size.width + d * size.height)
 
 		return Size(width: width, height: height)
 	}
 
-	public func apply(to box: Box) -> Box {
+	func apply(to box: Box) -> Box {
 		return Box(location: apply(to: box.location), size: apply(to: box.size))
 	}
 }

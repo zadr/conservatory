@@ -12,7 +12,7 @@ public extension Color {
 	- Returns: A list of primary colors for a given theory.
 	*/
 	
-	public func primary(_ model: Model = .subtractive) -> [Color] {
+	func primary(_ model: Model = .subtractive) -> [Color] {
 		switch model {
 		case .subtractive:
 			return [ Color.red, Color.yellow, Color.blue ]
@@ -28,7 +28,7 @@ public extension Color {
 
 	- Returns: A list of secondary colors for a given theory.
 	*/
-	public func secondary(_ model: Model = .subtractive) -> [Color] {
+	func secondary(_ model: Model = .subtractive) -> [Color] {
 		switch model {
 		case .subtractive:
 			return [ Color.orange, Color.purple, Color.green ]
@@ -44,7 +44,7 @@ public extension Color {
 
 	- Returns: A list of tertiary colors for a given theory.
 	*/
-	public func tertiary(_ model: Model = .subtractive) -> [Color] {
+	func tertiary(_ model: Model = .subtractive) -> [Color] {
 		switch model {
 		case .subtractive:
 			return [ Color.vermilion, Color.amber, Color.chartreuse, Color.teal, Color.violet, Color.magenta ]
@@ -62,7 +62,7 @@ public extension Color {
 
 	- Returns: A list of warm colors.
 	*/
-	public func warm() -> [Color] {
+	func warm() -> [Color] {
 		return [
 			Color(red: 254, green: 219, blue: 50).drift(),
 			Color(red: 254, green: 168, blue: 55).drift(),
@@ -78,7 +78,7 @@ public extension Color {
 
 	- Returns: A list of cool colors.
 	*/
-	public func cool() -> [Color] {
+	func cool() -> [Color] {
 		return [
 			Color(red: 22, green: 128, blue: 115).drift(),
 			Color(red: 20, green: 126, blue: 150).drift(),
