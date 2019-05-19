@@ -17,3 +17,4 @@ syntax: glob
 *.xcworkspacedata
 *.xcodeproj/project.xcworkspace
 *.playground/timeline.xctimeline
+*.xcworkspace/xcshareddata*
